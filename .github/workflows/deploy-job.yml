@@ -9,10 +9,10 @@ jobs:
   build-push:
     runs-on: self-hosted
     steps:
-      - name: GitClone
-        run: git clone git@github.com:leitop2k/unleash4.15.4.git
       - name: DockerBuild
         run: docker build -t leitop2k/unleash_4.15.4:latest .
+        with:
+          context: .
       - name: DockerPush
         run: docker build leitop2k/unleash_4.15.4:latest
   stop-clear:
