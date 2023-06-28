@@ -19,15 +19,12 @@ jobs:
     needs: build-push
     steps:
       - uses: actions/checkout@v2
-      - name: docker-compose ps
-        run: |
-          docker-compose ps
-      - name: docker-compose down
-        run: |
-          docker-compose down
-      - name: docker leitop2k/unleash_4.15.4 pull
+      - name: docker leitop2k/unleash_4.15.4:latest pull
         run: |
           docker pull leitop2k/unleash_4.15.4:latest
-      - name: docker-compose up -d
+      - name: docker restart unleash4154-web-1
         run: |
-          docker-compose up -d
+          docker restart unleash4154-web-1
+      - name: docker-compose ps
+        run: |
+          docker ps
