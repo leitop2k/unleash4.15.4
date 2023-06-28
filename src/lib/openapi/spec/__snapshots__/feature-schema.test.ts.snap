@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`featureSchema constraints 1`] = `
+{
+  "errors": [
+    {
+      "instancePath": "/strategies/0/constraints/0",
+      "keyword": "required",
+      "message": "must have required property 'operator'",
+      "params": {
+        "missingProperty": "operator",
+      },
+      "schemaPath": "#/components/schemas/constraintSchema/required",
+    },
+  ],
+  "schema": "#/components/schemas/featureSchema",
+}
+`;
+
+exports[`featureSchema variant override values must be an array 1`] = `
+{
+  "errors": [
+    {
+      "instancePath": "/variants/0/overrides/0/values",
+      "keyword": "type",
+      "message": "must be array",
+      "params": {
+        "type": "array",
+      },
+      "schemaPath": "#/components/schemas/overrideSchema/properties/values/type",
+    },
+  ],
+  "schema": "#/components/schemas/featureSchema",
+}
+`;

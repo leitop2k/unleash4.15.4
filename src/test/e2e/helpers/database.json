@@ -1,0 +1,47 @@
+{
+  "strategies": [
+    {
+      "name": "default",
+      "description": "Default on or off Strategy.",
+      "parameters": []
+    },
+    {
+      "name": "usersWithEmail",
+      "description": "Active for users defined  in the comma-separated emails-parameter.",
+      "parameters": [
+        {
+          "name": "emails",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "contextFields": [
+    { "name": "environment" },
+    { "name": "userId" },
+    { "name": "appName" }
+  ],
+  "projects": [
+    {
+      "id": "default",
+      "name": "Default"
+    }
+  ],
+  "environments": [
+    {
+      "name": "default",
+      "type": "production",
+
+      "sortOrder": 1,
+      "enabled": true,
+      "protected": true
+    }
+  ],
+  "tag_types": [
+    {
+      "name": "simple",
+      "description": "Arbitrary tags. Used to simplify filtering of features",
+      "icon": "#"
+    }
+  ]
+}

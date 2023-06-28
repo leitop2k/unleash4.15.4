@@ -1,0 +1,7049 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should serve the OpenAPI UI 1`] = `
+"<!DOCTYPE html>
+<html>
+  <head>
+    <title>Swagger UI</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      html {
+          box-sizing: border-box;
+          overflow: -moz-scrollbars-vertical;
+          overflow-y: scroll;
+      }
+      *,
+      *:before,
+      *:after {
+          box-sizing: inherit;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: #fafafa;
+      }
+    </style>
+    
+      <link rel="stylesheet" type="text/css" href="./swagger-ui.css" >
+    
+  </head>
+  <body>
+    
+      <div id="swagger-ui"></div>
+      <script src="./swagger-ui-bundle.js"></script>
+      <script src="./swagger-ui-standalone-preset.js"></script>
+      <script src="./swagger-ui-init.js"></script>
+    
+  </body>
+</html>
+  "
+`;
+
+exports[`should serve the OpenAPI spec 1`] = `
+{
+  "components": {
+    "schemas": {
+      "addonParameterSchema": {
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "displayName": {
+            "type": "string",
+          },
+          "name": {
+            "type": "string",
+          },
+          "placeholder": {
+            "type": "string",
+          },
+          "required": {
+            "type": "boolean",
+          },
+          "sensitive": {
+            "type": "boolean",
+          },
+          "type": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "name",
+          "displayName",
+          "type",
+          "required",
+          "sensitive",
+        ],
+        "type": "object",
+      },
+      "addonSchema": {
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "description": {
+            "type": "string",
+          },
+          "enabled": {
+            "type": "boolean",
+          },
+          "environments": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "events": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "id": {
+            "type": "number",
+          },
+          "parameters": {
+            "additionalProperties": true,
+            "type": "object",
+          },
+          "projects": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "provider": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "provider",
+          "enabled",
+          "parameters",
+          "events",
+        ],
+        "type": "object",
+      },
+      "addonTypeSchema": {
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "displayName": {
+            "type": "string",
+          },
+          "documentationUrl": {
+            "type": "string",
+          },
+          "events": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "name": {
+            "type": "string",
+          },
+          "parameters": {
+            "items": {
+              "$ref": "#/components/schemas/addonParameterSchema",
+            },
+            "type": "array",
+          },
+          "tagTypes": {
+            "items": {
+              "$ref": "#/components/schemas/tagTypeSchema",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "name",
+          "displayName",
+          "documentationUrl",
+          "description",
+        ],
+        "type": "object",
+      },
+      "addonsSchema": {
+        "properties": {
+          "addons": {
+            "items": {
+              "$ref": "#/components/schemas/addonSchema",
+            },
+            "type": "array",
+          },
+          "providers": {
+            "items": {
+              "$ref": "#/components/schemas/addonTypeSchema",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "addons",
+          "providers",
+        ],
+        "type": "object",
+      },
+      "apiTokenSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "alias": {
+            "nullable": true,
+            "type": "string",
+          },
+          "createdAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "environment": {
+            "type": "string",
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "project": {
+            "type": "string",
+          },
+          "projects": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "secret": {
+            "type": "string",
+          },
+          "seenAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "type": {
+            "description": "client, admin, frontend.",
+            "type": "string",
+          },
+          "username": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "username",
+          "type",
+        ],
+        "type": "object",
+      },
+      "apiTokensSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "tokens": {
+            "items": {
+              "$ref": "#/components/schemas/apiTokenSchema",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "tokens",
+        ],
+        "type": "object",
+      },
+      "applicationSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "announced": {
+            "type": "boolean",
+          },
+          "appName": {
+            "type": "string",
+          },
+          "color": {
+            "type": "string",
+          },
+          "description": {
+            "type": "string",
+          },
+          "icon": {
+            "type": "string",
+          },
+          "sdkVersion": {
+            "type": "string",
+          },
+          "strategies": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "url": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "appName",
+        ],
+        "type": "object",
+      },
+      "applicationsSchema": {
+        "properties": {
+          "applications": {
+            "items": {
+              "$ref": "#/components/schemas/applicationSchema",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "changePasswordSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "password": {
+            "type": "string",
+          },
+          "token": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "token",
+          "password",
+        ],
+        "type": "object",
+      },
+      "clientApplicationSchema": {
+        "properties": {
+          "appName": {
+            "type": "string",
+          },
+          "environment": {
+            "type": "string",
+          },
+          "instanceId": {
+            "type": "string",
+          },
+          "interval": {
+            "type": "number",
+          },
+          "sdkVersion": {
+            "type": "string",
+          },
+          "started": {
+            "oneOf": [
+              {
+                "format": "date-time",
+                "type": "string",
+              },
+              {
+                "type": "number",
+              },
+            ],
+          },
+          "strategies": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "appName",
+          "interval",
+          "started",
+          "strategies",
+        ],
+        "type": "object",
+      },
+      "clientFeatureSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "description": {
+            "nullable": true,
+            "type": "string",
+          },
+          "enabled": {
+            "type": "boolean",
+          },
+          "impressionData": {
+            "nullable": true,
+            "type": "boolean",
+          },
+          "lastSeenAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "name": {
+            "type": "string",
+          },
+          "project": {
+            "type": "string",
+          },
+          "stale": {
+            "type": "boolean",
+          },
+          "strategies": {
+            "items": {
+              "$ref": "#/components/schemas/featureStrategySchema",
+            },
+            "type": "array",
+          },
+          "type": {
+            "type": "string",
+          },
+          "variants": {
+            "items": {
+              "$ref": "#/components/schemas/variantSchema",
+            },
+            "nullable": true,
+            "type": "array",
+          },
+        },
+        "required": [
+          "name",
+          "enabled",
+        ],
+        "type": "object",
+      },
+      "clientFeaturesQuerySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "environment": {
+            "type": "string",
+          },
+          "inlineSegmentConstraints": {
+            "type": "boolean",
+          },
+          "namePrefix": {
+            "type": "string",
+          },
+          "project": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "tag": {
+            "items": {
+              "items": {
+                "type": "string",
+              },
+              "type": "array",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "clientFeaturesSchema": {
+        "properties": {
+          "features": {
+            "items": {
+              "$ref": "#/components/schemas/clientFeatureSchema",
+            },
+            "type": "array",
+          },
+          "query": {
+            "$ref": "#/components/schemas/clientFeaturesQuerySchema",
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/segmentSchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "version",
+          "features",
+        ],
+        "type": "object",
+      },
+      "clientMetricsSchema": {
+        "properties": {
+          "appName": {
+            "type": "string",
+          },
+          "bucket": {
+            "properties": {
+              "start": {
+                "$ref": "#/components/schemas/dateSchema",
+              },
+              "stop": {
+                "$ref": "#/components/schemas/dateSchema",
+              },
+              "toggles": {
+                "additionalProperties": {
+                  "properties": {
+                    "no": {
+                      "minimum": 0,
+                      "type": "integer",
+                    },
+                    "variants": {
+                      "additionalProperties": {
+                        "minimum": 0,
+                        "type": "integer",
+                      },
+                      "type": "object",
+                    },
+                    "yes": {
+                      "minimum": 0,
+                      "type": "integer",
+                    },
+                  },
+                  "type": "object",
+                },
+                "type": "object",
+              },
+            },
+            "required": [
+              "start",
+              "stop",
+              "toggles",
+            ],
+            "type": "object",
+          },
+          "environment": {
+            "type": "string",
+          },
+          "instanceId": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "appName",
+          "bucket",
+        ],
+        "type": "object",
+      },
+      "cloneFeatureSchema": {
+        "properties": {
+          "name": {
+            "type": "string",
+          },
+          "replaceGroupId": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "constraintSchema": {
+        "additionalProperties": false,
+        "description": "A strategy constraint. For more information, refer to [the strategy constraint reference documentation](https://docs.getunleash.io/advanced/strategy_constraints)",
+        "properties": {
+          "caseInsensitive": {
+            "default": false,
+            "description": "Whether the operator should be case sensitive or not. Defaults to \`false\` (being case sensitive).",
+            "type": "boolean",
+          },
+          "contextName": {
+            "description": "The name of the context field that this constraint should apply to.",
+            "example": "appName",
+            "type": "string",
+          },
+          "inverted": {
+            "default": false,
+            "description": "Whether the result should be negated or not. If \`true\`, will turn a \`true\` result into a \`false\` result and vice versa.",
+            "type": "boolean",
+          },
+          "operator": {
+            "description": "The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/advanced/strategy_constraints#strategy-constraint-operators).",
+            "enum": [
+              "NOT_IN",
+              "IN",
+              "STR_ENDS_WITH",
+              "STR_STARTS_WITH",
+              "STR_CONTAINS",
+              "NUM_EQ",
+              "NUM_GT",
+              "NUM_GTE",
+              "NUM_LT",
+              "NUM_LTE",
+              "DATE_AFTER",
+              "DATE_BEFORE",
+              "SEMVER_EQ",
+              "SEMVER_GT",
+              "SEMVER_LT",
+            ],
+            "type": "string",
+          },
+          "value": {
+            "description": "The context value that should be used for constraint evaluation. Use this property instead of \`values\` for properties that only accept single values.",
+            "type": "string",
+          },
+          "values": {
+            "description": "The context values that should be used for constraint evaluation. Use this property instead of \`value\` for properties that accept multiple values.",
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "contextName",
+          "operator",
+        ],
+        "type": "object",
+      },
+      "contextFieldSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "description": {
+            "type": "string",
+          },
+          "legalValues": {
+            "items": {
+              "$ref": "#/components/schemas/legalValueSchema",
+            },
+            "type": "array",
+          },
+          "name": {
+            "type": "string",
+          },
+          "sortOrder": {
+            "type": "number",
+          },
+          "stickiness": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "contextFieldsSchema": {
+        "items": {
+          "$ref": "#/components/schemas/contextFieldSchema",
+        },
+        "type": "array",
+      },
+      "createApiTokenSchema": {
+        "properties": {
+          "environment": {
+            "type": "string",
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "project": {
+            "type": "string",
+          },
+          "projects": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "secret": {
+            "type": "string",
+          },
+          "type": {
+            "description": "client, admin, frontend.",
+            "type": "string",
+          },
+          "username": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "username",
+          "type",
+        ],
+        "type": "object",
+      },
+      "createFeatureSchema": {
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "impressionData": {
+            "type": "boolean",
+          },
+          "name": {
+            "type": "string",
+          },
+          "type": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "createFeatureStrategySchema": {
+        "properties": {
+          "constraints": {
+            "items": {
+              "$ref": "#/components/schemas/constraintSchema",
+            },
+            "type": "array",
+          },
+          "name": {
+            "type": "string",
+          },
+          "parameters": {
+            "$ref": "#/components/schemas/parametersSchema",
+          },
+          "sortOrder": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "createUserSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "type": "string",
+          },
+          "name": {
+            "type": "string",
+          },
+          "password": {
+            "type": "string",
+          },
+          "rootRole": {
+            "type": "number",
+          },
+          "sendEmail": {
+            "type": "boolean",
+          },
+          "username": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "rootRole",
+        ],
+        "type": "object",
+      },
+      "dateSchema": {
+        "oneOf": [
+          {
+            "format": "date-time",
+            "type": "string",
+          },
+          {
+            "type": "number",
+          },
+        ],
+      },
+      "edgeTokenSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "projects": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "token": {
+            "type": "string",
+          },
+          "type": {
+            "enum": [
+              "client",
+              "admin",
+              "frontend",
+            ],
+            "type": "string",
+          },
+        },
+        "required": [
+          "token",
+          "projects",
+          "type",
+        ],
+        "type": "object",
+      },
+      "emailSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "email": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "email",
+        ],
+        "type": "object",
+      },
+      "environmentSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+          },
+          "name": {
+            "type": "string",
+          },
+          "protected": {
+            "type": "boolean",
+          },
+          "sortOrder": {
+            "type": "number",
+          },
+          "type": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "name",
+          "type",
+          "enabled",
+        ],
+        "type": "object",
+      },
+      "environmentsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "environments": {
+            "items": {
+              "$ref": "#/components/schemas/environmentSchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "environments",
+        ],
+        "type": "object",
+      },
+      "eventSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "createdBy": {
+            "type": "string",
+          },
+          "data": {
+            "nullable": true,
+            "type": "object",
+          },
+          "environment": {
+            "nullable": true,
+            "type": "string",
+          },
+          "featureName": {
+            "nullable": true,
+            "type": "string",
+          },
+          "id": {
+            "minimum": 1,
+            "type": "integer",
+          },
+          "preData": {
+            "nullable": true,
+            "type": "object",
+          },
+          "project": {
+            "nullable": true,
+            "type": "string",
+          },
+          "tags": {
+            "items": {
+              "$ref": "#/components/schemas/tagSchema",
+            },
+            "nullable": true,
+            "type": "array",
+          },
+          "type": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+          "createdAt",
+          "type",
+          "createdBy",
+        ],
+        "type": "object",
+      },
+      "eventsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/eventSchema",
+            },
+            "type": "array",
+          },
+          "totalEvents": {
+            "minimum": 0,
+            "type": "integer",
+          },
+          "version": {
+            "minimum": 1,
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "events",
+        ],
+        "type": "object",
+      },
+      "featureEnvironmentMetricsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "appName": {
+            "type": "string",
+          },
+          "environment": {
+            "type": "string",
+          },
+          "featureName": {
+            "type": "string",
+          },
+          "no": {
+            "type": "number",
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "yes": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "environment",
+          "timestamp",
+          "yes",
+          "no",
+        ],
+        "type": "object",
+      },
+      "featureEnvironmentSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+          },
+          "environment": {
+            "type": "string",
+          },
+          "name": {
+            "type": "string",
+          },
+          "strategies": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "constraints": {
+                  "items": {
+                    "$ref": "#/components/schemas/constraintSchema",
+                  },
+                  "type": "array",
+                },
+                "createdAt": {
+                  "format": "date-time",
+                  "type": "string",
+                },
+                "environment": {
+                  "type": "string",
+                },
+                "featureName": {
+                  "type": "string",
+                },
+                "id": {
+                  "type": "string",
+                },
+                "parameters": {
+                  "$ref": "#/components/schemas/parametersSchema",
+                },
+                "projectId": {
+                  "type": "string",
+                },
+                "sortOrder": {
+                  "type": "number",
+                },
+                "strategyName": {
+                  "type": "string",
+                },
+              },
+              "required": [
+                "id",
+                "featureName",
+                "projectId",
+                "environment",
+                "strategyName",
+                "constraints",
+                "parameters",
+              ],
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "type": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "name",
+          "enabled",
+        ],
+        "type": "object",
+      },
+      "featureEventsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/eventSchema",
+            },
+            "type": "array",
+          },
+          "toggleName": {
+            "type": "string",
+          },
+          "version": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "events",
+        ],
+        "type": "object",
+      },
+      "featureMetricsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/featureEnvironmentMetricsSchema",
+            },
+            "type": "array",
+          },
+          "maturity": {
+            "type": "string",
+          },
+          "version": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "version",
+          "maturity",
+          "data",
+        ],
+        "type": "object",
+      },
+      "featureSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "archived": {
+            "type": "boolean",
+          },
+          "archivedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "createdAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "description": {
+            "type": "string",
+          },
+          "enabled": {
+            "type": "boolean",
+          },
+          "environments": {
+            "items": {
+              "$ref": "#/components/schemas/environmentSchema",
+            },
+            "type": "array",
+          },
+          "impressionData": {
+            "type": "boolean",
+          },
+          "lastSeenAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "name": {
+            "type": "string",
+          },
+          "project": {
+            "type": "string",
+          },
+          "stale": {
+            "type": "boolean",
+          },
+          "strategies": {
+            "items": {
+              "$ref": "#/components/schemas/featureStrategySchema",
+            },
+            "type": "array",
+          },
+          "type": {
+            "type": "string",
+          },
+          "variants": {
+            "items": {
+              "$ref": "#/components/schemas/variantSchema",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "featureStrategySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "constraints": {
+            "items": {
+              "$ref": "#/components/schemas/constraintSchema",
+            },
+            "type": "array",
+          },
+          "id": {
+            "type": "string",
+          },
+          "name": {
+            "type": "string",
+          },
+          "parameters": {
+            "$ref": "#/components/schemas/parametersSchema",
+          },
+          "segments": {
+            "items": {
+              "type": "number",
+            },
+            "type": "array",
+          },
+          "sortOrder": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "featureStrategySegmentSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "featureStrategyId": {
+            "type": "string",
+          },
+          "segmentId": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "segmentId",
+          "featureStrategyId",
+        ],
+        "type": "object",
+      },
+      "featureTagSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "featureName": {
+            "type": "string",
+          },
+          "tagType": {
+            "type": "string",
+          },
+          "tagValue": {
+            "type": "string",
+          },
+          "type": {
+            "type": "string",
+          },
+          "value": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "featureName",
+          "tagValue",
+        ],
+        "type": "object",
+      },
+      "featureTypeSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "id": {
+            "type": "string",
+          },
+          "lifetimeDays": {
+            "nullable": true,
+            "type": "number",
+          },
+          "name": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "lifetimeDays",
+        ],
+        "type": "object",
+      },
+      "featureTypesSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "types": {
+            "items": {
+              "$ref": "#/components/schemas/featureTypeSchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "types",
+        ],
+        "type": "object",
+      },
+      "featureUsageSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "featureName": {
+            "type": "string",
+          },
+          "lastHourUsage": {
+            "items": {
+              "$ref": "#/components/schemas/featureEnvironmentMetricsSchema",
+            },
+            "type": "array",
+          },
+          "maturity": {
+            "type": "string",
+          },
+          "seenApplications": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "version",
+          "maturity",
+          "featureName",
+          "lastHourUsage",
+          "seenApplications",
+        ],
+        "type": "object",
+      },
+      "featureVariantsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "variants": {
+            "items": {
+              "$ref": "#/components/schemas/variantSchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "variants",
+        ],
+        "type": "object",
+      },
+      "featuresSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "features": {
+            "items": {
+              "$ref": "#/components/schemas/featureSchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "features",
+        ],
+        "type": "object",
+      },
+      "feedbackSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "feedbackId": {
+            "type": "string",
+          },
+          "given": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "neverShow": {
+            "type": "boolean",
+          },
+          "userId": {
+            "type": "number",
+          },
+        },
+        "type": "object",
+      },
+      "groupSchema": {
+        "additionalProperties": true,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "createdBy": {
+            "nullable": true,
+            "type": "string",
+          },
+          "description": {
+            "type": "string",
+          },
+          "id": {
+            "type": "number",
+          },
+          "name": {
+            "type": "string",
+          },
+          "projects": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "users": {
+            "items": {
+              "$ref": "#/components/schemas/groupUserModelSchema",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "groupUserModelSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "joinedAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "user": {
+            "$ref": "#/components/schemas/userSchema",
+          },
+        },
+        "required": [
+          "user",
+        ],
+        "type": "object",
+      },
+      "groupsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/groupSchema",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "healthCheckSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "health": {
+            "enum": [
+              "GOOD",
+              "BAD",
+            ],
+            "type": "string",
+          },
+        },
+        "required": [
+          "health",
+        ],
+        "type": "object",
+      },
+      "healthOverviewSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "environments": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "features": {
+            "items": {
+              "$ref": "#/components/schemas/featureSchema",
+            },
+            "type": "array",
+          },
+          "health": {
+            "type": "number",
+          },
+          "members": {
+            "type": "number",
+          },
+          "name": {
+            "type": "string",
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "version": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "version",
+          "name",
+        ],
+        "type": "object",
+      },
+      "healthReportSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "activeCount": {
+            "type": "number",
+          },
+          "description": {
+            "type": "string",
+          },
+          "environments": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "features": {
+            "items": {
+              "$ref": "#/components/schemas/featureSchema",
+            },
+            "type": "array",
+          },
+          "health": {
+            "type": "number",
+          },
+          "members": {
+            "type": "number",
+          },
+          "name": {
+            "type": "string",
+          },
+          "potentiallyStaleCount": {
+            "type": "number",
+          },
+          "staleCount": {
+            "type": "number",
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "version": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "version",
+          "name",
+          "potentiallyStaleCount",
+          "activeCount",
+          "staleCount",
+        ],
+        "type": "object",
+      },
+      "idSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+        ],
+        "type": "object",
+      },
+      "legalValueSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "value": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "value",
+        ],
+        "type": "object",
+      },
+      "loginSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "password": {
+            "type": "string",
+          },
+          "username": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "username",
+          "password",
+        ],
+        "type": "object",
+      },
+      "meSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "feedback": {
+            "items": {
+              "$ref": "#/components/schemas/feedbackSchema",
+            },
+            "type": "array",
+          },
+          "permissions": {
+            "items": {
+              "$ref": "#/components/schemas/permissionSchema",
+            },
+            "type": "array",
+          },
+          "splash": {
+            "additionalProperties": {
+              "type": "boolean",
+            },
+            "type": "object",
+          },
+          "user": {
+            "$ref": "#/components/schemas/userSchema",
+          },
+        },
+        "required": [
+          "user",
+          "permissions",
+          "feedback",
+          "splash",
+        ],
+        "type": "object",
+      },
+      "nameSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "overrideSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "contextName": {
+            "type": "string",
+          },
+          "values": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "contextName",
+          "values",
+        ],
+        "type": "object",
+      },
+      "parametersSchema": {
+        "additionalProperties": {
+          "type": "string",
+        },
+        "type": "object",
+      },
+      "passwordSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "confirmPassword": {
+            "type": "string",
+          },
+          "password": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "password",
+        ],
+        "type": "object",
+      },
+      "patchSchema": {
+        "properties": {
+          "from": {
+            "type": "string",
+          },
+          "op": {
+            "enum": [
+              "add",
+              "remove",
+              "replace",
+              "copy",
+              "move",
+            ],
+            "type": "string",
+          },
+          "path": {
+            "type": "string",
+          },
+          "value": {},
+        },
+        "required": [
+          "path",
+          "op",
+        ],
+        "type": "object",
+      },
+      "patchesSchema": {
+        "items": {
+          "$ref": "#/components/schemas/patchSchema",
+        },
+        "type": "array",
+      },
+      "permissionSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "environment": {
+            "type": "string",
+          },
+          "permission": {
+            "type": "string",
+          },
+          "project": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "permission",
+        ],
+        "type": "object",
+      },
+      "playgroundConstraintSchema": {
+        "additionalProperties": false,
+        "description": "A strategy constraint. For more information, refer to [the strategy constraint reference documentation](https://docs.getunleash.io/advanced/strategy_constraints)",
+        "properties": {
+          "caseInsensitive": {
+            "default": false,
+            "description": "Whether the operator should be case sensitive or not. Defaults to \`false\` (being case sensitive).",
+            "type": "boolean",
+          },
+          "contextName": {
+            "description": "The name of the context field that this constraint should apply to.",
+            "example": "appName",
+            "type": "string",
+          },
+          "inverted": {
+            "default": false,
+            "description": "Whether the result should be negated or not. If \`true\`, will turn a \`true\` result into a \`false\` result and vice versa.",
+            "type": "boolean",
+          },
+          "operator": {
+            "description": "The operator to use when evaluating this constraint. For more information about the various operators, refer to [the strategy constraint operator documentation](https://docs.getunleash.io/advanced/strategy_constraints#strategy-constraint-operators).",
+            "enum": [
+              "NOT_IN",
+              "IN",
+              "STR_ENDS_WITH",
+              "STR_STARTS_WITH",
+              "STR_CONTAINS",
+              "NUM_EQ",
+              "NUM_GT",
+              "NUM_GTE",
+              "NUM_LT",
+              "NUM_LTE",
+              "DATE_AFTER",
+              "DATE_BEFORE",
+              "SEMVER_EQ",
+              "SEMVER_GT",
+              "SEMVER_LT",
+            ],
+            "type": "string",
+          },
+          "result": {
+            "description": "Whether this was evaluated as true or false.",
+            "type": "boolean",
+          },
+          "value": {
+            "description": "The context value that should be used for constraint evaluation. Use this property instead of \`values\` for properties that only accept single values.",
+            "type": "string",
+          },
+          "values": {
+            "description": "The context values that should be used for constraint evaluation. Use this property instead of \`value\` for properties that accept multiple values.",
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "contextName",
+          "operator",
+          "result",
+        ],
+        "type": "object",
+      },
+      "playgroundFeatureSchema": {
+        "additionalProperties": false,
+        "description": "A simplified feature toggle model intended for the Unleash playground.",
+        "properties": {
+          "isEnabled": {
+            "description": "Whether this feature is enabled or not in the current environment.
+                          If a feature can't be fully evaluated (that is, \`strategies.result\` is \`unknown\`),
+                          this will be \`false\` to align with how client SDKs treat unresolved feature states.",
+            "example": true,
+            "type": "boolean",
+          },
+          "isEnabledInCurrentEnvironment": {
+            "description": "Whether the feature is active and would be evaluated in the provided environment in a normal SDK context.",
+            "type": "boolean",
+          },
+          "name": {
+            "description": "The feature's name.",
+            "example": "my-feature",
+            "type": "string",
+          },
+          "projectId": {
+            "description": "The ID of the project that contains this feature.",
+            "example": "my-project",
+            "type": "string",
+          },
+          "strategies": {
+            "additionalProperties": false,
+            "properties": {
+              "data": {
+                "description": "The strategies that apply to this feature.",
+                "items": {
+                  "$ref": "#/components/schemas/playgroundStrategySchema",
+                },
+                "type": "array",
+              },
+              "result": {
+                "anyOf": [
+                  {
+                    "type": "boolean",
+                  },
+                  {
+                    "enum": [
+                      "unknown",
+                    ],
+                    "type": "string",
+                  },
+                ],
+                "description": "The cumulative results of all the feature's strategies. Can be \`true\`,
+                                  \`false\`, or \`unknown\`.
+                                  This property will only be \`unknown\`
+                                  if one or more of the strategies can't be fully evaluated and the rest of the strategies
+                                  all resolve to \`false\`.",
+              },
+            },
+            "required": [
+              "result",
+              "data",
+            ],
+            "type": "object",
+          },
+          "variant": {
+            "additionalProperties": false,
+            "description": "The feature variant you receive based on the provided context or the _disabled
+                          variant_. If a feature is disabled or doesn't have any
+                          variants, you would get the _disabled variant_.
+                          Otherwise, you'll get one of thefeature's defined variants.",
+            "example": {
+              "enabled": true,
+              "name": "green",
+            },
+            "nullable": true,
+            "properties": {
+              "enabled": {
+                "description": "Whether the variant is enabled or not. If the feature is disabled or if it doesn't have variants, this property will be \`false\`",
+                "type": "boolean",
+              },
+              "name": {
+                "description": "The variant's name. If there is no variant or if the toggle is disabled, this will be \`disabled\`",
+                "example": "red-variant",
+                "type": "string",
+              },
+              "payload": {
+                "additionalProperties": false,
+                "description": "An optional payload attached to the variant.",
+                "properties": {
+                  "type": {
+                    "description": "The format of the payload.",
+                    "enum": [
+                      "json",
+                      "csv",
+                      "string",
+                    ],
+                    "type": "string",
+                  },
+                  "value": {
+                    "description": "The payload value stringified.",
+                    "example": "{"property": "value"}",
+                    "type": "string",
+                  },
+                },
+                "required": [
+                  "type",
+                  "value",
+                ],
+                "type": "object",
+              },
+            },
+            "required": [
+              "name",
+              "enabled",
+            ],
+            "type": "object",
+          },
+          "variants": {
+            "items": {
+              "$ref": "#/components/schemas/variantSchema",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "name",
+          "projectId",
+          "isEnabled",
+          "isEnabledInCurrentEnvironment",
+          "variant",
+          "variants",
+          "strategies",
+        ],
+        "type": "object",
+      },
+      "playgroundRequestSchema": {
+        "description": "Data for the playground API to evaluate toggles",
+        "properties": {
+          "context": {
+            "$ref": "#/components/schemas/sdkContextSchema",
+            "description": "The context to use when evaluating toggles",
+          },
+          "environment": {
+            "description": "The environment to evaluate toggles in.",
+            "example": "development",
+            "type": "string",
+          },
+          "projects": {
+            "oneOf": [
+              {
+                "description": "A list of projects to check for toggles in.",
+                "example": [
+                  "my-project",
+                ],
+                "items": {
+                  "type": "string",
+                },
+                "type": "array",
+              },
+              {
+                "description": "Check toggles in all projects.",
+                "enum": [
+                  "*",
+                ],
+                "type": "string",
+              },
+            ],
+          },
+        },
+        "required": [
+          "environment",
+          "context",
+        ],
+        "type": "object",
+      },
+      "playgroundResponseSchema": {
+        "additionalProperties": false,
+        "description": "The state of all features given the provided input.",
+        "properties": {
+          "features": {
+            "description": "The list of features that have been evaluated.",
+            "items": {
+              "$ref": "#/components/schemas/playgroundFeatureSchema",
+            },
+            "type": "array",
+          },
+          "input": {
+            "$ref": "#/components/schemas/playgroundRequestSchema",
+            "description": "The given input used to evaluate the features.",
+          },
+        },
+        "required": [
+          "features",
+          "input",
+        ],
+        "type": "object",
+      },
+      "playgroundSegmentSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "constraints": {
+            "description": "The list of constraints in this segment.",
+            "items": {
+              "$ref": "#/components/schemas/playgroundConstraintSchema",
+            },
+            "type": "array",
+          },
+          "id": {
+            "description": "The segment's id.",
+            "type": "integer",
+          },
+          "name": {
+            "description": "The name of the segment.",
+            "example": "segment A",
+            "type": "string",
+          },
+          "result": {
+            "description": "Whether this was evaluated as true or false.",
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "name",
+          "id",
+          "constraints",
+          "result",
+        ],
+        "type": "object",
+      },
+      "playgroundStrategySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "constraints": {
+            "description": "The strategy's constraints and their evaluation results.",
+            "items": {
+              "$ref": "#/components/schemas/playgroundConstraintSchema",
+            },
+            "type": "array",
+          },
+          "id": {
+            "description": "The strategy's id.",
+            "type": "string",
+          },
+          "name": {
+            "description": "The strategy's name.",
+            "type": "string",
+          },
+          "parameters": {
+            "$ref": "#/components/schemas/parametersSchema",
+            "description": "The strategy's constraints and their evaluation results.",
+            "example": {
+              "myParam1": "param value",
+            },
+          },
+          "result": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          false,
+                        ],
+                        "type": "boolean",
+                      },
+                      {
+                        "enum": [
+                          "unknown",
+                        ],
+                        "type": "string",
+                      },
+                    ],
+                    "description": "Whether this strategy resolves to \`false\` or if it might resolve to \`true\`. Because Unleash can't evaluate the strategy, it can't say for certain whether it will be \`true\`, but if you have failing constraints or segments, it _can_ determine that your strategy would be \`false\`.",
+                  },
+                  "evaluationStatus": {
+                    "description": "Signals that this strategy could not be evaluated. This is most likely because you're using a custom strategy that Unleash doesn't know about.",
+                    "enum": [
+                      "incomplete",
+                    ],
+                    "type": "string",
+                  },
+                },
+                "required": [
+                  "evaluationStatus",
+                  "enabled",
+                ],
+                "type": "object",
+              },
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "enabled": {
+                    "description": "Whether this strategy evaluates to true or not.",
+                    "type": "boolean",
+                  },
+                  "evaluationStatus": {
+                    "description": "Signals that this strategy was evaluated successfully.",
+                    "enum": [
+                      "complete",
+                    ],
+                    "type": "string",
+                  },
+                },
+                "required": [
+                  "evaluationStatus",
+                  "enabled",
+                ],
+                "type": "object",
+              },
+            ],
+            "description": "The strategy's evaluation result. If the strategy is a custom strategy that Unleash can't evaluate, \`evaluationStatus\` will be \`unknown\`. Otherwise, it will be \`true\` or \`false\`",
+          },
+          "segments": {
+            "description": "The strategy's segments and their evaluation results.",
+            "items": {
+              "$ref": "#/components/schemas/playgroundSegmentSchema",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "id",
+          "name",
+          "result",
+          "segments",
+          "constraints",
+          "parameters",
+        ],
+        "type": "object",
+      },
+      "projectEnvironmentSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "environment": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "environment",
+        ],
+        "type": "object",
+      },
+      "projectSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "description": {
+            "type": "string",
+          },
+          "featureCount": {
+            "type": "number",
+          },
+          "health": {
+            "type": "number",
+          },
+          "id": {
+            "type": "string",
+          },
+          "memberCount": {
+            "type": "number",
+          },
+          "name": {
+            "type": "string",
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+          "name",
+        ],
+        "type": "object",
+      },
+      "projectsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "projects": {
+            "items": {
+              "$ref": "#/components/schemas/projectSchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "projects",
+        ],
+        "type": "object",
+      },
+      "proxyClientSchema": {
+        "properties": {
+          "appName": {
+            "description": "Name of the application using Unleash",
+            "type": "string",
+          },
+          "environment": {
+            "deprecated": true,
+            "type": "string",
+          },
+          "instanceId": {
+            "description": "Instance id for this application (typically hostname, podId or similar)",
+            "type": "string",
+          },
+          "interval": {
+            "description": "At which interval, in milliseconds, will this client be expected to send metrics",
+            "type": "number",
+          },
+          "sdkVersion": {
+            "description": "Optional field that describes the sdk version (name:version)",
+            "type": "string",
+          },
+          "started": {
+            "description": "When this client started. Should be reported as ISO8601 time.",
+            "oneOf": [
+              {
+                "format": "date-time",
+                "type": "string",
+              },
+              {
+                "type": "number",
+              },
+            ],
+          },
+          "strategies": {
+            "description": "List of strategies implemented by this application",
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "appName",
+          "interval",
+          "started",
+          "strategies",
+        ],
+        "type": "object",
+      },
+      "proxyFeatureSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+          },
+          "impressionData": {
+            "type": "boolean",
+          },
+          "name": {
+            "type": "string",
+          },
+          "variant": {
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+              },
+              "name": {
+                "type": "string",
+              },
+              "payload": {
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "enum": [
+                      "string",
+                    ],
+                    "type": "string",
+                  },
+                  "value": {
+                    "type": "string",
+                  },
+                },
+                "required": [
+                  "type",
+                  "value",
+                ],
+                "type": "object",
+              },
+            },
+            "required": [
+              "name",
+              "enabled",
+            ],
+            "type": "object",
+          },
+        },
+        "required": [
+          "name",
+          "enabled",
+          "impressionData",
+        ],
+        "type": "object",
+      },
+      "proxyFeaturesSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "toggles": {
+            "items": {
+              "$ref": "#/components/schemas/proxyFeatureSchema",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "toggles",
+        ],
+        "type": "object",
+      },
+      "proxyMetricsSchema": {
+        "properties": {
+          "appName": {
+            "type": "string",
+          },
+          "bucket": {
+            "properties": {
+              "start": {
+                "format": "date-time",
+                "type": "string",
+              },
+              "stop": {
+                "format": "date-time",
+                "type": "string",
+              },
+              "toggles": {
+                "additionalProperties": {
+                  "properties": {
+                    "no": {
+                      "minimum": 0,
+                      "type": "integer",
+                    },
+                    "variants": {
+                      "additionalProperties": {
+                        "minimum": 0,
+                        "type": "integer",
+                      },
+                      "type": "object",
+                    },
+                    "yes": {
+                      "minimum": 0,
+                      "type": "integer",
+                    },
+                  },
+                  "type": "object",
+                },
+                "example": {
+                  "myCoolToggle": {
+                    "no": 42,
+                    "variants": {
+                      "blue": 6,
+                      "green": 15,
+                      "red": 46,
+                    },
+                    "yes": 25,
+                  },
+                  "myOtherToggle": {
+                    "no": 100,
+                    "yes": 0,
+                  },
+                },
+                "type": "object",
+              },
+            },
+            "required": [
+              "start",
+              "stop",
+              "toggles",
+            ],
+            "type": "object",
+          },
+          "environment": {
+            "type": "string",
+          },
+          "instanceId": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "appName",
+          "instanceId",
+          "bucket",
+        ],
+        "type": "object",
+      },
+      "resetPasswordSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "resetPasswordUrl": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "resetPasswordUrl",
+        ],
+        "type": "object",
+      },
+      "roleSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "id": {
+            "type": "number",
+          },
+          "name": {
+            "type": "string",
+          },
+          "type": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+          "type",
+          "name",
+        ],
+        "type": "object",
+      },
+      "sdkContextSchema": {
+        "additionalProperties": {
+          "example": "top-level custom context value",
+          "type": "string",
+        },
+        "description": "The Unleash context as modeled in client SDKs",
+        "properties": {
+          "appName": {
+            "example": "My cool application.",
+            "minLength": 1,
+            "type": "string",
+          },
+          "currentTime": {
+            "example": "2022-07-05T12:56:41+02:00",
+            "format": "date-time",
+            "type": "string",
+          },
+          "environment": {
+            "deprecated": true,
+            "type": "string",
+          },
+          "properties": {
+            "additionalProperties": {
+              "type": "string",
+            },
+            "example": {
+              "customContextField": "this is one!",
+              "otherCustomField": "3",
+            },
+            "type": "object",
+          },
+          "remoteAddress": {
+            "example": "192.168.1.1",
+            "type": "string",
+          },
+          "sessionId": {
+            "example": "b65e7b23-fec0-4814-a129-0e9861ef18fc",
+            "type": "string",
+          },
+          "userId": {
+            "example": "username@provider.com",
+            "type": "string",
+          },
+        },
+        "required": [
+          "appName",
+        ],
+        "type": "object",
+      },
+      "searchEventsSchema": {
+        "description": "
+        Search for events by type, project, feature, free-text query,
+        or a combination thereof. Pass an empty object to fetch all events.
+    ",
+        "properties": {
+          "feature": {
+            "description": "Find events by feature toggle name (case-sensitive).",
+            "type": "string",
+          },
+          "limit": {
+            "default": 100,
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer",
+          },
+          "offset": {
+            "default": 0,
+            "minimum": 0,
+            "type": "integer",
+          },
+          "project": {
+            "description": "Find events by project ID (case-sensitive).",
+            "type": "string",
+          },
+          "query": {
+            "description": "
+                Find events by a free-text search query.
+                The query will be matched against the event type,
+                the username or email that created the event (if any),
+                and the event data payload (if any).
+            ",
+            "type": "string",
+          },
+          "type": {
+            "description": "Find events by event type (case-sensitive).",
+            "type": "string",
+          },
+        },
+        "type": "object",
+      },
+      "segmentSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "constraints": {
+            "items": {
+              "$ref": "#/components/schemas/constraintSchema",
+            },
+            "type": "array",
+          },
+          "description": {
+            "nullable": true,
+            "type": "string",
+          },
+          "id": {
+            "type": "number",
+          },
+          "name": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+          "constraints",
+        ],
+        "type": "object",
+      },
+      "setStrategySortOrderSchema": {
+        "items": {
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+            },
+            "sortOrder": {
+              "type": "number",
+            },
+          },
+          "required": [
+            "id",
+            "sortOrder",
+          ],
+          "type": "object",
+        },
+        "type": "array",
+      },
+      "setUiConfigSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "frontendSettings": {
+            "additionalProperties": false,
+            "properties": {
+              "frontendApiOrigins": {
+                "additionalProperties": false,
+                "items": {
+                  "type": "string",
+                },
+                "type": "array",
+              },
+            },
+            "required": [
+              "frontendApiOrigins",
+            ],
+            "type": "object",
+          },
+        },
+        "type": "object",
+      },
+      "sortOrderSchema": {
+        "additionalProperties": {
+          "type": "number",
+        },
+        "type": "object",
+      },
+      "splashSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "seen": {
+            "type": "boolean",
+          },
+          "splashId": {
+            "type": "string",
+          },
+          "userId": {
+            "type": "number",
+          },
+        },
+        "required": [
+          "userId",
+          "splashId",
+          "seen",
+        ],
+        "type": "object",
+      },
+      "stateSchema": {
+        "additionalProperties": true,
+        "properties": {
+          "environments": {
+            "items": {
+              "$ref": "#/components/schemas/environmentSchema",
+            },
+            "type": "array",
+          },
+          "featureEnvironments": {
+            "items": {
+              "$ref": "#/components/schemas/featureEnvironmentSchema",
+            },
+            "type": "array",
+          },
+          "featureStrategies": {
+            "items": {
+              "$ref": "#/components/schemas/featureStrategySchema",
+            },
+            "type": "array",
+          },
+          "featureStrategySegments": {
+            "items": {
+              "$ref": "#/components/schemas/featureStrategySegmentSchema",
+            },
+            "type": "array",
+          },
+          "featureTags": {
+            "items": {
+              "$ref": "#/components/schemas/featureTagSchema",
+            },
+            "type": "array",
+          },
+          "features": {
+            "items": {
+              "$ref": "#/components/schemas/featureSchema",
+            },
+            "type": "array",
+          },
+          "projects": {
+            "items": {
+              "$ref": "#/components/schemas/projectSchema",
+            },
+            "type": "array",
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/segmentSchema",
+            },
+            "type": "array",
+          },
+          "strategies": {
+            "items": {
+              "$ref": "#/components/schemas/strategySchema",
+            },
+            "type": "array",
+          },
+          "tagTypes": {
+            "items": {
+              "$ref": "#/components/schemas/tagTypeSchema",
+            },
+            "type": "array",
+          },
+          "tags": {
+            "items": {
+              "$ref": "#/components/schemas/tagSchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+        ],
+        "type": "object",
+      },
+      "strategiesSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "strategies": {
+            "items": {
+              "$ref": "#/components/schemas/strategySchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "strategies",
+        ],
+        "type": "object",
+      },
+      "strategySchema": {
+        "additionalProperties": false,
+        "properties": {
+          "deprecated": {
+            "type": "boolean",
+          },
+          "description": {
+            "type": "string",
+          },
+          "displayName": {
+            "nullable": true,
+            "type": "string",
+          },
+          "editable": {
+            "type": "boolean",
+          },
+          "name": {
+            "type": "string",
+          },
+          "parameters": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "description": {
+                  "type": "string",
+                },
+                "name": {
+                  "type": "string",
+                },
+                "required": {
+                  "type": "boolean",
+                },
+                "type": {
+                  "type": "string",
+                },
+              },
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "name",
+          "displayName",
+          "description",
+          "editable",
+          "deprecated",
+          "parameters",
+        ],
+        "type": "object",
+      },
+      "tagSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+          },
+          "value": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "value",
+          "type",
+        ],
+        "type": "object",
+      },
+      "tagTypeSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "icon": {
+            "nullable": true,
+            "type": "string",
+          },
+          "name": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "tagTypesSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "tagTypes": {
+            "items": {
+              "$ref": "#/components/schemas/tagTypeSchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "tagTypes",
+        ],
+        "type": "object",
+      },
+      "tagWithVersionSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "tag": {
+            "$ref": "#/components/schemas/tagSchema",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "tag",
+        ],
+        "type": "object",
+      },
+      "tagsSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "tags": {
+            "items": {
+              "$ref": "#/components/schemas/tagSchema",
+            },
+            "type": "array",
+          },
+          "version": {
+            "type": "integer",
+          },
+        },
+        "required": [
+          "version",
+          "tags",
+        ],
+        "type": "object",
+      },
+      "tokenUserSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "createdBy": {
+            "nullable": true,
+            "type": "string",
+          },
+          "email": {
+            "type": "string",
+          },
+          "id": {
+            "type": "number",
+          },
+          "name": {
+            "type": "string",
+          },
+          "role": {
+            "$ref": "#/components/schemas/roleSchema",
+          },
+          "token": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "token",
+          "createdBy",
+          "role",
+        ],
+        "type": "object",
+      },
+      "uiConfigSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "authenticationType": {
+            "enum": [
+              "open-source",
+              "demo",
+              "enterprise",
+              "hosted",
+              "custom",
+              "none",
+            ],
+            "type": "string",
+          },
+          "baseUriPath": {
+            "type": "string",
+          },
+          "disablePasswordAuth": {
+            "type": "boolean",
+          },
+          "emailEnabled": {
+            "type": "boolean",
+          },
+          "environment": {
+            "type": "string",
+          },
+          "flags": {
+            "additionalProperties": {
+              "type": "boolean",
+            },
+            "type": "object",
+          },
+          "frontendApiOrigins": {
+            "items": {
+              "type": "string",
+            },
+            "type": "array",
+          },
+          "links": {
+            "items": {
+              "type": "object",
+            },
+            "type": "array",
+          },
+          "name": {
+            "type": "string",
+          },
+          "segmentValuesLimit": {
+            "type": "number",
+          },
+          "slogan": {
+            "type": "string",
+          },
+          "strategySegmentsLimit": {
+            "type": "number",
+          },
+          "unleashUrl": {
+            "type": "string",
+          },
+          "version": {
+            "type": "string",
+          },
+          "versionInfo": {
+            "$ref": "#/components/schemas/versionSchema",
+          },
+        },
+        "required": [
+          "version",
+          "unleashUrl",
+          "baseUriPath",
+          "versionInfo",
+        ],
+        "type": "object",
+      },
+      "updateApiTokenSchema": {
+        "properties": {
+          "expiresAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+        },
+        "required": [
+          "expiresAt",
+        ],
+        "type": "object",
+      },
+      "updateFeatureSchema": {
+        "properties": {
+          "archived": {
+            "type": "boolean",
+          },
+          "constraints": {
+            "items": {
+              "$ref": "#/components/schemas/constraintSchema",
+            },
+            "type": "array",
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "description": {
+            "type": "string",
+          },
+          "impressionData": {
+            "type": "boolean",
+          },
+          "name": {
+            "type": "string",
+          },
+          "stale": {
+            "type": "boolean",
+          },
+          "type": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "updateFeatureStrategySchema": {
+        "properties": {
+          "constraints": {
+            "items": {
+              "$ref": "#/components/schemas/constraintSchema",
+            },
+            "type": "array",
+          },
+          "name": {
+            "type": "string",
+          },
+          "parameters": {
+            "$ref": "#/components/schemas/parametersSchema",
+          },
+          "sortOrder": {
+            "type": "number",
+          },
+        },
+        "type": "object",
+      },
+      "updateTagTypeSchema": {
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "icon": {
+            "type": "string",
+          },
+        },
+        "type": "object",
+      },
+      "updateUserSchema": {
+        "additionalProperties": true,
+        "properties": {
+          "email": {
+            "type": "string",
+          },
+          "name": {
+            "type": "string",
+          },
+          "rootRole": {
+            "type": "number",
+          },
+        },
+        "type": "object",
+      },
+      "upsertContextFieldSchema": {
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "legalValues": {
+            "items": {
+              "$ref": "#/components/schemas/legalValueSchema",
+            },
+            "type": "array",
+          },
+          "name": {
+            "type": "string",
+          },
+          "sortOrder": {
+            "type": "number",
+          },
+          "stickiness": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "upsertStrategySchema": {
+        "properties": {
+          "description": {
+            "type": "string",
+          },
+          "editable": {
+            "type": "boolean",
+          },
+          "name": {
+            "type": "string",
+          },
+          "parameters": {
+            "items": {
+              "properties": {
+                "description": {
+                  "type": "string",
+                },
+                "name": {
+                  "type": "string",
+                },
+                "required": {
+                  "type": "boolean",
+                },
+                "type": {
+                  "type": "string",
+                },
+              },
+              "type": "object",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "name",
+        ],
+        "type": "object",
+      },
+      "userSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+          },
+          "email": {
+            "type": "string",
+          },
+          "emailSent": {
+            "type": "boolean",
+          },
+          "id": {
+            "type": "number",
+          },
+          "imageUrl": {
+            "type": "string",
+          },
+          "inviteLink": {
+            "type": "string",
+          },
+          "isAPI": {
+            "type": "boolean",
+          },
+          "loginAttempts": {
+            "type": "number",
+          },
+          "name": {
+            "type": "string",
+          },
+          "rootRole": {
+            "type": "number",
+          },
+          "seenAt": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string",
+          },
+          "username": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "id",
+        ],
+        "type": "object",
+      },
+      "usersGroupsBaseSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/groupSchema",
+            },
+            "type": "array",
+          },
+          "users": {
+            "items": {
+              "$ref": "#/components/schemas/userSchema",
+            },
+            "type": "array",
+          },
+        },
+        "type": "object",
+      },
+      "usersSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "rootRoles": {
+            "items": {
+              "$ref": "#/components/schemas/roleSchema",
+            },
+            "type": "array",
+          },
+          "users": {
+            "items": {
+              "$ref": "#/components/schemas/userSchema",
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "users",
+        ],
+        "type": "object",
+      },
+      "usersSearchSchema": {
+        "items": {
+          "$ref": "#/components/schemas/userSchema",
+        },
+        "type": "array",
+      },
+      "validateEdgeTokensSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "tokens": {
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/edgeTokenSchema",
+                },
+                {
+                  "type": "string",
+                },
+              ],
+            },
+            "type": "array",
+          },
+        },
+        "required": [
+          "tokens",
+        ],
+        "type": "object",
+      },
+      "validatePasswordSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "password": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "password",
+        ],
+        "type": "object",
+      },
+      "validateTagTypeSchema": {
+        "properties": {
+          "tagType": {
+            "$ref": "#/components/schemas/tagTypeSchema",
+          },
+          "valid": {
+            "type": "boolean",
+          },
+        },
+        "required": [
+          "valid",
+          "tagType",
+        ],
+        "type": "object",
+      },
+      "variantSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+          },
+          "overrides": {
+            "items": {
+              "$ref": "#/components/schemas/overrideSchema",
+            },
+            "type": "array",
+          },
+          "payload": {
+            "properties": {
+              "type": {
+                "type": "string",
+              },
+              "value": {
+                "type": "string",
+              },
+            },
+            "required": [
+              "type",
+              "value",
+            ],
+            "type": "object",
+          },
+          "stickiness": {
+            "type": "string",
+          },
+          "weight": {
+            "type": "number",
+          },
+          "weightType": {
+            "type": "string",
+          },
+        },
+        "required": [
+          "name",
+          "weight",
+        ],
+        "type": "object",
+      },
+      "variantsSchema": {
+        "items": {
+          "$ref": "#/components/schemas/variantSchema",
+        },
+        "type": "array",
+      },
+      "versionSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "current": {
+            "additionalProperties": false,
+            "properties": {
+              "enterprise": {
+                "type": "string",
+              },
+              "oss": {
+                "type": "string",
+              },
+            },
+            "type": "object",
+          },
+          "instanceId": {
+            "type": "string",
+          },
+          "isLatest": {
+            "type": "boolean",
+          },
+          "latest": {
+            "additionalProperties": false,
+            "properties": {
+              "enterprise": {
+                "type": "string",
+              },
+              "oss": {
+                "type": "string",
+              },
+            },
+            "type": "object",
+          },
+        },
+        "required": [
+          "current",
+          "latest",
+          "isLatest",
+          "instanceId",
+        ],
+        "type": "object",
+      },
+    },
+    "securitySchemes": {
+      "apiKey": {
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey",
+      },
+    },
+  },
+  "info": {
+    "title": "Unleash API",
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/api/admin/addons": {
+      "get": {
+        "operationId": "getAddons",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/addonsSchema",
+                },
+              },
+            },
+            "description": "addonsSchema",
+          },
+        },
+        "tags": [
+          "Addons",
+        ],
+      },
+      "post": {
+        "operationId": "createAddon",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/addonSchema",
+              },
+            },
+          },
+          "description": "addonSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/addonSchema",
+                },
+              },
+            },
+            "description": "addonSchema",
+          },
+        },
+        "tags": [
+          "Addons",
+        ],
+      },
+    },
+    "/api/admin/addons/{id}": {
+      "delete": {
+        "operationId": "deleteAddon",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Addons",
+        ],
+      },
+      "get": {
+        "operationId": "getAddon",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/addonSchema",
+                },
+              },
+            },
+            "description": "addonSchema",
+          },
+        },
+        "tags": [
+          "Addons",
+        ],
+      },
+      "put": {
+        "operationId": "updateAddon",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/addonSchema",
+              },
+            },
+          },
+          "description": "addonSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/addonSchema",
+                },
+              },
+            },
+            "description": "addonSchema",
+          },
+        },
+        "tags": [
+          "Addons",
+        ],
+      },
+    },
+    "/api/admin/api-tokens": {
+      "get": {
+        "operationId": "getAllApiTokens",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiTokensSchema",
+                },
+              },
+            },
+            "description": "apiTokensSchema",
+          },
+        },
+        "tags": [
+          "API tokens",
+        ],
+      },
+      "post": {
+        "operationId": "createApiToken",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createApiTokenSchema",
+              },
+            },
+          },
+          "description": "createApiTokenSchema",
+          "required": true,
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apiTokenSchema",
+                },
+              },
+            },
+            "description": "apiTokenSchema",
+          },
+        },
+        "tags": [
+          "API tokens",
+        ],
+      },
+    },
+    "/api/admin/api-tokens/{token}": {
+      "delete": {
+        "operationId": "deleteApiToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "API tokens",
+        ],
+      },
+      "put": {
+        "operationId": "updateApiToken",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateApiTokenSchema",
+              },
+            },
+          },
+          "description": "updateApiTokenSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "API tokens",
+        ],
+      },
+    },
+    "/api/admin/archive/features": {
+      "get": {
+        "deprecated": true,
+        "operationId": "getArchivedFeatures",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featuresSchema",
+                },
+              },
+            },
+            "description": "featuresSchema",
+          },
+        },
+        "tags": [
+          "Archive",
+        ],
+      },
+    },
+    "/api/admin/archive/features/{projectId}": {
+      "get": {
+        "deprecated": true,
+        "operationId": "getArchivedFeaturesByProjectId",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featuresSchema",
+                },
+              },
+            },
+            "description": "featuresSchema",
+          },
+        },
+        "tags": [
+          "Archive",
+        ],
+      },
+    },
+    "/api/admin/archive/revive/{featureName}": {
+      "post": {
+        "operationId": "reviveFeature",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Archive",
+        ],
+      },
+    },
+    "/api/admin/archive/{featureName}": {
+      "delete": {
+        "operationId": "deleteFeature",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Archive",
+        ],
+      },
+    },
+    "/api/admin/client-metrics/features/{name}": {
+      "get": {
+        "operationId": "getFeatureUsageSummary",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureUsageSchema",
+                },
+              },
+            },
+            "description": "featureUsageSchema",
+          },
+        },
+        "tags": [
+          "Metrics",
+        ],
+      },
+    },
+    "/api/admin/client-metrics/features/{name}/raw": {
+      "get": {
+        "operationId": "getRawFeatureMetrics",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureMetricsSchema",
+                },
+              },
+            },
+            "description": "featureMetricsSchema",
+          },
+        },
+        "tags": [
+          "Metrics",
+        ],
+      },
+    },
+    "/api/admin/constraints/validate": {
+      "post": {
+        "operationId": "validateConstraint",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/constraintSchema",
+              },
+            },
+          },
+          "description": "constraintSchema",
+          "required": true,
+        },
+        "responses": {
+          "204": {
+            "description": "validConstraint",
+          },
+          "400": {
+            "description": "invalidConstraint",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/context": {
+      "get": {
+        "operationId": "getContextFields",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contextFieldsSchema",
+                },
+              },
+            },
+            "description": "contextFieldsSchema",
+          },
+        },
+        "tags": [
+          "Context",
+        ],
+      },
+      "post": {
+        "operationId": "createContextField",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/upsertContextFieldSchema",
+              },
+            },
+          },
+          "description": "upsertContextFieldSchema",
+          "required": true,
+        },
+        "responses": {
+          "201": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Context",
+        ],
+      },
+    },
+    "/api/admin/context/validate": {
+      "post": {
+        "operationId": "validate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/nameSchema",
+              },
+            },
+          },
+          "description": "nameSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Context",
+        ],
+      },
+    },
+    "/api/admin/context/{contextField}": {
+      "delete": {
+        "operationId": "deleteContextField",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "contextField",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Context",
+        ],
+      },
+      "get": {
+        "operationId": "getContextField",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "contextField",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/contextFieldSchema",
+                },
+              },
+            },
+            "description": "contextFieldSchema",
+          },
+        },
+        "tags": [
+          "Context",
+        ],
+      },
+      "put": {
+        "operationId": "updateContextField",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "contextField",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/upsertContextFieldSchema",
+              },
+            },
+          },
+          "description": "upsertContextFieldSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Context",
+        ],
+      },
+    },
+    "/api/admin/environments": {
+      "get": {
+        "operationId": "getAllEnvironments",
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Environments",
+        ],
+      },
+    },
+    "/api/admin/environments/sort-order": {
+      "put": {
+        "operationId": "updateSortOrder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/sortOrderSchema",
+              },
+            },
+          },
+          "description": "sortOrderSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Environments",
+        ],
+      },
+    },
+    "/api/admin/environments/{name}": {
+      "get": {
+        "operationId": "getEnvironment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/environmentSchema",
+                },
+              },
+            },
+            "description": "environmentSchema",
+          },
+        },
+        "tags": [
+          "Environments",
+        ],
+      },
+    },
+    "/api/admin/environments/{name}/off": {
+      "post": {
+        "operationId": "toggleEnvironmentOff",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "204": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Environments",
+        ],
+      },
+    },
+    "/api/admin/environments/{name}/on": {
+      "post": {
+        "operationId": "toggleEnvironmentOn",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "204": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Environments",
+        ],
+      },
+    },
+    "/api/admin/events": {
+      "get": {
+        "description": "Returns **the last 100** from the Unleash instance when called without a query parameter. When called with a \`project\` parameter, returns **all events** for the specified project.
+
+If the provided project does not exist, the list of events will be empty.",
+        "operationId": "getEvents",
+        "parameters": [
+          {
+            "description": "The name of the project whose events you want to retrieve",
+            "in": "query",
+            "name": "project",
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eventsSchema",
+                },
+              },
+            },
+            "description": "eventsSchema",
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid. Provide a valid API token as the \`authorization\` header, e.g. \`authorization:*.*.my-admin-token\`.",
+          },
+        },
+        "summary": "Get the most recent events from the Unleash instance or all events related to a project.",
+        "tags": [
+          "Events",
+        ],
+      },
+    },
+    "/api/admin/events/search": {
+      "post": {
+        "operationId": "searchEvents",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/searchEventsSchema",
+              },
+            },
+          },
+          "description": "searchEventsSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/eventsSchema",
+                },
+              },
+            },
+            "description": "eventsSchema",
+          },
+        },
+        "tags": [
+          "Events",
+        ],
+      },
+    },
+    "/api/admin/events/{featureName}": {
+      "get": {
+        "description": "Returns all events related to the specified feature toggle. If the feature toggle does not exist, the list of events will be empty.",
+        "operationId": "getEventsForToggle",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureEventsSchema",
+                },
+              },
+            },
+            "description": "featureEventsSchema",
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid. Provide a valid API token as the \`authorization\` header, e.g. \`authorization:*.*.my-admin-token\`.",
+          },
+        },
+        "summary": "Get all events related to a specific feature toggle.",
+        "tags": [
+          "Events",
+        ],
+      },
+    },
+    "/api/admin/feature-types": {
+      "get": {
+        "operationId": "getAllFeatureTypes",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureTypesSchema",
+                },
+              },
+            },
+            "description": "featureTypesSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/features": {
+      "get": {
+        "deprecated": true,
+        "operationId": "getAllToggles",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featuresSchema",
+                },
+              },
+            },
+            "description": "featuresSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/features/validate": {
+      "post": {
+        "operationId": "validateFeature",
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/features/{featureName}/tags": {
+      "get": {
+        "operationId": "listTags",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tagsSchema",
+                },
+              },
+            },
+            "description": "tagsSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "post": {
+        "operationId": "addTag",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tagSchema",
+              },
+            },
+          },
+          "description": "tagSchema",
+          "required": true,
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tagSchema",
+                },
+              },
+            },
+            "description": "tagSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/features/{featureName}/tags/{type}/{value}": {
+      "delete": {
+        "operationId": "removeTag",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "value",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/feedback": {
+      "post": {
+        "operationId": "createFeedback",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/feedbackSchema",
+              },
+            },
+          },
+          "description": "feedbackSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/feedbackSchema",
+                },
+              },
+            },
+            "description": "feedbackSchema",
+          },
+        },
+        "tags": [
+          "Admin UI",
+        ],
+      },
+    },
+    "/api/admin/feedback/{id}": {
+      "put": {
+        "operationId": "updateFeedback",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/feedbackSchema",
+              },
+            },
+          },
+          "description": "feedbackSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/feedbackSchema",
+                },
+              },
+            },
+            "description": "feedbackSchema",
+          },
+        },
+        "tags": [
+          "Admin UI",
+        ],
+      },
+    },
+    "/api/admin/metrics/applications": {
+      "get": {
+        "operationId": "getApplications",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/applicationsSchema",
+                },
+              },
+            },
+            "description": "applicationsSchema",
+          },
+        },
+        "tags": [
+          "Metrics",
+        ],
+      },
+    },
+    "/api/admin/metrics/applications/{appName}": {
+      "delete": {
+        "operationId": "deleteApplication",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "appName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Metrics",
+        ],
+      },
+      "get": {
+        "operationId": "getApplication",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "appName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/applicationSchema",
+                },
+              },
+            },
+            "description": "applicationSchema",
+          },
+        },
+        "tags": [
+          "Metrics",
+        ],
+      },
+      "post": {
+        "operationId": "createApplication",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "appName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/applicationSchema",
+              },
+            },
+          },
+          "description": "applicationSchema",
+          "required": true,
+        },
+        "responses": {
+          "202": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Metrics",
+        ],
+      },
+    },
+    "/api/admin/playground": {
+      "post": {
+        "description": "Use the provided \`context\`, \`environment\`, and \`projects\` to evaluate toggles on this Unleash instance. Returns a list of all toggles that match the parameters and what they evaluate to. The response also contains the input parameters that were provided.",
+        "operationId": "getPlayground",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/playgroundRequestSchema",
+              },
+            },
+          },
+          "description": "playgroundRequestSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/playgroundResponseSchema",
+                },
+              },
+            },
+            "description": "playgroundResponseSchema",
+          },
+          "400": {
+            "description": "The request data does not match what we expect.",
+          },
+          "401": {
+            "description": "Authorization information is missing or invalid. Provide a valid API token as the \`authorization\` header, e.g. \`authorization:*.*.my-admin-token\`.",
+          },
+        },
+        "summary": "Evaluate an Unleash context against a set of environments and projects.",
+        "tags": [
+          "Playground",
+        ],
+      },
+    },
+    "/api/admin/projects": {
+      "get": {
+        "operationId": "getProjects",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/projectsSchema",
+                },
+              },
+            },
+            "description": "projectsSchema",
+          },
+        },
+        "tags": [
+          "Projects",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}": {
+      "get": {
+        "operationId": "getProjectHealthOverview",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/healthOverviewSchema",
+                },
+              },
+            },
+            "description": "healthOverviewSchema",
+          },
+        },
+        "tags": [
+          "Projects",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/environments": {
+      "post": {
+        "operationId": "addEnvironmentToProject",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/projectEnvironmentSchema",
+              },
+            },
+          },
+          "description": "projectEnvironmentSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Projects",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/environments/{environment}": {
+      "delete": {
+        "operationId": "removeEnvironmentFromProject",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Projects",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features": {
+      "get": {
+        "operationId": "getFeatures",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featuresSchema",
+                },
+              },
+            },
+            "description": "featuresSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "post": {
+        "operationId": "createFeature",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createFeatureSchema",
+              },
+            },
+          },
+          "description": "createFeatureSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureSchema",
+                },
+              },
+            },
+            "description": "featureSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features/{featureName}": {
+      "delete": {
+        "operationId": "archiveFeature",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "get": {
+        "operationId": "getFeature",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureSchema",
+                },
+              },
+            },
+            "description": "featureSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "patch": {
+        "operationId": "patchFeature",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/patchesSchema",
+              },
+            },
+          },
+          "description": "patchesSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureSchema",
+                },
+              },
+            },
+            "description": "featureSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "put": {
+        "operationId": "updateFeature",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateFeatureSchema",
+              },
+            },
+          },
+          "description": "updateFeatureSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureSchema",
+                },
+              },
+            },
+            "description": "featureSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features/{featureName}/clone": {
+      "post": {
+        "operationId": "cloneFeature",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cloneFeatureSchema",
+              },
+            },
+          },
+          "description": "cloneFeatureSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureSchema",
+                },
+              },
+            },
+            "description": "featureSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}": {
+      "get": {
+        "operationId": "getFeatureEnvironment",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureEnvironmentSchema",
+                },
+              },
+            },
+            "description": "featureEnvironmentSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/off": {
+      "post": {
+        "operationId": "toggleFeatureEnvironmentOff",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureSchema",
+                },
+              },
+            },
+            "description": "featureSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/on": {
+      "post": {
+        "operationId": "toggleFeatureEnvironmentOn",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureSchema",
+                },
+              },
+            },
+            "description": "featureSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies": {
+      "get": {
+        "operationId": "getFeatureStrategies",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureStrategySchema",
+                },
+              },
+            },
+            "description": "featureStrategySchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "post": {
+        "operationId": "addFeatureStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createFeatureStrategySchema",
+              },
+            },
+          },
+          "description": "createFeatureStrategySchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureStrategySchema",
+                },
+              },
+            },
+            "description": "featureStrategySchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies/set-sort-order": {
+      "post": {
+        "operationId": "setStrategySortOrder",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/setStrategySortOrderSchema",
+              },
+            },
+          },
+          "description": "setStrategySortOrderSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features/{featureName}/environments/{environment}/strategies/{strategyId}": {
+      "delete": {
+        "operationId": "deleteFeatureStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "strategyId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "get": {
+        "operationId": "getFeatureStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "strategyId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureStrategySchema",
+                },
+              },
+            },
+            "description": "featureStrategySchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "patch": {
+        "operationId": "patchFeatureStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "strategyId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/patchesSchema",
+              },
+            },
+          },
+          "description": "patchesSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureStrategySchema",
+                },
+              },
+            },
+            "description": "featureStrategySchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "put": {
+        "operationId": "updateFeatureStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "environment",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "strategyId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateFeatureStrategySchema",
+              },
+            },
+          },
+          "description": "updateFeatureStrategySchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureStrategySchema",
+                },
+              },
+            },
+            "description": "featureStrategySchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/features/{featureName}/variants": {
+      "get": {
+        "operationId": "getFeatureVariants",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureVariantsSchema",
+                },
+              },
+            },
+            "description": "featureVariantsSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "patch": {
+        "operationId": "patchFeatureVariants",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/patchesSchema",
+              },
+            },
+          },
+          "description": "patchesSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureVariantsSchema",
+                },
+              },
+            },
+            "description": "featureVariantsSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+      "put": {
+        "operationId": "overwriteFeatureVariants",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/variantsSchema",
+              },
+            },
+          },
+          "description": "variantsSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/featureVariantsSchema",
+                },
+              },
+            },
+            "description": "featureVariantsSchema",
+          },
+        },
+        "tags": [
+          "Features",
+        ],
+      },
+    },
+    "/api/admin/projects/{projectId}/health-report": {
+      "get": {
+        "operationId": "getProjectHealthReport",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "projectId",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/healthReportSchema",
+                },
+              },
+            },
+            "description": "healthReportSchema",
+          },
+        },
+        "tags": [
+          "Projects",
+        ],
+      },
+    },
+    "/api/admin/splash/{id}": {
+      "post": {
+        "operationId": "updateSplashSettings",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/splashSchema",
+                },
+              },
+            },
+            "description": "splashSchema",
+          },
+        },
+        "tags": [
+          "Admin UI",
+        ],
+      },
+    },
+    "/api/admin/state/export": {
+      "get": {
+        "operationId": "export",
+        "parameters": [
+          {
+            "description": "Desired export format. Must be either \`json\` or \`yaml\`.",
+            "in": "query",
+            "name": "format",
+            "schema": {
+              "default": "json",
+              "enum": [
+                "json",
+                "yaml",
+              ],
+              "type": "string",
+            },
+          },
+          {
+            "description": "Whether exported data should be downloaded as a file.",
+            "in": "query",
+            "name": "download",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean",
+                },
+                {
+                  "minLength": 1,
+                  "type": "string",
+                },
+                {
+                  "type": "number",
+                },
+              ],
+              "default": false,
+            },
+          },
+          {
+            "description": "Whether strategies should be included in the exported data.",
+            "in": "query",
+            "name": "strategies",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean",
+                },
+                {
+                  "minLength": 1,
+                  "type": "string",
+                },
+                {
+                  "type": "number",
+                },
+              ],
+              "default": true,
+            },
+          },
+          {
+            "description": "Whether feature toggles should be included in the exported data.",
+            "in": "query",
+            "name": "featureToggles",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean",
+                },
+                {
+                  "minLength": 1,
+                  "type": "string",
+                },
+                {
+                  "type": "number",
+                },
+              ],
+              "default": true,
+            },
+          },
+          {
+            "description": "Whether projects should be included in the exported data.",
+            "in": "query",
+            "name": "projects",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean",
+                },
+                {
+                  "minLength": 1,
+                  "type": "string",
+                },
+                {
+                  "type": "number",
+                },
+              ],
+              "default": true,
+            },
+          },
+          {
+            "description": "Whether tag types, tags, and feature_tags should be included in the exported data.",
+            "in": "query",
+            "name": "tags",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean",
+                },
+                {
+                  "minLength": 1,
+                  "type": "string",
+                },
+                {
+                  "type": "number",
+                },
+              ],
+              "default": true,
+            },
+          },
+          {
+            "description": "Whether environments should be included in the exported data.",
+            "in": "query",
+            "name": "environments",
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "boolean",
+                },
+                {
+                  "minLength": 1,
+                  "type": "string",
+                },
+                {
+                  "type": "number",
+                },
+              ],
+              "default": true,
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/stateSchema",
+                },
+              },
+            },
+            "description": "stateSchema",
+          },
+        },
+        "tags": [
+          "Import/Export",
+        ],
+      },
+    },
+    "/api/admin/state/import": {
+      "post": {
+        "operationId": "import",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/stateSchema",
+              },
+            },
+          },
+          "description": "stateSchema",
+          "required": true,
+        },
+        "responses": {
+          "202": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Import/Export",
+        ],
+      },
+    },
+    "/api/admin/strategies": {
+      "get": {
+        "operationId": "getAllStrategies",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/strategiesSchema",
+                },
+              },
+            },
+            "description": "strategiesSchema",
+          },
+        },
+        "tags": [
+          "Strategies",
+        ],
+      },
+      "post": {
+        "operationId": "createStrategy",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/upsertStrategySchema",
+              },
+            },
+          },
+          "description": "upsertStrategySchema",
+          "required": true,
+        },
+        "responses": {
+          "201": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Strategies",
+        ],
+      },
+    },
+    "/api/admin/strategies/{name}": {
+      "delete": {
+        "operationId": "removeStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Strategies",
+        ],
+      },
+      "get": {
+        "operationId": "getStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/strategySchema",
+                },
+              },
+            },
+            "description": "strategySchema",
+          },
+        },
+        "tags": [
+          "Strategies",
+        ],
+      },
+    },
+    "/api/admin/strategies/{strategyName}": {
+      "put": {
+        "operationId": "updateStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "strategyName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/upsertStrategySchema",
+              },
+            },
+          },
+          "description": "upsertStrategySchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Strategies",
+        ],
+      },
+    },
+    "/api/admin/strategies/{strategyName}/deprecate": {
+      "post": {
+        "operationId": "deprecateStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "strategyName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Strategies",
+        ],
+      },
+    },
+    "/api/admin/strategies/{strategyName}/reactivate": {
+      "post": {
+        "operationId": "reactivateStrategy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "strategyName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Strategies",
+        ],
+      },
+    },
+    "/api/admin/tag-types": {
+      "get": {
+        "operationId": "getTagTypes",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tagTypesSchema",
+                },
+              },
+            },
+            "description": "tagTypesSchema",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+      "post": {
+        "operationId": "createTagType",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tagTypeSchema",
+              },
+            },
+          },
+          "description": "tagTypeSchema",
+          "required": true,
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tagTypeSchema",
+                },
+              },
+            },
+            "description": "tagTypeSchema",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+    },
+    "/api/admin/tag-types/validate": {
+      "post": {
+        "operationId": "validateTagType",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tagTypeSchema",
+              },
+            },
+          },
+          "description": "tagTypeSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/validateTagTypeSchema",
+                },
+              },
+            },
+            "description": "validateTagTypeSchema",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+    },
+    "/api/admin/tag-types/{name}": {
+      "delete": {
+        "operationId": "deleteTagType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+      "get": {
+        "operationId": "getTagType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tagTypeSchema",
+                },
+              },
+            },
+            "description": "tagTypeSchema",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+      "put": {
+        "operationId": "updateTagType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateTagTypeSchema",
+              },
+            },
+          },
+          "description": "updateTagTypeSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+    },
+    "/api/admin/tags": {
+      "get": {
+        "operationId": "getTags",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tagsSchema",
+                },
+              },
+            },
+            "description": "tagsSchema",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+      "post": {
+        "operationId": "createTag",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/tagSchema",
+              },
+            },
+          },
+          "description": "tagSchema",
+          "required": true,
+        },
+        "responses": {
+          "201": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+    },
+    "/api/admin/tags/{type}": {
+      "get": {
+        "operationId": "getTagsByType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tagsSchema",
+                },
+              },
+            },
+            "description": "tagsSchema",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+    },
+    "/api/admin/tags/{type}/{value}": {
+      "delete": {
+        "operationId": "deleteTag",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "value",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+      "get": {
+        "operationId": "getTag",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+          {
+            "in": "path",
+            "name": "value",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tagWithVersionSchema",
+                },
+              },
+            },
+            "description": "tagWithVersionSchema",
+          },
+        },
+        "tags": [
+          "Tags",
+        ],
+      },
+    },
+    "/api/admin/ui-config": {
+      "get": {
+        "operationId": "getUiConfig",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/uiConfigSchema",
+                },
+              },
+            },
+            "description": "uiConfigSchema",
+          },
+        },
+        "tags": [
+          "Admin UI",
+        ],
+      },
+      "post": {
+        "operationId": "setUiConfig",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/setUiConfigSchema",
+              },
+            },
+          },
+          "description": "setUiConfigSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Admin UI",
+        ],
+      },
+    },
+    "/api/admin/user": {
+      "get": {
+        "operationId": "getMe",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/meSchema",
+                },
+              },
+            },
+            "description": "meSchema",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+    },
+    "/api/admin/user-admin": {
+      "get": {
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/usersSchema",
+                },
+              },
+            },
+            "description": "usersSchema",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+      "post": {
+        "operationId": "createUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createUserSchema",
+              },
+            },
+          },
+          "description": "createUserSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/userSchema",
+                },
+              },
+            },
+            "description": "userSchema",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+    },
+    "/api/admin/user-admin/access": {
+      "get": {
+        "operationId": "getBaseUsersAndGroups",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/usersGroupsBaseSchema",
+                },
+              },
+            },
+            "description": "usersGroupsBaseSchema",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+    },
+    "/api/admin/user-admin/reset-password": {
+      "post": {
+        "operationId": "resetUserPassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/idSchema",
+              },
+            },
+          },
+          "description": "idSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resetPasswordSchema",
+                },
+              },
+            },
+            "description": "resetPasswordSchema",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+    },
+    "/api/admin/user-admin/search": {
+      "get": {
+        "operationId": "searchUsers",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/usersSchema",
+                },
+              },
+            },
+            "description": "usersSchema",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+    },
+    "/api/admin/user-admin/validate-password": {
+      "post": {
+        "operationId": "validateUserPassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/passwordSchema",
+              },
+            },
+          },
+          "description": "passwordSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+    },
+    "/api/admin/user-admin/{id}": {
+      "delete": {
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+      "get": {
+        "operationId": "getUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/userSchema",
+                },
+              },
+            },
+            "description": "userSchema",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+      "put": {
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateUserSchema",
+              },
+            },
+          },
+          "description": "updateUserSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/userSchema",
+                },
+              },
+            },
+            "description": "userSchema",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+    },
+    "/api/admin/user-admin/{id}/change-password": {
+      "post": {
+        "operationId": "changeUserPassword",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/passwordSchema",
+              },
+            },
+          },
+          "description": "passwordSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+    },
+    "/api/admin/user/change-password": {
+      "post": {
+        "operationId": "changeMyPassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/passwordSchema",
+              },
+            },
+          },
+          "description": "passwordSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+          "400": {
+            "description": "passwordMismatch",
+          },
+        },
+        "tags": [
+          "Users",
+        ],
+      },
+    },
+    "/api/client/features": {
+      "get": {
+        "operationId": "getAllClientFeatures",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clientFeaturesSchema",
+                },
+              },
+            },
+            "description": "clientFeaturesSchema",
+          },
+        },
+        "tags": [
+          "Client",
+        ],
+      },
+    },
+    "/api/client/features/{featureName}": {
+      "get": {
+        "operationId": "getClientFeature",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "featureName",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clientFeaturesSchema",
+                },
+              },
+            },
+            "description": "clientFeaturesSchema",
+          },
+        },
+        "tags": [
+          "Client",
+        ],
+      },
+    },
+    "/api/client/metrics": {
+      "post": {
+        "operationId": "registerClientMetrics",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clientMetricsSchema",
+              },
+            },
+          },
+          "description": "clientMetricsSchema",
+          "required": true,
+        },
+        "responses": {
+          "202": {
+            "description": "This response has no body.",
+          },
+          "400": {
+            "description": "The request data does not match what we expect.",
+          },
+        },
+        "tags": [
+          "Client",
+        ],
+      },
+    },
+    "/api/client/register": {
+      "post": {
+        "operationId": "registerClientApplication",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clientApplicationSchema",
+              },
+            },
+          },
+          "description": "clientApplicationSchema",
+          "required": true,
+        },
+        "responses": {
+          "202": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Client",
+        ],
+      },
+    },
+    "/api/frontend": {
+      "get": {
+        "operationId": "getFrontendFeatures",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/proxyFeaturesSchema",
+                },
+              },
+            },
+            "description": "proxyFeaturesSchema",
+          },
+        },
+        "tags": [
+          "Unstable",
+        ],
+      },
+    },
+    "/api/frontend/client/metrics": {
+      "post": {
+        "operationId": "registerFrontendMetrics",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/proxyMetricsSchema",
+              },
+            },
+          },
+          "description": "proxyMetricsSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Unstable",
+        ],
+      },
+    },
+    "/api/frontend/client/register": {
+      "post": {
+        "operationId": "registerFrontendClient",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/proxyClientSchema",
+              },
+            },
+          },
+          "description": "proxyClientSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Unstable",
+        ],
+      },
+    },
+    "/auth/reset/password": {
+      "post": {
+        "operationId": "changePassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/changePasswordSchema",
+              },
+            },
+          },
+          "description": "changePasswordSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Auth",
+        ],
+      },
+    },
+    "/auth/reset/password-email": {
+      "post": {
+        "operationId": "sendResetPasswordEmail",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/emailSchema",
+              },
+            },
+          },
+          "description": "emailSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Auth",
+        ],
+      },
+    },
+    "/auth/reset/validate": {
+      "get": {
+        "operationId": "validateToken",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tokenUserSchema",
+                },
+              },
+            },
+            "description": "tokenUserSchema",
+          },
+        },
+        "tags": [
+          "Auth",
+        ],
+      },
+    },
+    "/auth/reset/validate-password": {
+      "post": {
+        "operationId": "validatePassword",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/validatePasswordSchema",
+              },
+            },
+          },
+          "description": "validatePasswordSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "description": "This response has no body.",
+          },
+        },
+        "tags": [
+          "Auth",
+        ],
+      },
+    },
+    "/auth/simple/login": {
+      "post": {
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/loginSchema",
+              },
+            },
+          },
+          "description": "loginSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/userSchema",
+                },
+              },
+            },
+            "description": "userSchema",
+          },
+        },
+        "tags": [
+          "Auth",
+        ],
+      },
+    },
+    "/edge/validate": {
+      "post": {
+        "operationId": "getValidTokens",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/validateEdgeTokensSchema",
+              },
+            },
+          },
+          "description": "validateEdgeTokensSchema",
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/validateEdgeTokensSchema",
+                },
+              },
+            },
+            "description": "validateEdgeTokensSchema",
+          },
+        },
+        "tags": [
+          "Edge",
+        ],
+      },
+    },
+    "/health": {
+      "get": {
+        "operationId": "getHealth",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/healthCheckSchema",
+                },
+              },
+            },
+            "description": "healthCheckSchema",
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/healthCheckSchema",
+                },
+              },
+            },
+            "description": "healthCheckSchema",
+          },
+        },
+        "tags": [
+          "Operational",
+        ],
+      },
+    },
+  },
+  "security": [
+    {
+      "apiKey": [],
+    },
+  ],
+  "servers": [
+    {
+      "url": "http://localhost:4242",
+    },
+  ],
+  "tags": [
+    {
+      "description": "Create, update, and delete [Unleash addons](https://docs.getunleash.io/addons).",
+      "name": "Addons",
+    },
+    {
+      "description": "Configure the Unleash Admin UI.",
+      "name": "Admin UI",
+    },
+    {
+      "description": "Create, update, and delete [Unleash API tokens](https://docs.getunleash.io/reference/api-tokens-and-client-keys).",
+      "name": "API tokens",
+    },
+    {
+      "description": "Revive or permanently delete [archived feature toggles](https://docs.getunleash.io/advanced/archived_toggles).",
+      "name": "Archive",
+    },
+    {
+      "description": "Manage logins, passwords, etc.",
+      "name": "Auth",
+    },
+    {
+      "description": "Endpoints for [Unleash server-side clients](https://docs.getunleash.io/sdks).",
+      "name": "Client",
+    },
+    {
+      "description": "Create, update, and delete [context fields](https://docs.getunleash.io/user_guide/unleash_context) that Unleash is aware of.",
+      "name": "Context",
+    },
+    {
+      "description": "Endpoints related to Unleash on the Edge.",
+      "name": "Edge",
+    },
+    {
+      "description": "Create, update, delete, enable or disable [environments](https://docs.getunleash.io/user_guide/environments) for this Unleash instance.",
+      "name": "Environments",
+    },
+    {
+      "description": "Read events from this Unleash instance.",
+      "name": "Events",
+    },
+    {
+      "description": "Create, update, and delete [features toggles](https://docs.getunleash.io/reference/feature-toggles).",
+      "name": "Features",
+    },
+    {
+      "description": "[Import and export](https://docs.getunleash.io/deploy/import_export) the state of your Unleash instance.",
+      "name": "Import/Export",
+    },
+    {
+      "description": "Register, read, or delete metrics recorded by Unleash.",
+      "name": "Metrics",
+    },
+    {
+      "description": "Endpoints related to the operational status of this Unleash instance.",
+      "name": "Operational",
+    },
+    {
+      "description": "Evaluate an Unleash context against your feature toggles.",
+      "name": "Playground",
+    },
+    {
+      "description": "Create, update, and delete [Unleash projects](https://docs.getunleash.io/user_guide/projects).",
+      "name": "Projects",
+    },
+    {
+      "description": "Create, update, delete, manage [custom strategies](https://docs.getunleash.io/advanced/custom_activation_strategy).",
+      "name": "Strategies",
+    },
+    {
+      "description": "Create, update, and delete [tags and tag types](https://docs.getunleash.io/advanced/tags).",
+      "name": "Tags",
+    },
+    {
+      "description": "Experimental endpoints that may change or disappear at any time.",
+      "name": "Unstable",
+    },
+    {
+      "description": "Manage users and passwords.",
+      "name": "Users",
+    },
+  ],
+}
+`;

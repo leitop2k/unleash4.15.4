@@ -1,0 +1,19 @@
+{
+    "env": {},
+    "extends": [],
+    "parser": "",
+    "plugins": [],
+    "rules": {},
+    "settings": {},
+    "parserOptions": {
+        "project": "../../tsconfig.json"
+    },
+    "overrides": [
+        {
+            "files": "*.js",
+            "rules": {
+                "@typescript-eslint/indent": "off"
+            }
+        }
+    ]
+}
