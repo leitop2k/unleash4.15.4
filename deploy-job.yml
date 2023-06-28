@@ -1,0 +1,30 @@
+name: Deploy buy runner
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build-push:
+    runs-on: self-hosted
+    steps:
+      - name: DockerBuild
+        run: docker build -t leitop2k/unleash_4.15.4:latest .
+      - name: DockerPush
+        run: docker build leitop2k/unleash_4.15.4:latest
+  prepare-environment:
+    runs-on: self-hosted
+    needs: build-push
+    steps:
+      - name: Stop and remove containers, networks
+        run: docker-compose down
+      - name: Remove unused data
+        run: docker system prune -a -f
+  deploy:
+    runs-on: self-hosted
+    needs: prepare-environment
+    steps:
+      - name: checkout repo
+        run: docker-compose pull 
+      - name: docker-compose
+        run: docker-compose up -d
