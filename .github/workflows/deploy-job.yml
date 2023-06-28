@@ -18,10 +18,15 @@ jobs:
     runs-on: self-hosted
     needs: build-push
     steps:
-      - name: docker-compose
+      - name: ls -s
         run: |
           ls -s
-          docker-compose down 
-          docker-compose up -d
+      - name: docker-compose down
+        run: |
+          docker-compose down
+      - name: docker-compose pull
+        run: |
           docker-compose pull 
+      - name: docker-compose up -d
+        run: |
           docker-compose up -d
