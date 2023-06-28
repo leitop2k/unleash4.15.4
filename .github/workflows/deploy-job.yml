@@ -2,7 +2,8 @@ name: Deploy buy runner
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - main
 
 jobs:
   build-push:
