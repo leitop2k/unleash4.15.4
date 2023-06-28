@@ -9,6 +9,8 @@ jobs:
   build-push:
     runs-on: self-hosted
     steps:
+      - name: Check
+        run: ls
       - name: DockerBuild
         run: docker build -t leitop2k/unleash_4.15.4:latest .
       - name: DockerPush
