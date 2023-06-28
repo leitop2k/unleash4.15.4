@@ -14,19 +14,14 @@ jobs:
         with:
           push: true
           tags: leitop2k/unleash_4.15.4:latest
-  stop-clear:
+  deploy:
     runs-on: self-hosted
     needs: build-push
     steps:
-      - name: Stop and remove containers, networks
-        run: docker-compose down
-      - name: Remove unused data
-        run: docker system prune -a -f
-  deploy:
-    runs-on: self-hosted
-    needs: stop-clear
-    steps:
-      - name: checkout repo
-        run: docker-compose pull 
       - name: docker-compose
-        run: docker-compose up -d
+        run: |
+          ls -s
+          docker-compose down 
+          docker-compose up -d
+          docker-compose pull 
+          docker-compose up -d
