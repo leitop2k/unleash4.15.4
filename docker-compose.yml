@@ -18,7 +18,9 @@ services:
   # The Unleash server contains the Unleash configuration and
   # communicates with server-side SDKs and the Unleash Proxy
   web:
-    image: leitop2k/unleash_4.15.4.001
+    image: test/unleash_4.15.4.001:latest
+    build: .
+    #image: leitop2k/unleash_4.15.4.001
     #image: unleashorg/unleash-server:latest
     ports:
       - "4242:4242"
