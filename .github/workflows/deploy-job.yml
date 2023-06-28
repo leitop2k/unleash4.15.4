@@ -21,6 +21,9 @@ jobs:
       - name: ls -s
         run: |
           ls -s
+      - name: docker-compose ps
+        run: |
+          docker-compose ps
       - name: docker-compose down
         run: |
           docker-compose down
