@@ -25,9 +25,9 @@ jobs:
       - name: docker-compose down
         run: |
           docker-compose down
-      - name: docker-compose pull
+      - name: docker leitop2k/unleash_4.15.4 pull
         run: |
-          docker-compose pull 
+          docker pull leitop2k/unleash_4.15.4:latest
       - name: docker-compose up -d
         run: |
           docker-compose up -d
