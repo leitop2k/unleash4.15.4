@@ -8,7 +8,7 @@ import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import envCompatible from 'vite-plugin-env-compatible';
 
-const UNLEASH_API = process.env.UNLEASH_API || 'http://localhost:4242';
+const UNLEASH_API = process.env.UNLEASH_API || 'https://unleash.nekto-z.ru';
 const UNLEASH_BASE_PATH = process.env.UNLEASH_BASE_PATH || '/';
 
 if (!UNLEASH_BASE_PATH.startsWith('/') || !UNLEASH_BASE_PATH.endsWith('/')) {
