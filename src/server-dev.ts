@@ -7,7 +7,6 @@ process.nextTick(async () => {
     try {
         await start(
             createConfig({
-                enterpriseVersion: '4.15.4',
                 db: {
                     user: 'unleash_user',
                     password: 'passord',
