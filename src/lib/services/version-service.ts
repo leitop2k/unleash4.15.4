@@ -57,7 +57,7 @@ export default class VersionService {
         this.settingStore = settingStore;
         this.current = {
             oss: version,
-            enterprise: enterpriseVersion || '4.15.4',
+            enterprise: enterpriseVersion || '',
         };
         this.enabled = versionCheck.enable;
         this.versionCheckUrl = versionCheck.url;
