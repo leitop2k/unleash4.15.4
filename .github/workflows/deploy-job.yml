@@ -24,7 +24,7 @@ jobs:
           docker pull leitop2k/unleash_4.15.4:latest
       - name: docker restart unleash4154-web-1
         run: |
-          docker restart unleash4154-web-1
+          docker restart unleash4154_web_1
       - name: docker-compose ps
         run: |
           docker ps
