@@ -116,10 +116,7 @@ class ConfigController extends Controller {
             segmentValuesLimit: this.config.segmentValuesLimit,
             strategySegmentsLimit: this.config.strategySegmentsLimit,
             frontendApiOrigins: frontendSettings.frontendApiOrigins,
-            versionInfo: {
-                ...this.versionService.getVersionInfo(),
-                current: { oss: '4.15.4', enterprise: '4.15.4' },
-            },
+            versionInfo: this.versionService.getVersionInfo(),
             disablePasswordAuth,
         };
 
