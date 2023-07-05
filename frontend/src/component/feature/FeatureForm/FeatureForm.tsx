@@ -25,13 +25,16 @@ interface IFeatureToggleForm {
     name: string;
     description: string;
     project: string;
+    epic: string;
     impressionData: boolean;
     setType: React.Dispatch<React.SetStateAction<string>>;
+    setEpic: React.Dispatch<React.SetStateAction<string>>;
     setName: React.Dispatch<React.SetStateAction<string>>;
     setDescription: React.Dispatch<React.SetStateAction<string>>;
     setProject: React.Dispatch<React.SetStateAction<string>>;
     setImpressionData: React.Dispatch<React.SetStateAction<boolean>>;
     validateToggleName?: () => void;
+    validateEpicName?: () => void;
     handleSubmit: (e: any) => void;
     handleCancel: () => void;
     errors: { [key: string]: string };
@@ -45,11 +48,14 @@ const FeatureForm: React.FC<IFeatureToggleForm> = ({
     name,
     description,
     project,
+    epic,
     setType,
+    setEpic,
     setName,
     setDescription,
     setProject,
     validateToggleName,
+    validateEpicName,
     setImpressionData,
     impressionData,
     handleSubmit,
@@ -87,6 +93,19 @@ const FeatureForm: React.FC<IFeatureToggleForm> = ({
                     onChange={e => setName(trim(e.target.value))}
                     data-testid={CF_NAME_ID}
                     onBlur={validateToggleName}
+                />
+                <p className={styles.inputDescription}>
+                    What epic name for toggle do you want?
+                </p>
+                <Input
+                    onChange={e => setEpic(e.target.value)}
+                    label="Epic"
+                    value={epic}
+                    error={Boolean(errors.epic)}
+                    errorText={errors.epic}
+                    className={styles.input}
+                    onFocus={() => clearErrors()}
+                    onBlur={validateEpicName}
                 />
                 <p className={styles.inputDescription}>
                     What kind of feature toggle do you want?
