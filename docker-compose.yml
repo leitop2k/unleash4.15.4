@@ -59,6 +59,8 @@ services:
       POSTGRES_DB: "db"
       # trust incoming connections blindly (DON'T DO THIS IN PRODUCTION!)
       POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - postgres:/var/lib/postgresql/data
     healthcheck:
       test:
         [
@@ -72,3 +74,18 @@ services:
       timeout: 1m
       retries: 5
       start_period: 10s
+  pgadmin:
+    image: dpage/pgadmin4:6
+    environment:
+        PGADMIN_DEFAULT_EMAIL: unleash@тnekto-z.ru
+        PGADMIN_DEFAULT_PASSWORD: unleash
+    ports:
+        - 15432:80
+    volumes:
+        - pgadmin:/var/lib/pgadmin4
+    depends_on:
+        - db
+
+volumes:
+  postgres:
+  pgadmin:
