@@ -23,6 +23,7 @@ export interface IFeatureToggle {
     description?: string;
     environments: IFeatureEnvironment[];
     name: string;
+    epic: string;
     project: string;
     type: string;
     variants: IFeatureVariant[];

@@ -28,7 +28,10 @@ const CreateFeature = () => {
         setProject,
         description,
         setDescription,
+        epic,
+        setEpic,
         validateToggleName,
+        validateEpicName,
         impressionData,
         setImpressionData,
         getTogglePayload,
@@ -42,8 +45,9 @@ const CreateFeature = () => {
         e.preventDefault();
         clearErrors();
         const validToggleName = await validateToggleName();
+        const validEpicName = validateEpicName();
 
-        if (validToggleName) {
+        if (validToggleName && validEpicName) {
             const payload = getTogglePayload();
             try {
                 await createFeatureToggle(project, payload);
@@ -93,7 +97,10 @@ const CreateFeature = () => {
                 setName={setName}
                 setProject={setProject}
                 setDescription={setDescription}
+                epic={epic}
+                setEpic={setEpic}
                 validateToggleName={validateToggleName}
+                validateEpicName={validateEpicName}
                 setImpressionData={setImpressionData}
                 impressionData={impressionData}
                 errors={errors}

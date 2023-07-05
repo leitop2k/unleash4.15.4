@@ -6,6 +6,7 @@ import { formatUnknownError } from 'utils/formatUnknownError';
 
 const useFeatureForm = (
     initialName = '',
+    initialEpic = '',
     initialType = 'release',
     initialProject = 'default',
     initialDescription = '',
@@ -18,6 +19,7 @@ const useFeatureForm = (
     const [type, setType] = useState(initialType);
     const [name, setName] = useState(toggleQueryName || initialName);
     const [project, setProject] = useState(projectId || initialProject);
+    const [epic, setEpic] = useState(initialEpic);
     const [description, setDescription] = useState(initialDescription);
     const [impressionData, setImpressionData] = useState<boolean>(
         initialImpressionData
@@ -40,6 +42,10 @@ const useFeatureForm = (
     }, [initialProject, projectId]);
 
     useEffect(() => {
+        setEpic(initialEpic);
+    }, [initialEpic]);
+
+    useEffect(() => {
         setDescription(initialDescription);
     }, [initialDescription]);
 
@@ -53,6 +59,7 @@ const useFeatureForm = (
             name,
             description,
             impressionData,
+            epic,
         };
     };
 
@@ -70,6 +77,14 @@ const useFeatureForm = (
         }
     };
 
+    const validateEpicName = () => {
+        if (epic.length === 0) {
+            setErrors(prev => ({ ...prev, epic: 'Epic can not be empty.' }));
+            return false;
+        }
+        return true;
+    }
+
     const clearErrors = () => {
         setErrors({});
     };
@@ -83,10 +98,13 @@ const useFeatureForm = (
         setProject,
         description,
         setDescription,
+        epic,
+        setEpic,
         impressionData,
         setImpressionData,
         getTogglePayload,
         validateToggleName,
+        validateEpicName,
         clearErrors,
         errors,
     };

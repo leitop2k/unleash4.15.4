@@ -81,6 +81,7 @@ export const featureMetadataSchema = joi
     .object()
     .keys({
         name: nameType,
+        epic: joi.string().min(1).max(100).required(),
         stale: joi.boolean().default(false),
         archived: joi.boolean().default(false),
         type: joi.string().default('release'),
@@ -105,6 +106,7 @@ export const featureSchema = joi
     .object()
     .keys({
         name: nameType,
+        epic: joi.string().min(1).max(100).required(),
         enabled: joi.boolean().default(false),
         stale: joi.boolean().default(false),
         archived: joi.boolean().default(false),
