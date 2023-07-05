@@ -24,7 +24,8 @@ jobs:
           docker-compose down
       - name: docker system prune -af
         run: |
-          docker system prune -af
+          docker container prune -f
+          docker image rm $(docker image ls -f dangling=true -q)
       - name: docker-compose up -d
         run: |
           docker-compose up -d
