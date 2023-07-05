@@ -80,9 +80,6 @@ services:
       - "15432:80"
     volumes:
       - "pgadmin:/var/lib/pgadmin4"
-    depends_on:
-      db:
-        condition: service_healthy
 
 volumes:
   postgres:
