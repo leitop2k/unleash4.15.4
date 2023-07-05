@@ -18,8 +18,9 @@ const FeatureOverviewMetaData = () => {
     const featureId = useRequiredPathParam('featureId');
     const { tags } = useTags(featureId);
     const { feature } = useFeature(projectId, featureId);
-    const { project, description, type } = feature;
+    const { project, description, type, epic } = feature;
 
+    console.log(feature)
     const IconComponent = getFeatureTypeIcons(type);
 
     return (
@@ -34,6 +35,9 @@ const FeatureOverviewMetaData = () => {
                 <div className={styles.body}>
                     <span className={styles.bodyItem} data-loading>
                         Project: {project}
+                    </span>
+                    <span className={styles.bodyItem} data-loading>
+                        Epic: {epic}
                     </span>
                     <ConditionallyRender
                         condition={Boolean(description)}

@@ -206,6 +206,7 @@ class FeatureStrategiesStore implements IFeatureStrategiesStore {
         const rows = await this.db('features')
             .select(
                 'features.name as name',
+                'features.epic as epic',
                 'features.description as description',
                 'features.type as type',
                 'features.project as project',
@@ -249,12 +250,15 @@ class FeatureStrategiesStore implements IFeatureStrategiesStore {
             .where('features.name', featureName)
             .modify(FeatureToggleStore.filterByArchived, archived);
         stopTimer();
+
+        console.log('getFeatureToggleWithEnvs', rows);
         if (rows.length > 0) {
             const featureToggle = rows.reduce((acc, r) => {
                 if (acc.environments === undefined) {
                     acc.environments = {};
                 }
                 acc.name = r.name;
+                acc.epic = r.epic;
                 acc.impressionData = r.impression_data;
                 acc.description = r.description;
                 acc.project = r.project;

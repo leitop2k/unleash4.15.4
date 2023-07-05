@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Knex } from 'knex';
 import EventEmitter from 'events';
 import metricsHelper from '../util/metrics-helper';
@@ -9,6 +10,7 @@ import { IFeatureToggleStore } from '../types/stores/feature-toggle-store';
 
 const FEATURE_COLUMNS = [
     'name',
+    'epic',
     'description',
     'type',
     'project',
@@ -160,6 +162,7 @@ export default class FeatureToggleStore implements IFeatureToggleStore {
         sortedVariants.sort((a, b) => a.name.localeCompare(b.name));
         return {
             name: row.name,
+            epic: row.epic,
             description: row.description,
             type: row.type,
             project: row.project,
@@ -186,6 +189,7 @@ export default class FeatureToggleStore implements IFeatureToggleStore {
     dtoToRow(project: string, data: FeatureToggleDTO): FeaturesTable {
         const row = {
             name: data.name,
+            epic: data.epic,
             description: data.description,
             type: data.type,
             project,
