@@ -27,6 +27,6 @@ jobs:
           docker container prune -f
           docker image prune -af
         required: false
-        - name: docker-compose up -d
+      - name: docker-compose up -d
         run: |
           docker-compose up -d
