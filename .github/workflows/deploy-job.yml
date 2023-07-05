@@ -26,6 +26,7 @@ jobs:
         run: |
           docker container prune -f
           docker image rm $(docker image ls -f dangling=true -q)
-      - name: docker-compose up -d
+        required: false
+        - name: docker-compose up -d
         run: |
           docker-compose up -d
