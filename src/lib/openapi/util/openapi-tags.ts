@@ -62,6 +62,10 @@ const OPENAPI_TAGS = [
             'Create, update, and delete [Unleash projects](https://docs.getunleash.io/user_guide/projects).',
     },
     {
+        name: 'Roles',
+        description: 'Get role with permissions by id',
+    },
+    {
         name: 'Strategies',
         description:
             'Create, update, delete, manage [custom strategies](https://docs.getunleash.io/advanced/custom_activation_strategy).',

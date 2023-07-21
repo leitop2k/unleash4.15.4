@@ -24,6 +24,7 @@ import UserSplashController from './user-splash';
 import ProjectApi from './project';
 import { EnvironmentsController } from './environments';
 import ConstraintsController from './constraints';
+import RolesController from './roles';
 
 class AdminApi extends Controller {
     constructor(config: IUnleashConfig, services: IUnleashServices) {
@@ -88,6 +89,7 @@ class AdminApi extends Controller {
             '/feedback',
             new UserFeedbackController(config, services).router,
         );
+        this.app.use('/roles', new RolesController(config, services).router);
         this.app.use('/projects', new ProjectApi(config, services).router);
         this.app.use(
             '/environments',
