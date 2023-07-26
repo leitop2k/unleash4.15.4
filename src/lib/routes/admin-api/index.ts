@@ -25,6 +25,7 @@ import ProjectApi from './project';
 import { EnvironmentsController } from './environments';
 import ConstraintsController from './constraints';
 import RolesController from './roles';
+import GroupsController from './groups';
 
 class AdminApi extends Controller {
     constructor(config: IUnleashConfig, services: IUnleashServices) {
@@ -90,6 +91,7 @@ class AdminApi extends Controller {
             new UserFeedbackController(config, services).router,
         );
         this.app.use('/roles', new RolesController(config, services).router);
+        this.app.use('/groups', new GroupsController(config, services).router);
         this.app.use('/projects', new ProjectApi(config, services).router);
         this.app.use(
             '/environments',

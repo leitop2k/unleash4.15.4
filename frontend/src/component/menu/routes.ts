@@ -444,7 +444,7 @@ export const routes: IRoute[] = [
         component: GroupsAdmin,
         type: 'protected',
         menu: { adminSettings: true },
-        flag: UG,
+        // flag: UG,
     },
     {
         path: '/admin/groups/:groupId',
@@ -453,7 +453,7 @@ export const routes: IRoute[] = [
         component: Group,
         type: 'protected',
         menu: {},
-        flag: UG,
+        // flag: UG,
     },
     {
         path: '/admin/groups/create-group',
@@ -462,7 +462,7 @@ export const routes: IRoute[] = [
         component: CreateGroup,
         type: 'protected',
         menu: {},
-        flag: UG,
+        // flag: UG,
     },
     {
         path: '/admin/groups/:groupId/edit',
@@ -471,7 +471,7 @@ export const routes: IRoute[] = [
         component: EditGroup,
         type: 'protected',
         menu: {},
-        flag: UG,
+        // flag: UG,
     },
     {
         path: '/admin/roles',

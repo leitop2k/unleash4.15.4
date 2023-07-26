@@ -67,16 +67,22 @@ const Header: VFC = () => {
 
     const routes = getRoutes();
 
-    const filterByEnterprise = (route: IRoute): boolean => {
-        return !route.menu.isEnterprise || !isOss();
-    };
+    // const filterByEnterprise = (route: IRoute): boolean => {
+    //     return !route.menu.isEnterprise || !isOss();
+    // };
+
+    // const filteredMainRoutes = {
+    //     mainNavRoutes: routes.mainNavRoutes.filter(filterByConfig(uiConfig)),
+    //     mobileRoutes: routes.mobileRoutes.filter(filterByConfig(uiConfig)),
+    //     adminRoutes: routes.adminRoutes
+    //         .filter(filterByConfig(uiConfig))
+    //         .filter(filterByEnterprise),
+    // };
 
     const filteredMainRoutes = {
-        mainNavRoutes: routes.mainNavRoutes.filter(filterByConfig(uiConfig)),
-        mobileRoutes: routes.mobileRoutes.filter(filterByConfig(uiConfig)),
-        adminRoutes: routes.adminRoutes
-            .filter(filterByConfig(uiConfig))
-            .filter(filterByEnterprise),
+        mainNavRoutes: routes.mainNavRoutes,
+        mobileRoutes: routes.mobileRoutes,
+        adminRoutes: routes.adminRoutes,
     };
 
     if (smallScreen) {

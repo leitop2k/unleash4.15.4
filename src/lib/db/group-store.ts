@@ -10,6 +10,7 @@ import Group, {
     IGroupUserModel,
 } from '../types/group';
 import Transaction = Knex.Transaction;
+import { Logger, getLogger } from 'log4js';
 
 const T = {
     GROUPS: 'groups',
@@ -54,8 +55,12 @@ const groupToRow = (user: IStoreGroup) => ({
 export default class GroupStore implements IGroupStore {
     private db: Knex;
 
+    private logger: Logger;
+
     constructor(db: Knex) {
         this.db = db;
+
+        this.logger = getLogger('group-store.ts');
     }
 
     async getAllWithId(ids: number[]): Promise<Group[]> {
