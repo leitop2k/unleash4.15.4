@@ -132,14 +132,13 @@ export default class ProjectHealthReport extends Controller {
         res: Response<void>,
     ): Promise<void> {
         const { projectId, roleId } = req.params;
-        // [TODO] Пока только user-ов добавляем, без групп (user-group)
-        const { users } = req.body;
+        const { users, groups } = req.body;
         // @ts-ignore
         const createdBy = req.user.username || req.user.name;
 
         await this.accessService.addAccessToProject(
             users,
-            [],
+            groups,
             projectId,
             +roleId,
             createdBy,
