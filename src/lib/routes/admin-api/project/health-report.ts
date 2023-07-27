@@ -12,17 +12,12 @@ import {
     healthOverviewSchema,
     HealthOverviewSchema,
 } from '../../../openapi/spec/health-overview-schema';
-import {
-    projectAccessSchema,
-    ProjectAccessSchema,
-} from '../../../openapi/spec/project-access-schema';
 import { serializeDates } from '../../../types/serialize-dates';
 import {
     healthReportSchema,
     HealthReportSchema,
 } from '../../../openapi/spec/health-report-schema';
 import { AccessService } from 'lib/services/access-service';
-import { IProjectAccessModel } from 'lib/types/stores/access-store';
 
 export default class ProjectHealthReport extends Controller {
     private projectHealthService: ProjectHealthService;
@@ -49,29 +44,6 @@ export default class ProjectHealthReport extends Controller {
         this.projectHealthService = projectHealthService;
         this.openApiService = openApiService;
         this.accessService = accessService;
-
-        this.route({
-            path: '/:projectId/access',
-            method: 'get',
-            handler: this.getProjectAccess,
-            permission: NONE,
-            middleware: [
-                openApiService.validPath({
-                    tags: ['Projects'],
-                    operationId: 'getProjectAccess',
-                    responses: {
-                        200: createResponseSchema('projectAccessSchema'),
-                    },
-                }),
-            ],
-        });
-
-        this.route({
-            path: '/:projectId/role/:roleId/access',
-            method: 'post',
-            handler: this.addAccessToProject,
-            permission: NONE,
-        });
 
         this.route({
             method: 'get',
@@ -104,47 +76,6 @@ export default class ProjectHealthReport extends Controller {
                 }),
             ],
         });
-    }
-
-    async getProjectAccess(
-        req: Request,
-        res: Response<ProjectAccessSchema>,
-    ): Promise<void> {
-        const { projectId } = req.params;
-        const response = await this.accessService.getProjectRoleAccess(
-            projectId,
-        );
-        this.openApiService.respondWithValidation(
-            200,
-            res,
-            projectAccessSchema.$id,
-            { roles: response[0], users: response[1], groups: response[2] },
-        );
-    }
-
-    async addAccessToProject(
-        req: Request<
-            { projectId: string; roleId: string },
-            unknown,
-            IProjectAccessModel,
-            unknown
-        >,
-        res: Response<void>,
-    ): Promise<void> {
-        const { projectId, roleId } = req.params;
-        const { users, groups } = req.body;
-        // @ts-ignore
-        const createdBy = req.user.username || req.user.name;
-
-        await this.accessService.addAccessToProject(
-            users,
-            groups,
-            projectId,
-            +roleId,
-            createdBy,
-        );
-
-        res.status(200).send();
     }
 
     async getProjectHealthOverview(
