@@ -24,9 +24,10 @@ export const App = () => {
     const hasFetchedAuth = Boolean(authDetails || user);
     usePlausibleTracker();
 
-    const availableRoutes = isOss()
-        ? routes.filter(route => !route.enterprise)
-        : routes;
+    // const availableRoutes = isOss()
+    //     ? routes.filter(route => !route.enterprise)
+    //     : routes;
+    const availableRoutes = routes;
 
     return (
         <SWRProvider>

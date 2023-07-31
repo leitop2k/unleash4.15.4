@@ -64,7 +64,7 @@ function AdminMenu() {
                         </NavLink>
                     }
                 />
-                {flags.UG && (
+                {/* {flags.UG && ( */}
                     <Tab
                         value="/admin/groups"
                         label={
@@ -78,7 +78,7 @@ function AdminMenu() {
                             </NavLink>
                         }
                     />
-                )}
+                {/* )} */}
                 {flags.RE && (
                     <Tab
                         value="/admin/roles"

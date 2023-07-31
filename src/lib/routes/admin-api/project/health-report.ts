@@ -17,11 +17,14 @@ import {
     healthReportSchema,
     HealthReportSchema,
 } from '../../../openapi/spec/health-report-schema';
+import { AccessService } from 'lib/services/access-service';
 
 export default class ProjectHealthReport extends Controller {
     private projectHealthService: ProjectHealthService;
 
     private openApiService: OpenApiService;
+
+    private accessService: AccessService;
 
     private logger: Logger;
 
@@ -30,12 +33,17 @@ export default class ProjectHealthReport extends Controller {
         {
             projectHealthService,
             openApiService,
-        }: Pick<IUnleashServices, 'projectHealthService' | 'openApiService'>,
+            accessService,
+        }: Pick<
+            IUnleashServices,
+            'projectHealthService' | 'openApiService' | 'accessService'
+        >,
     ) {
         super(config);
         this.logger = config.getLogger('/admin-api/project/health-report');
         this.projectHealthService = projectHealthService;
         this.openApiService = openApiService;
+        this.accessService = accessService;
 
         this.route({
             method: 'get',

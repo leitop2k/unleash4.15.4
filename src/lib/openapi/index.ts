@@ -65,6 +65,7 @@ import { playgroundRequestSchema } from './spec/playground-request-schema';
 import { playgroundResponseSchema } from './spec/playground-response-schema';
 import { projectEnvironmentSchema } from './spec/project-environment-schema';
 import { projectSchema } from './spec/project-schema';
+import { projectAccessSchema } from './spec/project-access-schema';
 import { projectsSchema } from './spec/projects-schema';
 import { resetPasswordSchema } from './spec/reset-password-schema';
 import { roleSchema } from './spec/role-schema';
@@ -184,6 +185,7 @@ export const schemas = {
     playgroundResponseSchema,
     projectEnvironmentSchema,
     projectSchema,
+    projectAccessSchema,
     projectsSchema,
     resetPasswordSchema,
     roleSchema,

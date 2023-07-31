@@ -15,6 +15,7 @@ import {
 import { OpenApiService } from '../../../services/openapi-service';
 import { serializeDates } from '../../../types/serialize-dates';
 import { createResponseSchema } from '../../../openapi/util/create-response-schema';
+import ProjectAccessController from './access';
 
 export default class ProjectApi extends Controller {
     private projectService: ProjectService;
@@ -42,6 +43,7 @@ export default class ProjectApi extends Controller {
             ],
         });
 
+        this.use('/', new ProjectAccessController(config, services).router);
         this.use('/', new ProjectFeaturesController(config, services).router);
         this.use('/', new EnvironmentsController(config, services).router);
         this.use('/', new ProjectHealthReport(config, services).router);

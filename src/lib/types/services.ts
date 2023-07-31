@@ -15,6 +15,7 @@ import ResetTokenService from '../services/reset-token-service';
 import FeatureTypeService from '../services/feature-type-service';
 import EventService from '../services/event-service';
 import HealthService from '../services/health-service';
+import RoleService from 'lib/services/role-service';
 import SettingService from '../services/setting-service';
 import SessionService from '../services/session-service';
 import UserFeedbackService from '../services/user-feedback-service';
@@ -48,6 +49,7 @@ export interface IUnleashServices {
     featureTypeService: FeatureTypeService;
     groupService: GroupService;
     healthService: HealthService;
+    roleService: RoleService;
     projectHealthService: ProjectHealthService;
     projectService: ProjectService;
     resetTokenService: ResetTokenService;

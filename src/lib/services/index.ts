@@ -4,6 +4,7 @@ import { IUnleashServices } from '../types/services';
 import FeatureTypeService from './feature-type-service';
 import EventService from './event-service';
 import HealthService from './health-service';
+import RoleService from './role-service';
 
 import ProjectService from './project-service';
 import StateService from './state-service';
@@ -65,6 +66,7 @@ export const createServices = (
     });
     const versionService = new VersionService(stores, config);
     const healthService = new HealthService(stores, config);
+    const roleService = new RoleService(stores, config);
     const userFeedbackService = new UserFeedbackService(stores, config);
     const segmentService = new SegmentService(stores, config);
     const featureToggleServiceV2 = new FeatureToggleService(
@@ -108,6 +110,7 @@ export const createServices = (
         featureToggleServiceV2,
         featureTypeService,
         healthService,
+        roleService,
         projectService,
         stateService,
         strategyService,
