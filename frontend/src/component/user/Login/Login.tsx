@@ -1,7 +1,6 @@
 import { ConditionallyRender } from 'component/common/ConditionallyRender/ConditionallyRender';
 import { useStyles } from 'component/user/Login/Login.styles';
 import useQueryParams from 'hooks/useQueryParams';
-import ResetPasswordSuccess from '../common/ResetPasswordSuccess/ResetPasswordSuccess';
 import StandaloneLayout from '../common/StandaloneLayout/StandaloneLayout';
 import { DEMO_TYPE } from 'constants/authTypes';
 import Authentication from '../Authentication/Authentication';
@@ -15,7 +14,6 @@ const Login = () => {
     const { authDetails } = useAuthDetails();
     const { user } = useAuthUser();
     const query = useQueryParams();
-    const resetPassword = query.get('reset') === 'true';
     const redirect = query.get('redirect') || '/';
 
     if (user) {
@@ -34,10 +32,6 @@ const Login = () => {
                     }
                 />
 
-                <ConditionallyRender
-                    condition={resetPassword}
-                    show={<ResetPasswordSuccess />}
-                />
                 <Authentication redirect={redirect} />
             </div>
         </StandaloneLayout>

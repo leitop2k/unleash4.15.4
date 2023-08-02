@@ -2,6 +2,7 @@ import { RequestHandler } from 'express';
 import { is } from 'type-is';
 
 const DEFAULT_ACCEPTED_CONTENT_TYPE = 'application/json';
+const FORM_URLENCODED_CONTENT_TYPE = 'application/x-www-form-urlencoded';
 
 /**
  * Builds an express middleware checking the content-type header
@@ -16,6 +17,7 @@ export default function requireContentType(
     if (acceptedContentTypes.length === 0) {
         acceptedContentTypes.push(DEFAULT_ACCEPTED_CONTENT_TYPE);
     }
+    acceptedContentTypes.push(FORM_URLENCODED_CONTENT_TYPE);
     return (req, res, next) => {
         const contentType = req.header('Content-Type');
         if (is(contentType, acceptedContentTypes)) {
