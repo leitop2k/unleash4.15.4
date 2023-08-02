@@ -179,6 +179,10 @@ export default class Controller {
         this.app.use(path, router);
     }
 
+    appRouter(): IRouter {
+        return this.app;
+    }
+
     get router(): any {
         return this.app;
     }

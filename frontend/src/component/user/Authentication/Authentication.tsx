@@ -32,13 +32,7 @@ const Authentication = ({ redirect }: IAuthenticationProps) => {
     let content;
     if (authDetails.type === PASSWORD_TYPE) {
         content = (
-            <>
-                <PasswordAuth authDetails={authDetails} redirect={redirect} />
-                <ConditionallyRender
-                    condition={!authDetails.defaultHidden}
-                    show={<SecondaryLoginActions />}
-                />
-            </>
+            <PasswordAuth authDetails={authDetails} redirect={redirect} />
         );
     } else if (authDetails.type === SIMPLE_TYPE) {
         content = <SimpleAuth authDetails={authDetails} redirect={redirect} />;
