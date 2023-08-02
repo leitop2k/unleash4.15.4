@@ -11,7 +11,7 @@ const passport = require('passport');
 passport.use(
     new SamlStrategy(
         {
-            callbackUrl: 'http://localhost:3000',
+            callbackUrl: 'https://unleash.nekto-z.ru',
             path: '/auth/simple/login/callback',
             entryPoint:
                 'https://keycloak.nekto-z.ru/auth/realms/Test/protocol/saml/clients/unleash',
