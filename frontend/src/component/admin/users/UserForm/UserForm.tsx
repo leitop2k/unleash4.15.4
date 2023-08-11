@@ -19,9 +19,13 @@ interface IUserForm {
     email: string;
     name: string;
     rootRole: number;
+    firstname: string;
+    lastname: string;
     sendEmail: boolean;
     setEmail: React.Dispatch<React.SetStateAction<string>>;
     setName: React.Dispatch<React.SetStateAction<string>>;
+    setFirstname: React.Dispatch<React.SetStateAction<string>>;
+    setLastname: React.Dispatch<React.SetStateAction<string>>;
     setSendEmail: React.Dispatch<React.SetStateAction<boolean>>;
     setRootRole: React.Dispatch<React.SetStateAction<number>>;
     handleSubmit: (e: any) => void;
@@ -36,11 +40,15 @@ const UserForm: React.FC<IUserForm> = ({
     email,
     name,
     rootRole,
+    firstname,
+    lastname,
     sendEmail,
     setEmail,
     setName,
     setSendEmail,
     setRootRole,
+    setFirstname,
+    setLastname,
     handleSubmit,
     handleCancel,
     errors,
@@ -85,6 +93,24 @@ const UserForm: React.FC<IUserForm> = ({
                     onChange={e => setEmail(e.target.value)}
                     error={Boolean(errors.email)}
                     errorText={errors.email}
+                    onFocus={() => clearErrors()}
+                />
+                <Input
+                    className={styles.input}
+                    label="Firstname"
+                    value={firstname}
+                    onChange={e => setFirstname(e.target.value)}
+                    error={Boolean(errors.firstname)}
+                    errorText={errors.firstname}
+                    onFocus={() => clearErrors()}
+                />
+                <Input
+                    className={styles.input}
+                    label="Lastname"
+                    value={lastname}
+                    onChange={e => setLastname(e.target.value)}
+                    error={Boolean(errors.lastname)}
+                    errorText={errors.lastname}
                     onFocus={() => clearErrors()}
                 />
                 <FormControl>

@@ -5,11 +5,15 @@ import useUiConfig from 'hooks/api/getters/useUiConfig/useUiConfig';
 const useCreateUserForm = (
     initialName = '',
     initialEmail = '',
-    initialRootRole = 1
+    initialRootRole = 1,
+    initialFirstname = '',
+    initialLastname = ''
 ) => {
     const { uiConfig } = useUiConfig();
     const [name, setName] = useState(initialName);
     const [email, setEmail] = useState(initialEmail);
+    const [firstname, setFirstname] = useState(initialFirstname);
+    const [lastname, setLastname] = useState(initialLastname);
     const [sendEmail, setSendEmail] = useState(false);
     const [rootRole, setRootRole] = useState(initialRootRole);
     const [errors, setErrors] = useState({});
@@ -32,12 +36,22 @@ const useCreateUserForm = (
         setRootRole(initialRootRole);
     }, [initialRootRole]);
 
+    useEffect(() => {
+        setFirstname(initialFirstname);
+    }, [initialFirstname]);
+
+    useEffect(() => {
+        setLastname(initialLastname);
+    }, [initialLastname]);
+
     const getAddUserPayload = () => {
         return {
             name: name,
             email: email,
             sendEmail: sendEmail,
             rootRole: rootRole,
+            firstname: firstname,
+            lastname: lastname,
         };
     };
 
@@ -50,6 +64,9 @@ const useCreateUserForm = (
             setErrors(prev => ({ ...prev, email: 'Email can not be empty.' }));
             return false;
         }
+
+        // firstname and lastname are not validating because they are nor required
+
         return true;
     };
 
@@ -75,6 +92,10 @@ const useCreateUserForm = (
         setSendEmail,
         rootRole,
         setRootRole,
+        firstname,
+        setFirstname,
+        lastname,
+        setLastname,
         getAddUserPayload,
         validateName,
         validateEmail,

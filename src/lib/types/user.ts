@@ -10,6 +10,8 @@ export interface UserData {
     seenAt?: Date;
     loginAttempts?: number;
     createdAt?: Date;
+    firstname?: string;
+    lastname?: string;
 }
 
 export interface IUser {
@@ -24,6 +26,8 @@ export interface IUser {
     loginAttempts: number;
     isAPI: boolean;
     imageUrl: string;
+    firstname?: string;
+    lastname?: string;
 }
 
 export interface IProjectUser extends IUser {
@@ -51,6 +55,10 @@ export default class User implements IUser {
 
     createdAt: Date;
 
+    firstname: string;
+
+    lastname: string;
+
     constructor({
         id,
         name,
@@ -60,6 +68,8 @@ export default class User implements IUser {
         seenAt,
         loginAttempts,
         createdAt,
+        firstname,
+        lastname,
     }: UserData) {
         if (!id) {
             throw new TypeError('Id is required');
@@ -76,6 +86,8 @@ export default class User implements IUser {
         this.seenAt = seenAt;
         this.loginAttempts = loginAttempts;
         this.createdAt = createdAt;
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
     generateImageUrl(): string {

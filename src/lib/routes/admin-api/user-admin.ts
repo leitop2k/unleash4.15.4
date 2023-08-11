@@ -355,7 +355,15 @@ export default class UserAdminController extends Controller {
         req: IAuthRequest<unknown, unknown, CreateUserSchema>,
         res: Response<UserSchema>,
     ): Promise<void> {
-        const { username, email, name, rootRole, sendEmail } = req.body;
+        const {
+            username,
+            email,
+            name,
+            rootRole,
+            sendEmail,
+            lastname,
+            firstname,
+        } = req.body;
         const { user } = req;
 
         const createdUser = await this.userService.createUser(
@@ -364,6 +372,8 @@ export default class UserAdminController extends Controller {
                 email,
                 name,
                 rootRole,
+                firstname,
+                lastname,
             },
             user,
         );
@@ -429,7 +439,7 @@ export default class UserAdminController extends Controller {
     ): Promise<void> {
         const { user, params, body } = req;
         const { id } = params;
-        const { name, email, rootRole } = body;
+        const { name, email, rootRole, firstname, lastname } = body;
 
         const updateUser = await this.userService.updateUser(
             {
@@ -437,6 +447,8 @@ export default class UserAdminController extends Controller {
                 name,
                 email,
                 rootRole,
+                firstname,
+                lastname,
             },
             user,
         );
