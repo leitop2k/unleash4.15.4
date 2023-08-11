@@ -26,7 +26,7 @@ const StyledInputDescription = styled('p')(({ theme }) => ({
 }));
 
 const StyledButtonContainer = styled('div')(() => ({
-    marginTop: 'auto',
+    marginTop: '24px',
     display: 'flex',
     justifyContent: 'flex-end',
 }));

@@ -317,6 +317,8 @@ export default class UserAdminController extends Controller {
                 name: u.name,
                 username: u.username,
                 email: u.email,
+                firstname: u.firstname,
+                lastname: u.lastname,
             } as IUser;
         });
 

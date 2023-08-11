@@ -116,7 +116,15 @@ class UserStore implements IUserStore {
         if (q.username) {
             return query.where('username', q.username);
         }
-        throw new Error('Can only find users with id, username or email.');
+        if (q.firstname) {
+            return query.where('firstname', q.firstname);
+        }
+        if (q.lastname) {
+            return query.where('lastname', q.lastname);
+        }
+        throw new Error(
+            'Can only find users with id, username, firstname, lastname or email.',
+        );
     }
 
     async hasUser(idQuery: IUserLookup): Promise<number | undefined> {

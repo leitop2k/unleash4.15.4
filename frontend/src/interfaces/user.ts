@@ -8,6 +8,8 @@ export interface IUser {
     permissions: string[] | null;
     inviteLink: string;
     rootRole: number;
+    firstname?: string;
+    lastname?: string;
     seenAt: string | null;
     username?: string;
     isAPI: boolean;

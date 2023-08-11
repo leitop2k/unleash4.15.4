@@ -21,6 +21,12 @@ export const userSchema = {
         username: {
             type: 'string',
         },
+        firstname: {
+            type: 'string',
+        },
+        lastname: {
+            type: 'string',
+        },
         imageUrl: {
             type: 'string',
         },

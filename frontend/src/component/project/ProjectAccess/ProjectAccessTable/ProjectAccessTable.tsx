@@ -121,9 +121,10 @@ export const ProjectAccessTable: VFC = () => {
                 disableSortBy: true,
             },
             {
-                id: 'name',
-                Header: 'Name',
-                accessor: (row: IProjectAccess) => row.entity.name || '',
+                id: 'firstname',
+                Header: 'Firstname',
+                accessor: (row: any) => row.entity.firstname || '',
+                minWidth: 50,
                 Cell: ({ value, row: { original: row } }: any) => (
                     <ConditionallyRender
                         condition={row.type === ENTITY_TYPE.GROUP}
@@ -140,9 +141,54 @@ export const ProjectAccessTable: VFC = () => {
                         elseShow={<HighlightCell value={value} />}
                     />
                 ),
-                minWidth: 100,
                 searchable: true,
             },
+            {
+                id: 'lastname',
+                Header: 'Lastname',
+                accessor: (row: any) => row.entity.lastname || '',
+                minWidth: 50,
+                Cell: ({ value, row: { original: row } }: any) => (
+                    <ConditionallyRender
+                        condition={row.type === ENTITY_TYPE.GROUP}
+                        show={
+                            <LinkCell
+                                onClick={() => {
+                                    setSelectedRow(row);
+                                    setGroupOpen(true);
+                                }}
+                                title={value}
+                                subtitle={`${row.entity.users?.length} users`}
+                            />
+                        }
+                        elseShow={<HighlightCell value={value} />}
+                    />
+                ),
+                searchable: true,
+            },
+            // {
+            //     id: 'name',
+            //     Header: 'Name',
+            //     accessor: (row: IProjectAccess) => row.entity.name || '',
+            //     Cell: ({ value, row: { original: row } }: any) => (
+            //         <ConditionallyRender
+            //             condition={row.type === ENTITY_TYPE.GROUP}
+            //             show={
+            //                 <LinkCell
+            //                     onClick={() => {
+            //                         setSelectedRow(row);
+            //                         setGroupOpen(true);
+            //                     }}
+            //                     title={value}
+            //                     subtitle={`${row.entity.users?.length} users`}
+            //                 />
+            //             }
+            //             elseShow={<HighlightCell value={value} />}
+            //         />
+            //     ),
+            //     minWidth: 100,
+            //     searchable: true,
+            // },
             {
                 id: 'username',
                 Header: 'Username',
