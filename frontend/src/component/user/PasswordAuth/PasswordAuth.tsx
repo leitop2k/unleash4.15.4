@@ -1,68 +1,29 @@
-import { VFC } from 'react';
-import classnames from 'classnames';
-import { Button } from '@mui/material';
-import { ConditionallyRender } from 'component/common/ConditionallyRender/ConditionallyRender';
-import { useThemeStyles } from 'themes/themeStyles';
-import { useStyles } from './PasswordAuth.styles';
-import AuthOptions from '../common/AuthOptions/AuthOptions';
-import DividerText from 'component/common/DividerText/DividerText';
-import { LOGIN_BUTTON } from 'utils/testIds';
-import { IAuthEndpointDetailsResponse } from 'hooks/api/getters/useAuth/useAuthEndpoint';
+import TemplatePasswordAuth from './TemplatePasswordAuth';
+import useQueryParams from 'hooks/useQueryParams';
+import { useAuthDetails } from 'hooks/api/getters/useAuth/useAuthDetails';
+import { useAuthUser } from 'hooks/api/getters/useAuth/useAuthUser';
+import { Navigate } from "react-router-dom";
+import { parseRedirectParam } from 'component/user/Login/parseRedirectParam';
 
-interface IPasswordAuthProps {
-    authDetails: IAuthEndpointDetailsResponse;
-    redirect: string;
-}
+const PasswordAuth = () => {
+    const { user } = useAuthUser();
+    const query = useQueryParams();
+    const { authDetails } = useAuthDetails();
 
-const PasswordAuth: VFC<IPasswordAuthProps> = ({ authDetails, redirect }) => {
-    const { classes: themeStyles } = useThemeStyles();
-    const { classes: styles } = useStyles();
+    const redirect = query.get('redirect') || '/';
 
-    const renderLoginForm = () => {
-        return (
-            <ConditionallyRender
-                condition={!authDetails.defaultHidden}
-                show={
-                    <form action="/auth/simple/login" method="get">
-                        <div className={classnames(styles.contentContainer, themeStyles.contentSpacingY)}>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                type="submit"
-                                style={{ width: '200px', margin: '1rem auto' }}
-                                data-testid={LOGIN_BUTTON}
-                            >
-                                Sign in Unleash
-                            </Button>
-                        </div>
-                    </form>
-                }
-            />
-        );
-    };
+    if (user) {
+        return <Navigate to={parseRedirectParam(redirect)} replace />;
+    }
 
-    const { options = [] } = authDetails;
+    if (!authDetails) return null;
 
-    return (
-        <>
-            <ConditionallyRender
-                condition={options.length > 0}
-                show={
-                    <>
-                        <AuthOptions options={options} />
-                        <ConditionallyRender
-                            condition={!authDetails.defaultHidden}
-                            show={
-                                <DividerText text="Or sign in with username" />
-                            }
-                        />
-                        {renderLoginForm()}
-                    </>
-                }
-                elseShow={renderLoginForm()}
-            />
-        </>
-    );
+    return <TemplatePasswordAuth redirect={redirect} authDetails={authDetails} />;
 };
 
 export default PasswordAuth;
+
+
+
+
+

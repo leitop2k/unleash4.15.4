@@ -1,3 +1,4 @@
+import { Response } from 'express';
 import { OpenApiService } from '../../services/openapi-service';
 import { Logger } from '../../logger';
 import { IUnleashConfig } from '../../server-impl';
@@ -5,32 +6,12 @@ import UserService from '../../services/user-service';
 import { IUnleashServices } from '../../types';
 import { NONE } from '../../types/permissions';
 import Controller from '../controller';
-const SamlStrategy = require('passport-saml').Strategy;
-const passport = require('passport');
-
-passport.use(
-    new SamlStrategy(
-        {
-            callbackUrl: 'https://unleash.nekto-z.ru',
-            path: '/auth/simple/login/callback',
-            entryPoint:
-                'https://keycloak.nekto-z.ru/auth/realms/Test/protocol/saml/clients/unleash',
-            issuer: 'unleash',
-            cert: 'MIIClzCCAX8CBgGJIE5PGjANBgkqhkiG9w0BAQsFADAPMQ0wCwYDVQQDDARUZXN0MB4XDTIzMDcwNDA5NDczMFoXDTMzMDcwNDA5NDkxMFowDzENMAsGA1UEAwwEVGVzdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAL0PlHcTlD9k3pz19x1UqBCyHV0h/XwE6IPChWybTHKLfTW0OGjhNACCTp4e5Wa8sW54QJvZSq3zVyB7XdRqVxAnCHzvJ4PAZ4GGk7R2dr285CgEj0aUByf3r9wy9P0rdh6Gu1PnWhzCKOJz/c/Qkh+o5kbjGdnToee4bkdbMCnBLphrdHPh+VjpWzPSVYUXcIWhmf7r3y5zIGeWB1loHYuzkl01dMTuDjV3fuKjHonspMd8XYdp3EyQUaL6pZYMOMeCUt3MqX5JuHridHP4gTUNP2RczCwEvgdu3Kts6e9S9nNjTRafS1sov6NCTMlIkK3zSm39QcH7EDS8PMAHRLMCAwEAATANBgkqhkiG9w0BAQsFAAOCAQEALzL6MFOO6W56xqMbuhk5i5z0nV/GNHYbFSkePiiSe5jlbKS9uBxQJaFDbxsZ0N5bmh/3oFdnhbJtBy/CIxOxAFgOGtMExi6jE8WogSKTGtq1NCg5qR7WlFm6RaDncIqrvSRrWgE2LIqk+KP0VnUj1ieftv/n4BWnMoN1gLao9IEUNcO3XR9Sgyhxx2wc0F3ZbEjVLLUSq6NeOromlteuLbaSE1JBElxgIcVrKhwllpqYoqKqIPgpff7wBqzwvgDuIUhWu7SIBJ4lic9oboRCR9tsmV2h1G913jxeSbSgvQV/Kd4WsUOOGbCr506Q3p03sbwvYT3c1eFo1EAXBlcSWQ==', // cert must be provided
-        },
-        function (profile, done) {
-            return done(null, profile.attributes);
-        },
-    ),
-);
-
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
+import { IAuthRequest } from '../unleash-types';
+import { createRequestSchema } from '../../openapi/util/create-request-schema';
+import { createResponseSchema } from '../../openapi/util/create-response-schema';
+import { userSchema, UserSchema } from '../../openapi/spec/user-schema';
+import { LoginSchema } from '../../openapi/spec/login-schema';
+import { serializeDates } from '../../types/serialize-dates';
 
 export class SimplePasswordProvider extends Controller {
     private logger: Logger;
@@ -52,37 +33,36 @@ export class SimplePasswordProvider extends Controller {
         this.userService = userService;
 
         this.route({
-            method: 'get',
+            method: 'post',
             path: '/login',
-            handler: passport.authenticate('saml', {
-                successRedirect: '/',
-                failureRedirect: '/login',
-            }),
+            handler: this.login,
             permission: NONE,
+            middleware: [
+                openApiService.validPath({
+                    tags: ['Auth'],
+                    operationId: 'login',
+                    requestBody: createRequestSchema('loginSchema'),
+                    responses: {
+                        200: createResponseSchema('userSchema'),
+                    },
+                }),
+            ],
         });
-
-        const router = this.appRouter();
-
-        router.post(
-            '/login/callback',
-            passport.authenticate('saml', {
-                failureRedirect: '/',
-                failureFlash: true,
-            }),
-            this.loginCallback.bind(this),
-        );
     }
 
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-unused-vars
-    async loginCallback(req: any, res: any): Promise<void> {
-        const { email, firstname, lastname } = req.user;
+    async login(
+        req: IAuthRequest<void, void, LoginSchema>,
+        res: Response<UserSchema>,
+    ): Promise<void> {
+        const { username, password } = req.body;
 
-        const user = await this.userService.loginUserSSO({
-            email,
-            name: `${firstname} ${lastname}`,
-            autoCreate: true,
-        });
+        const user = await this.userService.loginUser(username, password);
         req.session.user = user;
-        res.redirect('/features?sort=createdAt');
+        this.openApiService.respondWithValidation(
+            200,
+            res,
+            userSchema.$id,
+            serializeDates(user),
+        );
     }
 }

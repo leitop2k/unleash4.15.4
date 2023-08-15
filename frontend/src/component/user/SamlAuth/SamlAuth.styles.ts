@@ -16,13 +16,4 @@ export const useStyles = makeStyles()(theme => ({
         color: theme.palette.error.main,
         marginBottom: '0.5rem',
     },
-    loginFormContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    title: {
-        fontSize: theme.fontSizes.mainHeader,
-        marginBottom: '1rem',
-        textAlign: 'center',
-    },
 }));

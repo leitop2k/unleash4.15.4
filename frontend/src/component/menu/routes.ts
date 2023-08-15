@@ -9,7 +9,7 @@ import AdminUsers from 'component/admin/users/UsersAdmin';
 import { GroupsAdmin } from 'component/admin/groups/GroupsAdmin';
 import { AuthSettings } from 'component/admin/auth/AuthSettings';
 import Login from 'component/user/Login/Login';
-import { C, EEA, P, RE, SE, UG } from 'component/common/flags';
+import { C, EEA, P, RE, SE } from 'component/common/flags';
 import { NewUser } from 'component/user/NewUser/NewUser';
 import ResetPassword from 'component/user/ResetPassword/ResetPassword';
 import ForgottenPassword from 'component/user/ForgottenPassword/ForgottenPassword';
@@ -57,6 +57,7 @@ import { CreateGroup } from 'component/admin/groups/CreateGroup/CreateGroup';
 import { EditGroup } from 'component/admin/groups/EditGroup/EditGroup';
 import { LazyPlayground } from 'component/playground/Playground/LazyPlayground';
 import { CorsAdmin } from 'component/admin/cors';
+import PasswordAuth from 'component/user/PasswordAuth/PasswordAuth';
 
 export const routes: IRoute[] = [
     // Splash
@@ -557,6 +558,14 @@ export const routes: IRoute[] = [
         title: 'Forgotten password',
         hidden: true,
         component: ForgottenPassword,
+        type: 'unprotected',
+        menu: {},
+    },
+    {
+        path: '/password-auth',
+        title: 'admin login',
+        hidden: true,
+        component: PasswordAuth,
         type: 'unprotected',
         menu: {},
     },
