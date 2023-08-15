@@ -28,6 +28,7 @@ const isStandalonePage = (pathname: string): boolean => {
 
 const standalonePagePatterns = [
     '/login',
+    '/password-auth',
     '/new-user',
     '/reset-password',
     '/reset-password-success',
