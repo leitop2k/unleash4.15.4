@@ -13,20 +13,14 @@ import { useAuthUser } from 'hooks/api/getters/useAuth/useAuthUser';
 import { SplashPageRedirect } from 'component/splash/SplashPageRedirect/SplashPageRedirect';
 import { useStyles } from './App.styles';
 import { usePlausibleTracker } from 'hooks/usePlausibleTracker';
-import useUiConfig from 'hooks/api/getters/useUiConfig/useUiConfig';
 import { Suspense } from 'react';
 
 export const App = () => {
     const { classes: styles } = useStyles();
     const { authDetails } = useAuthDetails();
     const { user } = useAuthUser();
-    const { isOss } = useUiConfig();
     const hasFetchedAuth = Boolean(authDetails || user);
     usePlausibleTracker();
-
-    // const availableRoutes = isOss()
-    //     ? routes.filter(route => !route.enterprise)
-    //     : routes;
     const availableRoutes = routes;
 
     return (
