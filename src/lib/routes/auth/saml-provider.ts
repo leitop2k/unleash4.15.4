@@ -62,13 +62,10 @@ export class SamlProvider extends Controller {
         this.route({
             method: 'get',
             path: '/login',
-            handler: (han) => {
-                console.log('handler', han);
-                passport.authenticate('saml', {
-                    successRedirect: '/',
-                    failureRedirect: '/login',
-                });
-            },
+            handler: passport.authenticate('saml', {
+                successRedirect: '/',
+                failureRedirect: '/login',
+            }),
             permission: NONE,
         });
 
