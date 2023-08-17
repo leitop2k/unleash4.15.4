@@ -10,7 +10,12 @@ import { NONE } from '../../types/permissions';
 import Controller from '../controller';
 
 type Request = {
-    user: { email: string; firstname: string; lastname: string };
+    user: {
+        email: string;
+        firstname: string;
+        lastname: string;
+        username: string;
+    };
     session: {
         user: {};
     };
@@ -82,12 +87,15 @@ export class SamlProvider extends Controller {
     }
 
     async loginCallback(req: Request, res: Response): Promise<void> {
-        const { email, firstname, lastname } = req.user;
+        const { email, firstname, lastname, username } = req.user;
 
         const user = await this.userService.loginUserSSO({
             email,
             name: `${firstname} ${lastname}`,
             autoCreate: true,
+            lastname,
+            firstname,
+            username,
         });
         req.session.user = user;
         res.redirect('/features?sort=createdAt');
