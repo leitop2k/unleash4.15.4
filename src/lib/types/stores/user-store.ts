@@ -6,6 +6,8 @@ export interface ICreateUser {
     username?: string;
     email?: string;
     imageUrl?: string;
+    firstname?: string;
+    lastname?: string;
 }
 
 export interface IUserLookup {
@@ -17,6 +19,9 @@ export interface IUserLookup {
 export interface IUserUpdateFields {
     name?: string;
     email?: string;
+    lastname?: string;
+    firstname?: string;
+    username?: string;
 }
 
 export interface IUserStore extends Store<IUser, number> {
