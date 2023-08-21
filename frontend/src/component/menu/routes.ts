@@ -500,6 +500,7 @@ export const routes: IRoute[] = [
         flag: 'embedProxyFrontend',
         menu: { adminSettings: true },
     },
+    /*
     {
         path: '/admin/billing',
         parent: '/admin',
@@ -516,6 +517,7 @@ export const routes: IRoute[] = [
         type: 'protected',
         menu: { adminSettings: true, isEnterprise: true },
     },
+    */
     {
         path: '/admin',
         title: 'Admin',
