@@ -26,6 +26,10 @@ const CreateUser = () => {
         setSendEmail,
         rootRole,
         setRootRole,
+        firstname,
+        setFirstname,
+        lastname,
+        setLastname,
         getAddUserPayload,
         validateName,
         validateEmail,
@@ -97,6 +101,10 @@ const CreateUser = () => {
                 sendEmail={sendEmail}
                 setSendEmail={setSendEmail}
                 rootRole={rootRole}
+                firstname={firstname}
+                setFirstname={setFirstname}
+                lastname={lastname}
+                setLastname={setLastname}
                 setRootRole={setRootRole}
                 clearErrors={clearErrors}
             >

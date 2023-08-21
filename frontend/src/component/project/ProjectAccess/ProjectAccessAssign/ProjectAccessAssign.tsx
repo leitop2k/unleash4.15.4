@@ -248,7 +248,9 @@ export const ProjectAccessAssign = ({
                     elseShow={
                         <StyledUserOption>
                             <span>
-                                {optionUser?.name || optionUser?.username}
+                                {optionUser?.firstname || optionUser?.lastname
+                                    ? `${optionUser?.firstname} ${optionUser?.lastname}`
+                                    : optionUser?.name || optionUser?.username}
                             </span>
                             <span>{optionUser?.email}</span>
                         </StyledUserOption>
@@ -321,9 +323,16 @@ export const ProjectAccessAssign = ({
                                     renderOption(props, option, selected)
                                 }
                                 getOptionLabel={(option: IAccessOption) => {
+                                    // Chosen entities in the list
                                     if (option.type === ENTITY_TYPE.USER) {
                                         const optionUser =
                                             option.entity as IUser;
+                                        if (
+                                            optionUser.firstname ||
+                                            optionUser.lastname
+                                        ) {
+                                            return `${optionUser.firstname} ${optionUser.lastname}`;
+                                        }
                                         return (
                                             optionUser.email ||
                                             optionUser.name ||
