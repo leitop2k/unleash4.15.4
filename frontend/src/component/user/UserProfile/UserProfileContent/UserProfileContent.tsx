@@ -100,6 +100,7 @@ const UserProfileContent = ({
                         condition={!editingProfile}
                         show={
                             <>
+                                {/*
                                 <ConditionallyRender
                                     condition={!uiConfig.disablePasswordAuth}
                                     show={
@@ -113,6 +114,7 @@ const UserProfileContent = ({
                                     }
                                 />
                                 <div className={themeStyles.divider} />
+                                */}
                                 <div className={legacyStyles.showUserSettings}>
                                     <FormControl
                                         variant="outlined"
@@ -156,6 +158,7 @@ const UserProfileContent = ({
                                         </Select>
                                     </FormControl>
                                 </div>
+                                {/*
                                 <div className={themeStyles.divider} />
                                 <a
                                     className={styles.link}
@@ -166,7 +169,7 @@ const UserProfileContent = ({
                                     Privacy policy
                                 </a>
                                 <div className={themeStyles.divider} />
-
+                                */}
                                 <Button
                                     variant="contained"
                                     color="primary"
