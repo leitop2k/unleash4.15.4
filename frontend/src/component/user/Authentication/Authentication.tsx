@@ -1,6 +1,6 @@
 import SimpleAuth from '../SimpleAuth/SimpleAuth';
 import { AuthenticationCustomComponent } from 'component/user/AuthenticationCustomComponent';
-import PasswordAuth from '../PasswordAuth/PasswordAuth';
+import SamlAuth from '../SamlAuth/SamlAuth';
 import HostedAuth from '../HostedAuth/HostedAuth';
 import DemoAuth from '../DemoAuth/DemoAuth';
 import {
@@ -32,7 +32,7 @@ const Authentication = ({ redirect }: IAuthenticationProps) => {
     let content;
     if (authDetails.type === PASSWORD_TYPE) {
         content = (
-            <PasswordAuth authDetails={authDetails} redirect={redirect} />
+            <SamlAuth authDetails={authDetails} />
         );
     } else if (authDetails.type === SIMPLE_TYPE) {
         content = <SimpleAuth authDetails={authDetails} redirect={redirect} />;

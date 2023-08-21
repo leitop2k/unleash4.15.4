@@ -1,6 +1,7 @@
 import { BackstageController } from './backstage';
 import ResetPasswordController from './auth/reset-password-controller';
 import { SimplePasswordProvider } from './auth/simple-password-provider';
+import { SamlProvider } from './auth/saml-provider';
 import { IUnleashConfig } from '../types/option';
 import { IUnleashServices } from '../types/services';
 import LogoutController from './logout';
@@ -24,6 +25,7 @@ class IndexRouter extends Controller {
             '/auth/simple',
             new SimplePasswordProvider(config, services).router,
         );
+        this.use('/auth/saml', new SamlProvider(config, services).router);
         this.use(
             '/auth/reset',
             new ResetPasswordController(config, services).router,

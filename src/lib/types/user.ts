@@ -18,6 +18,8 @@ export interface IUser {
     id: number;
     name?: string;
     username?: string;
+    lastname?: string;
+    firstname?: string;
     email?: string;
     inviteLink?: string;
     seenAt?: Date;

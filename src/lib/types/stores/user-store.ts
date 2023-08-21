@@ -23,6 +23,7 @@ export interface IUserUpdateFields {
     email?: string;
     firstname?: string;
     lastname?: string;
+    username?: string;
 }
 
 export interface IUserStore extends Store<IUser, number> {

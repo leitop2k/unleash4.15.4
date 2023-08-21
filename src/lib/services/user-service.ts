@@ -55,6 +55,9 @@ export interface ILoginUserRequest {
     name?: string;
     rootRole?: number | RoleName;
     autoCreate?: boolean;
+    lastname?: string;
+    firstname?: string;
+    username?: string;
 }
 
 interface IUserWithRole extends IUser {
@@ -335,14 +338,29 @@ class UserService {
         name,
         rootRole,
         autoCreate = false,
+        lastname,
+        firstname,
+        username,
     }: ILoginUserRequest): Promise<IUser> {
         let user: IUser;
 
         try {
-            user = await this.store.getByQuery({ email });
+            user = await this.store.getByQuery({ username });
             // Update user if autCreate is enabled.
-            if (name && user.name !== name) {
-                user = await this.store.update(user.id, { name, email });
+            if (
+                (email && user.email !== email) ||
+                (name && user.name !== name) ||
+                (lastname && user.lastname !== lastname) ||
+                (firstname && user.firstname !== firstname) ||
+                (username && user.username !== username)
+            ) {
+                user = await this.store.update(user.id, {
+                    name,
+                    email,
+                    lastname,
+                    firstname,
+                    username,
+                });
             }
         } catch (e) {
             // User does not exists. Create if "autoCreate" is enabled
@@ -351,6 +369,9 @@ class UserService {
                     email,
                     name,
                     rootRole: rootRole || RoleName.EDITOR,
+                    lastname,
+                    firstname,
+                    username,
                 });
             } else {
                 throw e;
