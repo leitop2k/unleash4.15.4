@@ -19,6 +19,7 @@ import PasswordUndefinedError from '../error/password-undefined';
 import { USER_UPDATED, USER_CREATED, USER_DELETED } from '../types/events';
 import { IEventStore } from '../types/stores/event-store';
 import { IUserStore } from '../types/stores/user-store';
+import { IRoleStore } from '../types/stores/role-store';
 import { RoleName } from '../types/model';
 import SettingService from './setting-service';
 import { SimpleAuthSettings } from '../server-impl';
@@ -71,6 +72,8 @@ class UserService {
 
     private eventStore: IEventStore;
 
+    private roleStore: IRoleStore;
+
     private accessService: AccessService;
 
     private resetTokenService: ResetTokenService;
@@ -82,7 +85,7 @@ class UserService {
     private settingService: SettingService;
 
     constructor(
-        stores: Pick<IUnleashStores, 'userStore' | 'eventStore'>,
+        stores: Pick<IUnleashStores, 'userStore' | 'eventStore' | 'roleStore'>,
         {
             getLogger,
             authentication,
@@ -98,6 +101,7 @@ class UserService {
         this.logger = getLogger('service/user-service.js');
         this.store = stores.userStore;
         this.eventStore = stores.eventStore;
+        this.roleStore = stores.roleStore;
         this.accessService = services.accessService;
         this.resetTokenService = services.resetTokenService;
         this.emailService = services.emailService;
@@ -197,6 +201,7 @@ class UserService {
         }
 
         const exists = await this.store.hasUser({ username, email });
+
         if (exists) {
             throw new Error('User already exists');
         }
@@ -339,6 +344,14 @@ class UserService {
         username,
     }: ILoginUserRequest): Promise<IUser> {
         let user: IUser;
+
+        try {
+            const rolesUnleash = await this.roleStore.getRoles();
+
+            console.log('rolesUnleash', rolesUnleash);
+        } catch {
+            console.log('err - rolesUnleash');
+        }
 
         try {
             user = await this.store.getByQuery({ username });
