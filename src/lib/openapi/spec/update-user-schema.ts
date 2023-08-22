@@ -14,6 +14,12 @@ export const updateUserSchema = {
         rootRole: {
             type: 'number',
         },
+        firstname: {
+            type: 'string',
+        },
+        lastname: {
+            type: 'string',
+        },
     },
     components: {},
 } as const;

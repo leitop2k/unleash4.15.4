@@ -34,11 +34,15 @@ const EditUser = () => {
         setSendEmail,
         rootRole,
         setRootRole,
+        firstname,
+        setFirstname,
+        lastname,
+        setLastname,
         getAddUserPayload,
         validateName,
         errors,
         clearErrors,
-    } = useAddUserForm(user?.name, user?.email, user?.rootRole);
+    } = useAddUserForm(user?.name, user?.email, user?.rootRole, user?.firstname, user?.lastname);
 
     const formatApiCode = () => {
         return `curl --location --request PUT '${
@@ -95,6 +99,10 @@ const EditUser = () => {
                 setSendEmail={setSendEmail}
                 rootRole={rootRole}
                 setRootRole={setRootRole}
+                firstname={firstname}
+                setFirstname={setFirstname}
+                lastname={lastname}
+                setLastname={setLastname}
                 clearErrors={clearErrors}
                 mode={EDIT}
             >

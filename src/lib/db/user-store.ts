@@ -23,6 +23,8 @@ const USER_COLUMNS = [
     'login_attempts',
     'seen_at',
     'created_at',
+    'firstname',
+    'lastname',
 ];
 
 const USER_COLUMNS_PUBLIC = [
@@ -32,6 +34,8 @@ const USER_COLUMNS_PUBLIC = [
     'email',
     'image_url',
     'seen_at',
+    'firstname',
+    'lastname',
 ];
 
 const emptify = (value) => {
@@ -48,8 +52,8 @@ const mapUserToColumns = (user: ICreateUser) => ({
     username: user.username,
     email: safeToLower(user.email),
     image_url: user.imageUrl,
-    lastname: user.lastname,
     firstname: user.firstname,
+    lastname: user.lastname,
 });
 
 const rowToUser = (row) => {
@@ -65,6 +69,8 @@ const rowToUser = (row) => {
         loginAttempts: row.login_attempts,
         seenAt: row.seen_at,
         createdAt: row.created_at,
+        firstname: emptify(row.firstname),
+        lastname: emptify(row.lastname),
     });
 };
 
@@ -110,7 +116,15 @@ class UserStore implements IUserStore {
         if (q.username) {
             return query.where('username', q.username);
         }
-        throw new Error('Can only find users with id, username or email.');
+        if (q.firstname) {
+            return query.where('firstname', q.firstname);
+        }
+        if (q.lastname) {
+            return query.where('lastname', q.lastname);
+        }
+        throw new Error(
+            'Can only find users with id, username, firstname, lastname or email.',
+        );
     }
 
     async hasUser(idQuery: IUserLookup): Promise<number | undefined> {

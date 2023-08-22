@@ -43,7 +43,11 @@ const renderOption = (
             checked={selected}
         />
         <StyledOption>
-            <span>{option.name || option.username}</span>
+            <span>
+                {option.firstname || option.lastname
+                    ? `${option.firstname} ${option.lastname}`
+                    : option.name || option.username}
+            </span>
             <span>{option.email}</span>
         </StyledOption>
     </li>

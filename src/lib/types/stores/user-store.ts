@@ -14,13 +14,15 @@ export interface IUserLookup {
     id?: number;
     username?: string;
     email?: string;
+    firstname?: string;
+    lastname?: string;
 }
 
 export interface IUserUpdateFields {
     name?: string;
     email?: string;
-    lastname?: string;
     firstname?: string;
+    lastname?: string;
     username?: string;
 }
 

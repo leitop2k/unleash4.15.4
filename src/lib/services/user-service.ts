@@ -38,8 +38,8 @@ export interface ICreateUser {
     username?: string;
     password?: string;
     rootRole: number | RoleName;
-    lastname?: string;
     firstname?: string;
+    lastname?: string;
 }
 
 export interface IUpdateUser {
@@ -47,6 +47,8 @@ export interface IUpdateUser {
     name?: string;
     email?: string;
     rootRole?: number | RoleName;
+    firstname?: string;
+    lastname?: string;
 }
 
 export interface ILoginUserRequest {
@@ -187,8 +189,8 @@ class UserService {
             name,
             password,
             rootRole,
-            lastname,
             firstname,
+            lastname,
         }: ICreateUser,
         updatedBy?: User,
     ): Promise<IUser> {
@@ -210,8 +212,8 @@ class UserService {
             username,
             email,
             name,
-            lastname,
             firstname,
+            lastname,
         });
 
         await this.accessService.setUserRootRole(user.id, rootRole);
@@ -247,7 +249,7 @@ class UserService {
     }
 
     async updateUser(
-        { id, name, email, rootRole }: IUpdateUser,
+        { id, name, email, rootRole, firstname, lastname }: IUpdateUser,
         updatedBy?: User,
     ): Promise<IUser> {
         const preUser = await this.store.get(id);
@@ -263,6 +265,8 @@ class UserService {
         const payload: Partial<IUser> = {
             name: name || preUser.name,
             email: email || preUser.email,
+            firstname: firstname || preUser.firstname,
+            lastname: lastname || preUser.lastname,
         };
 
         // Empty updates will throw, so make sure we have something to update.

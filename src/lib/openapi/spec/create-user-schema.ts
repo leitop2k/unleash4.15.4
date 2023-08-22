@@ -24,6 +24,12 @@ export const createUserSchema = {
         sendEmail: {
             type: 'boolean',
         },
+        firstname: {
+            type: 'string',
+        },
+        lastname: {
+            type: 'string',
+        },
     },
     components: {},
 } as const;

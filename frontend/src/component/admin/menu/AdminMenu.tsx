@@ -135,6 +135,7 @@ function AdminMenu() {
                         </NavLink>
                     }
                 />
+                {/*
                 {isBilling && (
                     <Tab
                         value="/admin/billing"
@@ -150,6 +151,7 @@ function AdminMenu() {
                         }
                     />
                 )}
+                */}
             </Tabs>
         </Paper>
     );
