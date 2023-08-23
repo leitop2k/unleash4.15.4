@@ -21,6 +21,15 @@ type Request = {
     };
 };
 
+console.log('process.env.KEYCLOAK_DOMAIN', process.env.KEYCLOAK_DOMAIN);
+console.log('process.env.PATH', process.env.PATH);
+console.log(
+    'process.env.KEYCLOAK_ENTRY_POINT',
+    process.env.KEYCLOAK_ENTRY_POINT,
+);
+console.log('process.env.KEYCLOAK_ISSUER', process.env.KEYCLOAK_ISSUER);
+console.log('process.env.KEYCLOAK_CERT', process.env.KEYCLOAK_CERT);
+
 passport.use(
     new SamlStrategy(
         {
