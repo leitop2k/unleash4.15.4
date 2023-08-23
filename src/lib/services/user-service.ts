@@ -5,6 +5,7 @@ import Joi from 'joi';
 import { URL } from 'url';
 import { Logger } from '../logger';
 import User, { IUser } from '../types/user';
+import { IGroup } from '../types/group';
 import isEmail from '../util/is-email';
 import { AccessService } from './access-service';
 import ResetTokenService from './reset-token-service';
@@ -19,7 +20,7 @@ import PasswordUndefinedError from '../error/password-undefined';
 import { USER_UPDATED, USER_CREATED, USER_DELETED } from '../types/events';
 import { IEventStore } from '../types/stores/event-store';
 import { IUserStore } from '../types/stores/user-store';
-import { IRoleStore } from '../types/stores/role-store';
+import { IGroupStore } from '../types/stores/group-store';
 import { RoleName } from '../types/model';
 import SettingService from './setting-service';
 import { SimpleAuthSettings } from '../server-impl';
@@ -59,6 +60,7 @@ export interface ILoginUserRequest {
     lastname?: string;
     firstname?: string;
     username?: string;
+    groups?: string[];
 }
 
 interface IUserWithRole extends IUser {
@@ -74,7 +76,7 @@ class UserService {
 
     private eventStore: IEventStore;
 
-    private roleStore: IRoleStore;
+    private groupStore: IGroupStore;
 
     private accessService: AccessService;
 
@@ -87,7 +89,7 @@ class UserService {
     private settingService: SettingService;
 
     constructor(
-        stores: Pick<IUnleashStores, 'userStore' | 'eventStore' | 'roleStore'>,
+        stores: Pick<IUnleashStores, 'userStore' | 'eventStore' | 'groupStore'>,
         {
             getLogger,
             authentication,
@@ -103,7 +105,7 @@ class UserService {
         this.logger = getLogger('service/user-service.js');
         this.store = stores.userStore;
         this.eventStore = stores.eventStore;
-        this.roleStore = stores.roleStore;
+        this.groupStore = stores.groupStore;
         this.accessService = services.accessService;
         this.resetTokenService = services.resetTokenService;
         this.emailService = services.emailService;
@@ -338,6 +340,26 @@ class UserService {
         return this.loginUserSSO({ email, autoCreate: autoCreateUser });
     }
 
+    async getCorrectGroups(groups: string[]): Promise<IGroup[]> {
+        let correctGroups: IGroup[];
+
+        try {
+            const allGroupStore = await this.groupStore.getAll();
+
+            correctGroups = allGroupStore.reduce((acc, userGroup) => {
+                const isGroup = groups.some(
+                    (kkGroup) => userGroup.name === kkGroup,
+                );
+
+                return isGroup ? acc.concat(userGroup) : acc;
+            }, []);
+        } catch (e) {
+            throw e;
+        }
+
+        return correctGroups;
+    }
+
     async loginUserSSO({
         email,
         name,
@@ -346,16 +368,9 @@ class UserService {
         lastname,
         firstname,
         username,
+        groups,
     }: ILoginUserRequest): Promise<IUser> {
         let user: IUser;
-
-        try {
-            const rolesUnleash = await this.roleStore.getRoles();
-
-            console.log('rolesUnleash', rolesUnleash);
-        } catch {
-            console.log('err - rolesUnleash');
-        }
 
         try {
             user = await this.store.getByQuery({ username });
@@ -386,6 +401,16 @@ class UserService {
                     firstname,
                     username,
                 });
+
+                const correctGroups = await this.getCorrectGroups(groups);
+
+                for (let group of correctGroups) {
+                    await this.groupStore.addNewUsersToGroup(
+                        group.id,
+                        [{ user }],
+                        user.username,
+                    );
+                }
             } else {
                 throw e;
             }
