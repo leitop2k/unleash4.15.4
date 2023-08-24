@@ -390,6 +390,24 @@ class UserService {
                     username,
                 });
             }
+
+            const correctGroups = await this.getCorrectGroups(groups);
+            const deleteUserGroups = correctGroups.map((deleteGroup) => ({
+                groupId: deleteGroup.id,
+                joinedAt: deleteGroup.createdAt,
+                userId: user.id,
+            }));
+
+            await this.groupStore.deleteOldUsersFromGroup(deleteUserGroups);
+            await Promise.all(
+                correctGroups.map(async (group) => {
+                    await this.groupStore.addNewUsersToGroup(
+                        group.id,
+                        [{ user }],
+                        user.username,
+                    );
+                }),
+            );
         } catch (e) {
             // User does not exists. Create if "autoCreate" is enabled
             if (autoCreate) {
@@ -403,14 +421,15 @@ class UserService {
                 });
 
                 const correctGroups = await this.getCorrectGroups(groups);
-
-                for (let group of correctGroups) {
-                    await this.groupStore.addNewUsersToGroup(
-                        group.id,
-                        [{ user }],
-                        user.username,
-                    );
-                }
+                await Promise.all(
+                    correctGroups.map(async (group) => {
+                        await this.groupStore.addNewUsersToGroup(
+                            group.id,
+                            [{ user }],
+                            user.username,
+                        );
+                    }),
+                );
             } else {
                 throw e;
             }
