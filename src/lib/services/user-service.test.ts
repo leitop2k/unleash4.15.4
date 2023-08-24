@@ -14,6 +14,7 @@ import FakeResetTokenStore from '../../test/fixtures/fake-reset-token-store';
 import SettingService from './setting-service';
 import FakeSettingStore from '../../test/fixtures/fake-setting-store';
 import FakeEventStore from '../../test/fixtures/fake-event-store';
+import FakeGroupStore from '../../test/fixtures/fake-group-store';
 
 const config: IUnleashConfig = createTestConfig();
 
@@ -22,6 +23,7 @@ const systemUser = new User({ id: -1, username: 'system' });
 test('Should create new user', async () => {
     const userStore = new UserStoreMock();
     const eventStore = new EventStoreMock();
+    const groupStore = new FakeGroupStore();
     const accessService = new AccessServiceMock();
     const resetTokenStore = new FakeResetTokenStore();
     const resetTokenService = new ResetTokenService(
@@ -39,13 +41,17 @@ test('Should create new user', async () => {
         config,
     );
 
-    const service = new UserService({ userStore, eventStore }, config, {
-        accessService,
-        resetTokenService,
-        emailService,
-        sessionService,
-        settingService,
-    });
+    const service = new UserService(
+        { userStore, eventStore, groupStore },
+        config,
+        {
+            accessService,
+            resetTokenService,
+            emailService,
+            sessionService,
+            settingService,
+        },
+    );
     const user = await service.createUser(
         {
             username: 'test',
@@ -65,6 +71,7 @@ test('Should create new user', async () => {
 test('Should create default user', async () => {
     const userStore = new UserStoreMock();
     const eventStore = new EventStoreMock();
+    const groupStore = new FakeGroupStore();
     const accessService = new AccessServiceMock();
     const resetTokenStore = new FakeResetTokenStore();
     const resetTokenService = new ResetTokenService(
@@ -82,13 +89,17 @@ test('Should create default user', async () => {
         config,
     );
 
-    const service = new UserService({ userStore, eventStore }, config, {
-        accessService,
-        resetTokenService,
-        emailService,
-        sessionService,
-        settingService,
-    });
+    const service = new UserService(
+        { userStore, eventStore, groupStore },
+        config,
+        {
+            accessService,
+            resetTokenService,
+            emailService,
+            sessionService,
+            settingService,
+        },
+    );
 
     await service.initAdminUser();
 
@@ -99,6 +110,7 @@ test('Should create default user', async () => {
 test('Should be a valid password', async () => {
     const userStore = new UserStoreMock();
     const eventStore = new EventStoreMock();
+    const groupStore = new FakeGroupStore();
     const accessService = new AccessServiceMock();
     const resetTokenStore = new FakeResetTokenStore();
     const resetTokenService = new ResetTokenService(
@@ -117,13 +129,17 @@ test('Should be a valid password', async () => {
         config,
     );
 
-    const service = new UserService({ userStore, eventStore }, config, {
-        accessService,
-        resetTokenService,
-        emailService,
-        sessionService,
-        settingService,
-    });
+    const service = new UserService(
+        { userStore, eventStore, groupStore },
+        config,
+        {
+            accessService,
+            resetTokenService,
+            emailService,
+            sessionService,
+            settingService,
+        },
+    );
 
     const valid = service.validatePassword('this is a strong password!');
 
@@ -133,6 +149,7 @@ test('Should be a valid password', async () => {
 test('Password must be at least 10 chars', async () => {
     const userStore = new UserStoreMock();
     const eventStore = new EventStoreMock();
+    const groupStore = new FakeGroupStore();
     const accessService = new AccessServiceMock();
     const resetTokenStore = new FakeResetTokenStore();
     const resetTokenService = new ResetTokenService(
@@ -150,13 +167,17 @@ test('Password must be at least 10 chars', async () => {
         config,
     );
 
-    const service = new UserService({ userStore, eventStore }, config, {
-        accessService,
-        resetTokenService,
-        emailService,
-        sessionService,
-        settingService,
-    });
+    const service = new UserService(
+        { userStore, eventStore, groupStore },
+        config,
+        {
+            accessService,
+            resetTokenService,
+            emailService,
+            sessionService,
+            settingService,
+        },
+    );
     expect(() => service.validatePassword('admin')).toThrow(
         'The password must be at least 10 characters long.',
     );
@@ -168,6 +189,7 @@ test('Password must be at least 10 chars', async () => {
 test('The password must contain at least one uppercase letter.', async () => {
     const userStore = new UserStoreMock();
     const eventStore = new EventStoreMock();
+    const groupStore = new FakeGroupStore();
     const accessService = new AccessServiceMock();
     const resetTokenStore = new FakeResetTokenStore();
     const resetTokenService = new ResetTokenService(
@@ -185,13 +207,17 @@ test('The password must contain at least one uppercase letter.', async () => {
         config,
     );
 
-    const service = new UserService({ userStore, eventStore }, config, {
-        accessService,
-        resetTokenService,
-        emailService,
-        sessionService,
-        settingService,
-    });
+    const service = new UserService(
+        { userStore, eventStore, groupStore },
+        config,
+        {
+            accessService,
+            resetTokenService,
+            emailService,
+            sessionService,
+            settingService,
+        },
+    );
 
     expect(() => service.validatePassword('qwertyabcde')).toThrowError(
         'The password must contain at least one uppercase letter.',
@@ -204,6 +230,7 @@ test('The password must contain at least one uppercase letter.', async () => {
 test('The password must contain at least one number', async () => {
     const userStore = new UserStoreMock();
     const eventStore = new EventStoreMock();
+    const groupStore = new FakeGroupStore();
     const accessService = new AccessServiceMock();
     const resetTokenStore = new FakeResetTokenStore();
     const resetTokenService = new ResetTokenService(
@@ -222,13 +249,17 @@ test('The password must contain at least one number', async () => {
         config,
     );
 
-    const service = new UserService({ userStore, eventStore }, config, {
-        accessService,
-        resetTokenService,
-        emailService,
-        sessionService,
-        settingService,
-    });
+    const service = new UserService(
+        { userStore, eventStore, groupStore },
+        config,
+        {
+            accessService,
+            resetTokenService,
+            emailService,
+            sessionService,
+            settingService,
+        },
+    );
 
     expect(() => service.validatePassword('qwertyabcdE')).toThrowError(
         'The password must contain at least one number.',
@@ -241,6 +272,7 @@ test('The password must contain at least one number', async () => {
 test('The password must contain at least one special character', async () => {
     const userStore = new UserStoreMock();
     const eventStore = new EventStoreMock();
+    const groupStore = new FakeGroupStore();
     const accessService = new AccessServiceMock();
     const resetTokenStore = new FakeResetTokenStore();
     const resetTokenService = new ResetTokenService(
@@ -258,13 +290,17 @@ test('The password must contain at least one special character', async () => {
         config,
     );
 
-    const service = new UserService({ userStore, eventStore }, config, {
-        accessService,
-        resetTokenService,
-        emailService,
-        sessionService,
-        settingService,
-    });
+    const service = new UserService(
+        { userStore, eventStore, groupStore },
+        config,
+        {
+            accessService,
+            resetTokenService,
+            emailService,
+            sessionService,
+            settingService,
+        },
+    );
 
     expect(() => service.validatePassword('qwertyabcdE2')).toThrowError(
         'The password must contain at least one special character.',
@@ -277,6 +313,7 @@ test('The password must contain at least one special character', async () => {
 test('Should be a valid password with special chars', async () => {
     const userStore = new UserStoreMock();
     const eventStore = new EventStoreMock();
+    const groupStore = new FakeGroupStore();
     const accessService = new AccessServiceMock();
     const resetTokenStore = new FakeResetTokenStore();
     const resetTokenService = new ResetTokenService(
@@ -294,13 +331,17 @@ test('Should be a valid password with special chars', async () => {
         config,
     );
 
-    const service = new UserService({ userStore, eventStore }, config, {
-        accessService,
-        resetTokenService,
-        emailService,
-        sessionService,
-        settingService,
-    });
+    const service = new UserService(
+        { userStore, eventStore, groupStore },
+        config,
+        {
+            accessService,
+            resetTokenService,
+            emailService,
+            sessionService,
+            settingService,
+        },
+    );
 
     const valid = service.validatePassword('this is a strong password!');
 
