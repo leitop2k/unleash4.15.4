@@ -398,7 +398,6 @@ class UserService {
                 joinedAt: deleteGroup.createdAt,
                 userId: user.id,
             }));
-            console.log('deleteUserGroups', deleteUserGroups);
 
             await this.groupStore.deleteOldUsersFromGroup(deleteUserGroups);
             await Promise.all(
