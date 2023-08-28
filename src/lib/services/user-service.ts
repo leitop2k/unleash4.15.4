@@ -371,6 +371,7 @@ class UserService {
         groups,
     }: ILoginUserRequest): Promise<IUser> {
         let user: IUser;
+        const userGroups = Array.isArray(groups) ? groups : [groups];
 
         try {
             user = await this.store.getByQuery({ username });
@@ -391,12 +392,13 @@ class UserService {
                 });
             }
 
-            const correctGroups = await this.getCorrectGroups(groups);
+            const correctGroups = await this.getCorrectGroups(userGroups);
             const deleteUserGroups = correctGroups.map((deleteGroup) => ({
                 groupId: deleteGroup.id,
                 joinedAt: deleteGroup.createdAt,
                 userId: user.id,
             }));
+            console.log('deleteUserGroups', deleteUserGroups);
 
             await this.groupStore.deleteOldUsersFromGroup(deleteUserGroups);
             await Promise.all(
@@ -420,7 +422,7 @@ class UserService {
                     username,
                 });
 
-                const correctGroups = await this.getCorrectGroups(groups);
+                const correctGroups = await this.getCorrectGroups(userGroups);
                 await Promise.all(
                     correctGroups.map(async (group) => {
                         await this.groupStore.addNewUsersToGroup(
