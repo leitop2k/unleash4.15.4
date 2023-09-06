@@ -31,9 +31,9 @@ import { useAuthPermissions } from 'hooks/api/getters/useAuth/useAuthPermissions
 import { useStyles } from './Header.styles';
 import classNames from 'classnames';
 import { useId } from 'hooks/useId';
-import { IRoute } from 'interfaces/route';
 import { ThemeMode } from 'component/common/ThemeMode/ThemeMode';
 import { useThemeMode } from 'hooks/useThemeMode';
+import { useFilteredNonAdminRoutes } from 'hooks/useFilteredNonAdminRoutes';
 
 const Header: VFC = () => {
     const { onSetThemeMode, themeMode } = useThemeMode();
@@ -80,8 +80,8 @@ const Header: VFC = () => {
     // };
 
     const filteredMainRoutes = {
-        mainNavRoutes: routes.mainNavRoutes,
-        mobileRoutes: routes.mobileRoutes,
+        mainNavRoutes: useFilteredNonAdminRoutes(routes.mainNavRoutes),
+        mobileRoutes: useFilteredNonAdminRoutes(routes.mobileRoutes),
         adminRoutes: routes.adminRoutes,
     };
 

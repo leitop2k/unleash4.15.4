@@ -14,6 +14,7 @@ import { SplashPageRedirect } from 'component/splash/SplashPageRedirect/SplashPa
 import { useStyles } from './App.styles';
 import { usePlausibleTracker } from 'hooks/usePlausibleTracker';
 import { Suspense } from 'react';
+import { useFilteredNonAdminRoutes } from 'hooks/useFilteredNonAdminRoutes';
 
 export const App = () => {
     const { classes: styles } = useStyles();
@@ -21,7 +22,7 @@ export const App = () => {
     const { user } = useAuthUser();
     const hasFetchedAuth = Boolean(authDetails || user);
     usePlausibleTracker();
-    const availableRoutes = routes;
+    const availableRoutes = useFilteredNonAdminRoutes(routes);
 
     return (
         <SWRProvider>
