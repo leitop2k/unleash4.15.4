@@ -4,6 +4,7 @@ import { Paper, Tab, Tabs, Theme } from '@mui/material';
 import useUiConfig from 'hooks/api/getters/useUiConfig/useUiConfig';
 import { useInstanceStatus } from 'hooks/api/getters/useInstanceStatus/useInstanceStatus';
 import { useTheme } from '@mui/material/styles';
+import { useIsAdmin } from 'hooks/useIsAdmin';
 
 const createNavLinkStyle = (props: {
     isActive: boolean;
@@ -36,6 +37,7 @@ function AdminMenu() {
     const { pathname } = useLocation();
     const { isBilling } = useInstanceStatus();
     const { flags } = uiConfig;
+    const isAdmin = useIsAdmin();
 
     return (
         <Paper
@@ -94,19 +96,21 @@ function AdminMenu() {
                         }
                     />
                 )}
-                <Tab
-                    value="/admin/api"
-                    label={
-                        <NavLink
-                            to="/admin/api"
-                            style={({ isActive }) =>
-                                createNavLinkStyle({ isActive, theme })
-                            }
-                        >
-                            API access
-                        </NavLink>
-                    }
-                />
+                {isAdmin && (
+                    <Tab
+                        value="/admin/api"
+                        label={
+                            <NavLink
+                                to="/admin/api"
+                                style={({ isActive }) =>
+                                    createNavLinkStyle({ isActive, theme })
+                                }
+                            >
+                                API access
+                            </NavLink>
+                        }
+                    />
+                )}
                 {uiConfig.flags.embedProxyFrontend && (
                     <Tab
                         value="/admin/cors"
