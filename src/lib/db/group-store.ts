@@ -161,6 +161,15 @@ export default class GroupStore implements IGroupStore {
         return rowToGroup(row);
     }
 
+    async getUserGroups(userId: number): Promise<IGroupUser[]> {
+        const userGroups = await this.db(`${T.GROUPS} as g`)
+            .leftJoin(`${T.GROUP_USER} as gu`, 'g.id', 'gu.group_id')
+            .select('g.id', 'g.name')
+            .where('gu.user_id', userId);
+
+        return userGroups.map(rowToGroupUser);
+    }
+
     async create(group: IStoreGroup): Promise<Group> {
         const row = await this.db(T.GROUPS)
             .insert(groupToRow(group))

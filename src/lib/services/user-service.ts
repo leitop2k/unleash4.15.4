@@ -375,6 +375,7 @@ class UserService {
 
         try {
             user = await this.store.getByQuery({ username });
+            console.log('user', user);
             // Update user if autCreate is enabled.
             if (
                 (email && user.email !== email) ||
@@ -390,13 +391,19 @@ class UserService {
                     firstname,
                     username,
                 });
+
+                console.log('user update', user);
             }
 
+            const userDbGroups = await this.groupStore.getUserGroups(user.id);
+
+            console.log(userDbGroups);
+
             const correctGroups = await this.getCorrectGroups(userGroups);
-            const deleteUserGroups = correctGroups.map((deleteGroup) => ({
-                groupId: deleteGroup.id,
-                joinedAt: deleteGroup.createdAt,
-                userId: user.id,
+            const deleteUserGroups = userDbGroups.map((deleteGroup) => ({
+                groupId: deleteGroup.groupId,
+                joinedAt: deleteGroup.joinedAt,
+                userId: deleteGroup.userId,
             }));
 
             await this.groupStore.deleteOldUsersFromGroup(deleteUserGroups);

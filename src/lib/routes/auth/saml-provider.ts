@@ -89,6 +89,7 @@ export class SamlProvider extends Controller {
     async loginCallback(req: Request, res: Response): Promise<void> {
         const { email, firstname, lastname, username, groups } = req.user;
 
+        console.log(groups);
         const user = await this.userService.loginUserSSO({
             email,
             name: `${firstname} ${lastname}`,
