@@ -76,6 +76,10 @@ export default class FakeGroupStore implements IGroupStore {
         throw new Error('Method not implemented.');
     }
 
+    getUserGroups(userId: number): Promise<IGroupUser[]> {
+        throw new Error('Method not implemented.');
+    }
+
     getProjectGroupRoles(projectId: string): Promise<IGroupRole[]> {
         throw new Error('Method not implemented.');
     }

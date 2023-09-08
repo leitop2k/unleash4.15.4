@@ -98,6 +98,7 @@ export class SamlProvider extends Controller {
             username,
             groups,
         });
+
         req.session.user = user;
         res.redirect('/features?sort=createdAt');
     }

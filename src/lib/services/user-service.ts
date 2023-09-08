@@ -392,14 +392,15 @@ class UserService {
                 });
             }
 
-            const correctGroups = await this.getCorrectGroups(userGroups);
-            const deleteUserGroups = correctGroups.map((deleteGroup) => ({
-                groupId: deleteGroup.id,
-                joinedAt: deleteGroup.createdAt,
-                userId: user.id,
+            const userDbGroups = await this.groupStore.getUserGroups(user.id);
+            const deleteUserGroups = userDbGroups.map((deleteGroup) => ({
+                groupId: deleteGroup.groupId,
+                joinedAt: deleteGroup.joinedAt,
+                userId: deleteGroup.userId,
             }));
-
             await this.groupStore.deleteOldUsersFromGroup(deleteUserGroups);
+
+            const correctGroups = await this.getCorrectGroups(userGroups);
             await Promise.all(
                 correctGroups.map(async (group) => {
                     await this.groupStore.addNewUsersToGroup(

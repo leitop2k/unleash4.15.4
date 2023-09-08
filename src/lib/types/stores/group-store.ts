@@ -20,6 +20,8 @@ export interface IGroupStore extends Store<IGroup, number> {
 
     getAllWithId(ids: number[]): Promise<IGroup[]>;
 
+    getUserGroups(userId: number): Promise<IGroupUser[]>;
+
     updateGroupUsers(
         groupId: number,
         newUsers: IGroupUserModel[],
