@@ -89,7 +89,6 @@ export class SamlProvider extends Controller {
     async loginCallback(req: Request, res: Response): Promise<void> {
         const { email, firstname, lastname, username, groups } = req.user;
 
-        console.log(groups);
         const user = await this.userService.loginUserSSO({
             email,
             name: `${firstname} ${lastname}`,
@@ -99,6 +98,7 @@ export class SamlProvider extends Controller {
             username,
             groups,
         });
+
         req.session.user = user;
         res.redirect('/features?sort=createdAt');
     }
