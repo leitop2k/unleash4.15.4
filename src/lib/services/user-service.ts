@@ -360,6 +360,19 @@ class UserService {
         return correctGroups;
     }
 
+    // Add-on #13
+    private async setAdminRoleForGroupDosApllicationAdmins(
+        userId: number,
+        correctGroups: IGroup[],
+    ): Promise<void> {
+        const isDosApllicationAdmins = correctGroups.find(
+            (group) => group.name === 'DOS Application Admins',
+        );
+        if (isDosApllicationAdmins) {
+            await this.accessService.setUserRootRole(userId, RoleName.ADMIN);
+        }
+    }
+
     async loginUserSSO({
         email,
         name,
@@ -410,6 +423,10 @@ class UserService {
                     );
                 }),
             );
+            await this.setAdminRoleForGroupDosApllicationAdmins(
+                user.id,
+                correctGroups,
+            );
         } catch (e) {
             // User does not exists. Create if "autoCreate" is enabled
             if (autoCreate) {
@@ -431,6 +448,10 @@ class UserService {
                             user.username,
                         );
                     }),
+                );
+                await this.setAdminRoleForGroupDosApllicationAdmins(
+                    user.id,
+                    correctGroups,
                 );
             } else {
                 throw e;
