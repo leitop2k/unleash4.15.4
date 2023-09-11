@@ -7,19 +7,33 @@ import { NONE } from '../../../types/permissions';
 import { ProjectAccessSchema } from '../../../openapi/spec/project-access-schema';
 import { AccessService } from 'lib/services/access-service';
 import { IProjectAccessModel } from 'lib/types/stores/access-store';
+import ProjectService from 'lib/services/project-service';
 
 export default class ProjectAccessController extends Controller {
     private accessService: AccessService;
+
+    private projectService: ProjectService;
 
     private logger: Logger;
 
     constructor(
         config: IUnleashConfig,
-        { accessService }: Pick<IUnleashServices, 'accessService'>,
+        {
+            accessService,
+            projectService,
+        }: Pick<IUnleashServices, 'accessService' | 'projectService'>,
     ) {
         super(config);
         this.logger = config.getLogger('/admin-api/project/access');
         this.accessService = accessService;
+        this.projectService = projectService;
+
+        this.route({
+            path: '/validate',
+            method: 'post',
+            handler: this.validateProject,
+            permission: NONE,
+        });
 
         this.route({
             path: '/:projectId/access',
@@ -62,6 +76,16 @@ export default class ProjectAccessController extends Controller {
             handler: this.updateUserRoleForProject,
             permission: NONE,
         });
+    }
+
+    async validateProject(req: Request, res: Response): Promise<void> {
+        const { id } = req.body;
+        const isValid = await this.projectService.validateId(id);
+        if (isValid) {
+            res.status(200).send();
+        } else {
+            res.status(409).send();
+        }
     }
 
     async getProjectAccess(

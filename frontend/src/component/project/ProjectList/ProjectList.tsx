@@ -13,7 +13,7 @@ import { PageContent } from 'component/common/PageContent/PageContent';
 import AccessContext from 'contexts/AccessContext';
 import { PageHeader } from 'component/common/PageHeader/PageHeader';
 import ResponsiveButton from 'component/common/ResponsiveButton/ResponsiveButton';
-import { CREATE_PROJECT } from 'component/providers/AccessProvider/permissions';
+import { ADMIN, CREATE_PROJECT } from 'component/providers/AccessProvider/permissions';
 import { Add } from '@mui/icons-material';
 import ApiError from 'component/common/ApiError/ApiError';
 import useUiConfig from 'hooks/api/getters/useUiConfig/useUiConfig';
@@ -92,7 +92,7 @@ export const ProjectListNew = () => {
 
     const createButtonData = resolveCreateButtonData(
         isOss(),
-        hasAccess(CREATE_PROJECT)
+        hasAccess(ADMIN)
     );
 
     const renderError = () => {
@@ -176,7 +176,7 @@ export const ProjectListNew = () => {
                                     Icon={Add}
                                     onClick={() => navigate('/projects/create')}
                                     maxWidth="700px"
-                                    permission={CREATE_PROJECT}
+                                    permission={ADMIN}
                                     disabled={createButtonData.disabled}
                                 >
                                     New project
