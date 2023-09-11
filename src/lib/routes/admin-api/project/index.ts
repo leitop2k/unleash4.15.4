@@ -43,6 +43,27 @@ export default class ProjectApi extends Controller {
             ],
         });
 
+        this.route({
+            path: '',
+            method: 'post',
+            handler: this.createProject,
+            permission: NONE,
+        });
+
+        this.route({
+            path: '/:projectId',
+            method: 'put',
+            handler: this.updateProject,
+            permission: NONE,
+        });
+
+        this.route({
+            path: '/:projectId',
+            method: 'delete',
+            handler: this.deleteProject,
+            permission: NONE,
+        });
+
         this.use('/', new ProjectAccessController(config, services).router);
         this.use('/', new ProjectFeaturesController(config, services).router);
         this.use('/', new EnvironmentsController(config, services).router);
@@ -64,5 +85,36 @@ export default class ProjectApi extends Controller {
             projectsSchema.$id,
             { version: 1, projects: serializeDates(projects) },
         );
+    }
+
+    async createProject(req: Request, res: Response): Promise<void> {
+        const newProject = await this.projectService.createProject(
+            req.body,
+            // @ts-ignore
+            req.user,
+        );
+
+        res.status(200).json(newProject);
+    }
+
+    async updateProject(req: Request, res: Response): Promise<void> {
+        const newProject = await this.projectService.updateProject(
+            req.body,
+            // @ts-ignore
+            req.user,
+        );
+
+        res.status(200).json(newProject);
+    }
+
+    async deleteProject(req: Request, res: Response): Promise<void> {
+        const { projectId } = req.params;
+        const newProject = await this.projectService.deleteProject(
+            projectId,
+            // @ts-ignore
+            req.user,
+        );
+
+        res.status(200).json(newProject);
     }
 }
