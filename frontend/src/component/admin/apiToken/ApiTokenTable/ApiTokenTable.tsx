@@ -27,7 +27,7 @@ import { HighlightCell } from 'component/common/Table/cells/HighlightCell/Highli
 import { Search } from 'component/common/Search/Search';
 import useHiddenColumns from 'hooks/useHiddenColumns';
 
-const hiddenColumnsSmall = ['Icon', 'createdAt'];
+const hiddenColumnsSmall = ['Icon', 'createdAt', 'expiresAt'];
 const hiddenColumnsFlagE = ['projects', 'environment'];
 
 export const ApiTokenTable = () => {
@@ -202,6 +202,13 @@ const COLUMNS = [
     {
         Header: 'Created',
         accessor: 'createdAt',
+        Cell: DateCell,
+        minWidth: 150,
+        disableGlobalFilter: true,
+    },
+    {
+        Header: 'Expires',
+        accessor: 'expiresAt',
         Cell: DateCell,
         minWidth: 150,
         disableGlobalFilter: true,

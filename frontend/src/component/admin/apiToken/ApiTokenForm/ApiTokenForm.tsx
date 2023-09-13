@@ -6,6 +6,7 @@ import {
     RadioGroup,
     Typography,
     Box,
+    TextField,
 } from '@mui/material';
 import { KeyboardArrowDownOutlined } from '@mui/icons-material';
 import React from 'react';
@@ -26,6 +27,8 @@ interface IApiTokenFormProps {
     type: string;
     projects: string[];
     environment?: string;
+    expiresAt: string;
+    setExpiresAt: (value: string) => void;
     setTokenType: (value: string) => void;
     setUsername: React.Dispatch<React.SetStateAction<string>>;
     setProjects: React.Dispatch<React.SetStateAction<string[]>>;
@@ -43,6 +46,8 @@ const ApiTokenForm: React.FC<IApiTokenFormProps> = ({
     type,
     projects,
     environment,
+    expiresAt,
+    setExpiresAt,
     setUsername,
     setTokenType,
     setProjects,
@@ -167,6 +172,21 @@ const ApiTokenForm: React.FC<IApiTokenFormProps> = ({
                     IconComponent={KeyboardArrowDownOutlined}
                     fullWidth
                     className={styles.selectInput}
+                />
+                <p className={styles.inputDescription}>
+                    When should this token expire?
+                </p>
+                <TextField
+                    id="datetime"
+                    label="Expiration Date"
+                    type="datetime-local"
+                    value={expiresAt}
+                    onChange={(e) => setExpiresAt(e.target.value)}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    error={errors.expiresAt !== undefined}
+                    helperText={errors.expiresAt}
                 />
             </div>
             <div className={styles.buttonContainer}>
