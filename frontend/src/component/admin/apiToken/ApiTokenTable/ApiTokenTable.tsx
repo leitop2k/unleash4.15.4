@@ -26,6 +26,7 @@ import { ConditionallyRender } from 'component/common/ConditionallyRender/Condit
 import { HighlightCell } from 'component/common/Table/cells/HighlightCell/HighlightCell';
 import { Search } from 'component/common/Search/Search';
 import useHiddenColumns from 'hooks/useHiddenColumns';
+import { ExpiringDateCell } from 'component/common/Table/cells/ExpiringDateCell/ExpiringDateCell';
 
 const hiddenColumnsSmall = ['Icon', 'createdAt', 'expiresAt'];
 const hiddenColumnsFlagE = ['projects', 'environment'];
@@ -209,7 +210,7 @@ const COLUMNS = [
     {
         Header: 'Expires',
         accessor: 'expiresAt',
-        Cell: DateCell,
+        Cell: ExpiringDateCell,
         minWidth: 150,
         disableGlobalFilter: true,
     },
