@@ -6,7 +6,6 @@ import {
     CREATE_API_TOKEN,
     DELETE_API_TOKEN,
     READ_API_TOKEN,
-    UPDATE_API_TOKEN,
 } from '../../types/permissions';
 import { ApiTokenService } from '../../services/api-token-service';
 import { Logger } from '../../logger';
@@ -106,7 +105,7 @@ export class ApiTokenController extends Controller {
             method: 'put',
             path: '/:token',
             handler: this.updateApiToken,
-            permission: UPDATE_API_TOKEN,
+            permission: ADMIN,
             middleware: [
                 openApiService.validPath({
                     tags: ['API tokens'],
@@ -199,7 +198,7 @@ export class ApiTokenController extends Controller {
             return allTokens;
         }
 
-        if (await this.accessService.hasPermission(user, UPDATE_API_TOKEN)) {
+        if (await this.accessService.hasPermission(user, ADMIN)) {
             return allTokens;
         }
 

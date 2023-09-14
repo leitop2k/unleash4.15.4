@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useEnvironments } from 'hooks/api/getters/useEnvironments/useEnvironments';
 import { IApiTokenCreate } from 'hooks/api/actions/useApiTokensApi/useApiTokensApi';
 
-export type ApiTokenFormErrorType = 'username' | 'projects';
+export type ApiTokenFormErrorType = 'username' | 'projects' | 'expiresAt';
 
 export const useApiTokenForm = () => {
     const { environments } = useEnvironments();
@@ -12,11 +12,16 @@ export const useApiTokenForm = () => {
     const [type, setType] = useState('CLIENT');
     const [projects, setProjects] = useState<string[]>(['*']);
     const [memorizedProjects, setMemorizedProjects] =
-        useState<string[]>(projects);
+        useState<string[]>(projects); 
     const [environment, setEnvironment] = useState<string>();
     const [errors, setErrors] = useState<
         Partial<Record<ApiTokenFormErrorType, string>>
     >({});
+    const currentDate = new Date();
+    currentDate.setMonth(currentDate.getMonth() + 6);
+    const initialDateStr = currentDate.toISOString().substring(0, 16);
+    const [expiresAt, setExpiresAt] = useState<string>(initialDateStr);
+
 
     useEffect(() => {
         setEnvironment(type === 'ADMIN' ? '*' : initialEnvironment);
@@ -40,6 +45,7 @@ export const useApiTokenForm = () => {
         type,
         environment,
         projects,
+        expiresAt: new Date(expiresAt).toISOString(),
     });
 
     const isValid = () => {
@@ -49,6 +55,9 @@ export const useApiTokenForm = () => {
         }
         if (projects.length === 0) {
             newErrors['projects'] = 'At least one project is required';
+        }
+        if (new Date(expiresAt) <= new Date()) {
+            newErrors['expiresAt'] = 'Expiration date must be in the future';
         }
 
         setErrors(newErrors);
@@ -70,6 +79,8 @@ export const useApiTokenForm = () => {
         type,
         projects,
         environment,
+        expiresAt,
+        setExpiresAt,
         setUsername,
         setTokenType,
         setProjects,

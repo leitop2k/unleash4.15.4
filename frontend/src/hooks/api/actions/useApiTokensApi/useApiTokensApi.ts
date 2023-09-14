@@ -5,6 +5,7 @@ export interface IApiTokenCreate {
     type: string;
     environment?: string;
     projects: string[];
+    expiresAt: string;
 }
 
 const useApiTokensApi = () => {
