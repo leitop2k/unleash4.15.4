@@ -7,6 +7,7 @@ import { IUnleashServices } from '../types/services';
 import LogoutController from './logout';
 
 const AdminApi = require('./admin-api');
+const AdminApiAuth = require('./admin-api/auth');
 const ClientApi = require('./client-api');
 const Controller = require('./controller');
 import { HealthCheckController } from './health-check';
@@ -31,6 +32,7 @@ class IndexRouter extends Controller {
             new ResetPasswordController(config, services).router,
         );
         this.use('/api/admin', new AdminApi(config, services).router);
+        this.use('/api/admin/auth', new AdminApiAuth(config, services).router);
         this.use('/api/client', new ClientApi(config, services).router);
 
         this.use(
