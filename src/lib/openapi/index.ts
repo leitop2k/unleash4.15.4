@@ -114,6 +114,7 @@ import { proxyMetricsSchema } from './spec/proxy-metrics-schema';
 import { setUiConfigSchema } from './spec/set-ui-config-schema';
 import { edgeTokenSchema } from './spec/edge-token-schema';
 import { validateEdgeTokensSchema } from './spec/validate-edge-tokens-schema';
+import { samlGpbSchema } from './spec/saml-gpb-schema';
 import apiVersion from '../util/version';
 
 // All schemas in `openapi/spec` should be listed here.
@@ -228,6 +229,7 @@ export const schemas = {
     proxyMetricsSchema,
     edgeTokenSchema,
     validateEdgeTokensSchema,
+    samlGpbSchema,
 };
 
 // Schemas must have an $id property on the form "#/components/schemas/mySchema".

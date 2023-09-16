@@ -6,6 +6,7 @@ import { ConditionallyRender } from 'component/common/ConditionallyRender/Condit
 import useUiConfig from 'hooks/api/getters/useUiConfig/useUiConfig';
 import { OidcAuth } from './OidcAuth/OidcAuth';
 import { SamlAuth } from './SamlAuth/SamlAuth';
+import { SamlAuthGPB } from './SamlAuthGPB/SamlAuthGPB';
 import { PasswordAuth } from './PasswordAuth/PasswordAuth';
 import { GoogleAuth } from './GoogleAuth/GoogleAuth';
 import { TabNav } from 'component/common/TabNav/TabNav/TabNav';
@@ -29,6 +30,10 @@ export const AuthSettings = () => {
         {
             label: 'Google',
             component: <GoogleAuth />,
+        },
+        {
+            label: 'SAML GPB',
+            component: <SamlAuthGPB />,
         },
     ];
 
