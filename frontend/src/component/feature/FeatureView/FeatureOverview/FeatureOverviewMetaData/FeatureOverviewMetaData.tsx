@@ -20,7 +20,6 @@ const FeatureOverviewMetaData = () => {
     const { feature } = useFeature(projectId, featureId);
     const { project, description, type, epic } = feature;
 
-    console.log(feature)
     const IconComponent = getFeatureTypeIcons(type);
 
     return (
