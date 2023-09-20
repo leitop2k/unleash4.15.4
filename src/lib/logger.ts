@@ -18,6 +18,15 @@ export interface Logger {
     fatal(message: any, ...args: any[]): void;
 }
 
+function formatMessage(message: any, args: any[]): string {
+    const completeMessage = [message, ...args]
+        .map((arg) =>
+            typeof arg === 'object' && arg !== null ? JSON.stringify(arg) : arg,
+        )
+        .join(' ');
+    return completeMessage.replace(/\r?\n|\r/g, ' ');
+}
+
 export function getDefaultLogProvider(
     logLevel: LogLevel = LogLevel.error,
 ): LogProvider {
@@ -30,7 +39,22 @@ export function getDefaultLogProvider(
         },
     });
 
-    return getLogger;
+    const originalGetLogger = getLogger;
+    return (category?: string): Logger => {
+        const logger = originalGetLogger(category);
+        return {
+            debug: (message: any, ...args: any[]) =>
+                logger.debug(formatMessage(message, args)),
+            info: (message: any, ...args: any[]) =>
+                logger.info(formatMessage(message, args)),
+            warn: (message: any, ...args: any[]) =>
+                logger.warn(formatMessage(message, args)),
+            error: (message: any, ...args: any[]) =>
+                logger.error(formatMessage(message, args)),
+            fatal: (message: any, ...args: any[]) =>
+                logger.fatal(formatMessage(message, args)),
+        };
+    };
 }
 
 function validate(isValid: boolean, msg: string) {
