@@ -251,7 +251,6 @@ class FeatureStrategiesStore implements IFeatureStrategiesStore {
             .modify(FeatureToggleStore.filterByArchived, archived);
         stopTimer();
 
-        console.log('getFeatureToggleWithEnvs', rows);
         if (rows.length > 0) {
             const featureToggle = rows.reduce((acc, r) => {
                 if (acc.environments === undefined) {
