@@ -5,6 +5,7 @@ import {
     ADMIN,
     CREATE_API_TOKEN,
     DELETE_API_TOKEN,
+    NONE,
     READ_API_TOKEN,
 } from '../../types/permissions';
 import { ApiTokenService } from '../../services/api-token-service';
@@ -35,6 +36,9 @@ import { ProxyService } from '../../services/proxy-service';
 interface TokenParam {
     token: string;
 }
+
+type IApiTokenWithoutSecret = Omit<IApiToken, 'secret'>;
+
 export class ApiTokenController extends Controller {
     private apiTokenService: ApiTokenService;
 
@@ -77,6 +81,22 @@ export class ApiTokenController extends Controller {
                 openApiService.validPath({
                     tags: ['API tokens'],
                     operationId: 'getAllApiTokens',
+                    responses: {
+                        200: createResponseSchema('apiTokensSchema'),
+                    },
+                }),
+            ],
+        });
+
+        this.route({
+            method: 'get',
+            path: '/client',
+            handler: this.getAllApiTokensForClient,
+            permission: NONE,
+            middleware: [
+                openApiService.validPath({
+                    tags: ['API tokens'],
+                    operationId: 'getAllApiTokensForClient',
                     responses: {
                         200: createResponseSchema('apiTokensSchema'),
                     },
@@ -150,6 +170,19 @@ export class ApiTokenController extends Controller {
         );
     }
 
+    async getAllApiTokensForClient(
+        req: IAuthRequest,
+        res: Response<ApiTokensSchema>,
+    ): Promise<void> {
+        const tokens = await this.accessibleTokensForClient();
+        this.openApiService.respondWithValidation(
+            200,
+            res,
+            apiTokensSchema.$id,
+            { tokens: serializeDates(tokens) },
+        );
+    }
+
     async createApiToken(
         req: IAuthRequest,
         res: Response<ApiTokenSchema>,
@@ -203,5 +236,15 @@ export class ApiTokenController extends Controller {
         }
 
         return allTokens.filter((token) => token.type !== ApiTokenType.ADMIN);
+    }
+
+    private async accessibleTokensForClient(): Promise<
+        IApiTokenWithoutSecret[]
+    > {
+        const allTokens = await this.apiTokenService.getAllTokens();
+
+        return allTokens
+            .filter((token) => token.type !== ApiTokenType.ADMIN)
+            .map(({ secret, ...restToken }) => restToken);
     }
 }

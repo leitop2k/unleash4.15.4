@@ -1,7 +1,7 @@
 import { VFC } from 'react';
 import { useLocationSettings } from 'hooks/useLocationSettings';
 import { formatDateYMD } from 'utils/formatDate';
-import { parseISO } from 'date-fns';
+import { parseISO, differenceInDays } from 'date-fns';
 import { TextCell } from 'component/common/Table/cells/TextCell/TextCell';
 
 interface IExpiringDateCellProps {
@@ -20,9 +20,11 @@ export const ExpiringDateCell: VFC<IExpiringDateCellProps> = ({ value }) => {
     const currentDate = new Date();
     const expirationDate = typeof value === 'string' ? new Date(value) : value;
     const isExpired = expirationDate ? expirationDate < currentDate : false;
+    const isAboutToExpire = expirationDate ? differenceInDays(expirationDate, currentDate) <= 10 : false;
+
 
     return (
-        <TextCell lineClamp={1} style={{ color: isExpired ? 'red' : undefined }}>
+        <TextCell lineClamp={1} style={{ color: isExpired || isAboutToExpire ? 'red' : undefined }}>
             {date}
         </TextCell>
     );
