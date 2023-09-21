@@ -72,3 +72,6 @@ services:
     volumes:
       - "pgadmin:/var/lib/pgadmin4"
     restart: always
+
+volumes:
+  pgadmin:
