@@ -23,7 +23,7 @@ services:
       - "4242:4242"
     environment:
       # This points Unleash to its backing database (defined in the `db` section below)
-      DATABASE_URL: "postgres://unleash:-si5/r>YRgo}L!A@192.168.1.4:5432/unleash_db"
+      DATABASE_URL: "postgres://unleash:-si5/r>YRgo}L!A@192.168.1.6:5432/unleash_db"
       # Disable SSL for database connections. @chriswk: why do we do this?
       DATABASE_SSL: "false"
       # Changing log levels:
@@ -51,7 +51,7 @@ services:
     container_name: local_keycloak
     environment:
       DB_VENDOR: postgres
-      DB_ADDR: 192.168.1.4
+      DB_ADDR: 192.168.1.6
       DB_DATABASE: keycloack_db
       DB_USER: keycloack
       DB_PASSWORD: wOuCc%K.8jW.2q
