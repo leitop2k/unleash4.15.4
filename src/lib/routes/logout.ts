@@ -3,6 +3,7 @@ import { promisify } from 'util';
 import { IUnleashConfig } from '../types/option';
 import Controller from './controller';
 import { IAuthRequest } from './unleash-types';
+import { Logger } from 'lib/logger';
 
 class LogoutController extends Controller {
     private clearSiteDataOnLogout: boolean;
@@ -11,8 +12,11 @@ class LogoutController extends Controller {
 
     private baseUri: string;
 
+    private readonly logger: Logger;
+
     constructor(config: IUnleashConfig) {
         super(config);
+        this.logger = config.getLogger('logout.js');
         this.baseUri = config.server.baseUriPath;
         this.clearSiteDataOnLogout = config.session.clearSiteDataOnLogout;
         this.cookieName = config.session.cookieName;
@@ -20,6 +24,7 @@ class LogoutController extends Controller {
     }
 
     async logout(req: IAuthRequest, res: Response): Promise<void> {
+        const username = req?.session?.user?.username;
         if (req.session) {
             // Allow SSO to register custom logout logic.
             if (req.session.logoutUrl) {
@@ -48,6 +53,7 @@ class LogoutController extends Controller {
         if (this.clearSiteDataOnLogout) {
             res.set('Clear-Site-Data', '"cookies", "storage"');
         }
+        this.logger.info(`Logout username: ${username}`);
 
         res.redirect(`${this.baseUri}/`);
     }

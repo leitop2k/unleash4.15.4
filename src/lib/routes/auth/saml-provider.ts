@@ -119,6 +119,9 @@ export class SamlProvider extends Controller {
         });
 
         req.session.user = user;
+        this.logger.info(
+            `User ${username} (${email}) authenticated successfully`,
+        );
         res.redirect('/features?sort=createdAt');
     }
 }
