@@ -58,6 +58,7 @@ services:
       DB_PASSWORD: wOuCc%K.8jW.2q
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_FRONTEND_URL: https://keycloak.nekto-z.ru/auth
     image: quay.io/keycloak/keycloak:22.0.3
     ports:
       - "8080:8080"
