@@ -36,7 +36,7 @@ export interface IDBOption {
 }
 
 export interface ISessionOption {
-    ttlHours: number;
+    ttlMinutes: number;
     db: boolean;
     clearSiteDataOnLogout: boolean;
     cookieName: string;

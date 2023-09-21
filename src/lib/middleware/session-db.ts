@@ -3,7 +3,7 @@ import session from 'express-session';
 import knexSessionStore from 'connect-session-knex';
 import { RequestHandler } from 'express';
 import { IUnleashConfig } from '../types/option';
-import { hoursToMilliseconds } from 'date-fns';
+import { minutesToMilliseconds } from 'date-fns';
 
 function sessionDb(
     config: Pick<IUnleashConfig, 'session' | 'server' | 'secureHeaders'>,
@@ -12,7 +12,8 @@ function sessionDb(
     let store;
     const { db, cookieName } = config.session;
     const age =
-        hoursToMilliseconds(config.session.ttlHours) || hoursToMilliseconds(48);
+        minutesToMilliseconds(config.session.ttlMinutes) ||
+        minutesToMilliseconds(30);
     const KnexSessionStore = knexSessionStore(session);
     if (db) {
         store = new KnexSessionStore({
@@ -25,7 +26,7 @@ function sessionDb(
     }
     return session({
         name: cookieName,
-        rolling: false,
+        rolling: true,
         resave: false,
         saveUninitialized: false,
         store,
