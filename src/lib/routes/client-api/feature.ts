@@ -205,6 +205,7 @@ export default class FeatureController extends Controller {
             ? await this.cachedFeatures(query)
             : await this.resolveFeaturesAndSegments(query);
 
+        this.logger.debug(`Get all features: ${JSON.stringify(features)}`);
         if (this.clientSpecService.requestSupportsSpec(req, 'segments')) {
             this.openApiService.respondWithValidation(
                 200,
@@ -235,6 +236,9 @@ export default class FeatureController extends Controller {
         if (!toggle) {
             throw new NotFoundError(`Could not find feature toggle ${name}`);
         }
+        this.logger.debug(
+            `Get by toggle name ${name}: ${JSON.stringify(toggle)}`,
+        );
         this.openApiService.respondWithValidation(
             200,
             res,

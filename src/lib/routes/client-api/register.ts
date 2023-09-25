@@ -67,6 +67,11 @@ export default class RegisterController extends Controller {
         const { body: data, ip: clientIp, user } = req;
         data.environment = RegisterController.resolveEnvironment(user, data);
         await this.clientInstanceService.registerClient(data, clientIp);
+        this.logger.debug(
+            `Register Client Application user: ${JSON.stringify(
+                user,
+            )}, clientIP: ${clientIp}, data: ${JSON.stringify(data)},`,
+        );
         return res.status(202).end();
     }
 }

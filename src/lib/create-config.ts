@@ -165,7 +165,8 @@ const defaultServerOption: IServerOption = {
     serverMetrics: true,
     keepAliveTimeout: minutesToMilliseconds(1),
     headersTimeout: secondsToMilliseconds(61),
-    enableRequestLogger: false,
+    enableRequestLogger:
+        process.env.ENABLE_REQUEST_LOGGER === 'true' ? true : false,
     gracefulShutdownEnable: parseEnvVarBoolean(
         process.env.GRACEFUL_SHUTDOWN_ENABLE,
         true,
