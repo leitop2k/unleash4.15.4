@@ -36,6 +36,8 @@ services:
       # initialize Unleash with multiple tokens, separate them with a
       # comma (`token1,token2`).
       INIT_CLIENT_API_TOKENS: "default:development.unleash-insecure-api-token"
+      # не забыть переписать ключик!
+      UNLEASH_SECRET: "some-key"
     command: [ "node", "index.js" ]
     restart: always
     healthcheck:
