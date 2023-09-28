@@ -6,11 +6,11 @@ import { formatUnknownError } from 'utils/formatUnknownError';
 
 const useFeatureForm = (
     initialName = '',
-    initialEpic = '',
     initialType = 'release',
     initialProject = 'default',
     initialDescription = '',
-    initialImpressionData = false
+    initialImpressionData = false,
+    initialEpic = ''
 ) => {
     const projectId = useRequiredPathParam('projectId');
     const params = useQueryParams();

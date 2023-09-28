@@ -33,6 +33,8 @@ const EditFeature = () => {
         setDescription,
         impressionData,
         setImpressionData,
+        epic,
+        setEpic,
         clearErrors,
         errors,
     } = useFeatureForm(
@@ -40,11 +42,12 @@ const EditFeature = () => {
         feature?.type,
         feature?.project,
         feature?.description,
-        feature?.impressionData
+        feature?.impressionData,
+        feature?.epic
     );
 
     const createPatch = () => {
-        const comparison = { ...feature, type, description, impressionData };
+        const comparison = { ...feature, type, description, impressionData, epic };
         const patch = jsonpatch.compare(feature, comparison);
         return patch;
     };
@@ -93,10 +96,12 @@ const EditFeature = () => {
                 name={name}
                 project={project}
                 description={description}
+                epic={epic}
                 setType={setType}
                 setName={setName}
                 setProject={setProject}
                 setDescription={setDescription}
+                setEpic={setEpic}
                 errors={errors}
                 handleSubmit={handleSubmit}
                 handleCancel={handleCancel}
