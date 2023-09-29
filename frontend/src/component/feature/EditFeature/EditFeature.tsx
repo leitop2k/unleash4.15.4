@@ -35,6 +35,7 @@ const EditFeature = () => {
         setImpressionData,
         epic,
         setEpic,
+        validateEpicName,
         clearErrors,
         errors,
     } = useFeatureForm(
@@ -55,23 +56,26 @@ const EditFeature = () => {
     const handleSubmit = async (e: Event) => {
         e.preventDefault();
         clearErrors();
-        const patch = createPatch();
-        try {
-            await patchFeatureToggle(project, featureId, patch);
-            navigate(`/projects/${project}/features/${name}`);
-            setToastData({
-                title: 'Toggle updated successfully',
-                type: 'success',
-            });
-        } catch (error: unknown) {
-            setToastApiError(formatUnknownError(error));
+        const validEpicName = validateEpicName();
+        if (validEpicName) {
+            const patch = createPatch();
+            try {
+                await patchFeatureToggle(project, featureId, patch);
+                navigate(`/projects/${project}/features/${name}`);
+                setToastData({
+                    title: 'Toggle updated successfully',
+                    type: 'success',
+                });
+            } catch (error: unknown) {
+                setToastApiError(formatUnknownError(error));
+            }
         }
     };
 
     const formatApiCode = () => {
         return `curl --location --request PATCH '${
             uiConfig.unleashUrl
-        }/api/admin/projects/${projectId}/features/${featureId}' \\
+            }/api/admin/projects/${projectId}/features/${featureId}' \\
     --header 'Authorization: INSERT_API_KEY' \\
     --header 'Content-Type: application/json' \\
     --data-raw '${JSON.stringify(createPatch(), undefined, 2)}'`;
@@ -107,6 +111,7 @@ const EditFeature = () => {
                 handleCancel={handleCancel}
                 impressionData={impressionData}
                 setImpressionData={setImpressionData}
+                validateEpicName={validateEpicName}
                 mode="Edit"
                 clearErrors={clearErrors}
             >
