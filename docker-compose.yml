@@ -38,6 +38,7 @@ services:
       INIT_CLIENT_API_TOKENS: "default:development.unleash-insecure-api-token"
       # не забыть переписать ключик!
       UNLEASH_SECRET: "some-key"
+      ENABLE_REQUEST_LOGGER: "true"
     command: [ "node", "index.js" ]
     restart: always
     healthcheck:
