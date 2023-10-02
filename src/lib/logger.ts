@@ -32,7 +32,10 @@ export function getDefaultLogProvider(
 ): LogProvider {
     configure({
         appenders: {
-            console: { type: 'console' },
+            console: {
+                type: 'console',
+                layout: { type: 'basic', disableColors: true },
+            },
         },
         categories: {
             default: { appenders: ['console'], level: logLevel },
