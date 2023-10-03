@@ -58,7 +58,7 @@ export const ApiTokenTableClient = () => {
         <PageContent
             header={
                 <PageHeader
-                    title={`API access (${rows.length})`}
+                    title={`Client Tokens (${rows.length})`}
                 />
             }
         >

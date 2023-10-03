@@ -529,7 +529,7 @@ export const routes: IRoute[] = [
     },
     {
         path: '/client-api',
-        title: 'Client API access',
+        title: 'Client Tokens',
         component: ClientApi,
         type: 'protected',
         menu: { mobile: true, advanced: true },
