@@ -5,6 +5,7 @@ import { TagTypeList } from 'component/tags/TagTypeList/TagTypeList';
 import { AddonList } from 'component/addons/AddonList/AddonList';
 import Admin from 'component/admin';
 import AdminApi from 'component/admin/api';
+import ClientApi from 'component/client/api';
 import AdminUsers from 'component/admin/users/UsersAdmin';
 import { GroupsAdmin } from 'component/admin/groups/GroupsAdmin';
 import { AuthSettings } from 'component/admin/auth/AuthSettings';
@@ -525,6 +526,13 @@ export const routes: IRoute[] = [
         hidden: false,
         type: 'protected',
         menu: {},
+    },
+    {
+        path: '/client-api',
+        title: 'Client Tokens',
+        component: ClientApi,
+        type: 'protected',
+        menu: { mobile: true, advanced: true },
     },
 
     /* If you update this route path, make sure you update the path in SWRProvider.tsx */

@@ -11,10 +11,16 @@ export interface IApiToken {
     project?: string;
     projects?: string | string[];
     environment: string;
+    expiresAt?: Date | null;
 }
 
-export const useApiTokens = (options: SWRConfiguration = {}) => {
-    const path = formatApiPath(`api/admin/api-tokens`);
+interface ExtendedSWRConfiguration extends SWRConfiguration {
+    path?: string;
+  }
+  
+
+export const useApiTokens = (options: ExtendedSWRConfiguration = {}) => {
+    const path = formatApiPath(options.path || `api/admin/api-tokens`);
     const { data, error, mutate } = useSWR<IApiToken[]>(path, fetcher, options);
 
     const tokens = useMemo(() => {
