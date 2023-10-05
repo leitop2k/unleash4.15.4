@@ -214,7 +214,9 @@ export class ApiTokenService {
             receiver.email,
             emailText,
         );
-        this.logger.debug(`Email sent to ${receiver.name}`);
+        this.logger.debug(
+            `Email sent to ${receiver.name} with email ${receiver.email}`,
+        );
     }
 
     private async insertNewApiToken(
