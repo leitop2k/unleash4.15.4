@@ -21,6 +21,7 @@ import { minutesToMilliseconds } from 'date-fns';
 import { IEnvironmentStore } from 'lib/types/stores/environment-store';
 import { constantTimeCompare } from '../util/constantTimeCompare';
 import { EmailService } from './email-service';
+import UserService from './user-service';
 
 const resolveTokenPermissions = (tokenType: string) => {
     if (tokenType === ApiTokenType.ADMIN) {
@@ -51,6 +52,8 @@ export class ApiTokenService {
 
     private emailService: EmailService;
 
+    private userService: UserService;
+
     constructor(
         {
             apiTokenStore,
@@ -59,6 +62,7 @@ export class ApiTokenService {
         config: Pick<IUnleashConfig, 'getLogger' | 'authentication'>,
         services: {
             emailService: EmailService;
+            userService: UserService;
         },
     ) {
         this.store = apiTokenStore;
@@ -70,6 +74,7 @@ export class ApiTokenService {
             minutesToMilliseconds(1),
         ).unref();
         this.emailService = services.emailService;
+        this.userService = services.userService;
         if (config.authentication.initApiTokens.length > 0) {
             process.nextTick(async () =>
                 this.initApiTokens(config.authentication.initApiTokens),
@@ -191,14 +196,11 @@ export class ApiTokenService {
     }
 
     private async sendEmailToUserWithToken(token: IApiToken) {
-        // тут находим получателя по username
-        // const receiver = await this.getByEmail(receiverEmail);
-        // if (!receiver) {
-        //     throw new NotFoundError(`Could not find ${receiverEmail}`);
-        // }
+        const user = await this.userService.getUserForToken(token.secret);
+
         const receiver = {
-            email: 'peter.tolkachev@gmail.com',
-            name: 'Peter',
+            email: user.email,
+            name: user.name,
         };
 
         const emailText = `
@@ -212,6 +214,7 @@ export class ApiTokenService {
             receiver.email,
             emailText,
         );
+        this.logger.debug(`Email sent to ${receiver.name}`);
     }
 
     private async insertNewApiToken(
@@ -220,8 +223,9 @@ export class ApiTokenService {
         try {
             const token = await this.store.insert(newApiToken);
             this.activeTokens.push(token);
+            // отправка токена на почту
             try {
-                this.sendEmailToUserWithToken(token);
+                await this.sendEmailToUserWithToken(token);
             } catch (e) {
                 this.logger.error(e);
             }

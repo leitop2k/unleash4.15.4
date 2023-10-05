@@ -43,9 +43,6 @@ export const createServices = (
     const groupService = new GroupService(stores, config);
     const accessService = new AccessService(stores, config, groupService);
     const emailService = new EmailService(config.email, config.getLogger);
-    const apiTokenService = new ApiTokenService(stores, config, {
-        emailService,
-    });
     const clientInstanceService = new ClientInstanceService(stores, config);
     const clientMetricsServiceV2 = new ClientMetricsServiceV2(stores, config);
     const contextService = new ContextService(stores, config);
@@ -65,6 +62,10 @@ export const createServices = (
         emailService,
         sessionService,
         settingService,
+    });
+    const apiTokenService = new ApiTokenService(stores, config, {
+        emailService,
+        userService,
     });
     const versionService = new VersionService(stores, config);
     const healthService = new HealthService(stores, config);
