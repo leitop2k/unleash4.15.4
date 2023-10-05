@@ -204,7 +204,7 @@ export class ApiTokenService {
 
         const emailText = `Ваш новый токен ...`;
 
-        await this.emailService.sendResetMail(
+        await this.emailService.sendTokenMail(
             receiver.name,
             receiver.email,
             emailText,
