@@ -10,6 +10,7 @@ import FeatureToggleService from '../../../lib/services/feature-toggle-service';
 import { AccessService } from '../../../lib/services/access-service';
 import { SegmentService } from '../../../lib/services/segment-service';
 import { GroupService } from '../../../lib/services/group-service';
+import { EmailService } from 'lib/services/email-service';
 
 let db;
 let stores;
@@ -24,6 +25,7 @@ beforeAll(async () => {
     stores = db.stores;
     const groupService = new GroupService(stores, config);
     const accessService = new AccessService(stores, config, groupService);
+    const emailService = new EmailService(config.email, config.getLogger);
     const featureToggleService = new FeatureToggleService(
         stores,
         config,
@@ -49,7 +51,7 @@ beforeAll(async () => {
 
     await projectService.createProject(project, user);
 
-    apiTokenService = new ApiTokenService(stores, config);
+    apiTokenService = new ApiTokenService(stores, config, { emailService });
 });
 
 afterAll(async () => {

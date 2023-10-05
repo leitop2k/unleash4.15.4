@@ -20,6 +20,7 @@ import BadDataError from '../error/bad-data-error';
 import { minutesToMilliseconds } from 'date-fns';
 import { IEnvironmentStore } from 'lib/types/stores/environment-store';
 import { constantTimeCompare } from '../util/constantTimeCompare';
+import { EmailService } from './email-service';
 
 const resolveTokenPermissions = (tokenType: string) => {
     if (tokenType === ApiTokenType.ADMIN) {
@@ -48,12 +49,17 @@ export class ApiTokenService {
 
     private activeTokens: IApiToken[] = [];
 
+    private emailService: EmailService;
+
     constructor(
         {
             apiTokenStore,
             environmentStore,
         }: Pick<IUnleashStores, 'apiTokenStore' | 'environmentStore'>,
         config: Pick<IUnleashConfig, 'getLogger' | 'authentication'>,
+        services: {
+            emailService: EmailService;
+        },
     ) {
         this.store = apiTokenStore;
         this.environmentStore = environmentStore;
@@ -63,6 +69,7 @@ export class ApiTokenService {
             () => this.fetchActiveTokens(),
             minutesToMilliseconds(1),
         ).unref();
+        this.emailService = services.emailService;
         if (config.authentication.initApiTokens.length > 0) {
             process.nextTick(async () =>
                 this.initApiTokens(config.authentication.initApiTokens),
@@ -183,12 +190,38 @@ export class ApiTokenService {
         return this.insertNewApiToken(createNewToken);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    private async sendEmailToUserWithToken(token: IApiToken) {
+        // тут находим получателя по username
+        // const receiver = await this.getByEmail(receiverEmail);
+        // if (!receiver) {
+        //     throw new NotFoundError(`Could not find ${receiverEmail}`);
+        // }
+        const receiver = {
+            email: 'peter.tolkachev@gmail.com',
+            name: 'Peter',
+        };
+
+        const emailText = `Ваш новый токен ...`;
+
+        await this.emailService.sendResetMail(
+            receiver.name,
+            receiver.email,
+            emailText,
+        );
+    }
+
     private async insertNewApiToken(
         newApiToken: IApiTokenCreate,
     ): Promise<IApiToken> {
         try {
             const token = await this.store.insert(newApiToken);
             this.activeTokens.push(token);
+            try {
+                this.sendEmailToUserWithToken(token);
+            } catch (e) {
+                this.logger.error(e);
+            }
             return token;
         } catch (error) {
             if (error.code === FOREIGN_KEY_VIOLATION) {

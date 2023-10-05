@@ -21,11 +21,14 @@ test('Should init api token', async () => {
     });
     const apiTokenStore = new FakeApiTokenStore();
     const environmentStore = new FakeEnvironmentStore();
+    const emailService = {} as any;
     const insertCalled = new Promise((resolve) => {
         apiTokenStore.on('insert', resolve);
     });
 
-    new ApiTokenService({ apiTokenStore, environmentStore }, config);
+    new ApiTokenService({ apiTokenStore, environmentStore }, config, {
+        emailService,
+    });
 
     await insertCalled;
 
@@ -47,6 +50,7 @@ test("Shouldn't return frontend token when secret is undefined", async () => {
     const config: IUnleashConfig = createTestConfig({});
     const apiTokenStore = new FakeApiTokenStore();
     const environmentStore = new FakeEnvironmentStore();
+    const emailService = {} as any;
 
     await environmentStore.create({
         name: 'default',
@@ -59,6 +63,9 @@ test("Shouldn't return frontend token when secret is undefined", async () => {
     const apiTokenService = new ApiTokenService(
         { apiTokenStore, environmentStore },
         config,
+        {
+            emailService,
+        },
     );
 
     await apiTokenService.createApiTokenWithProjects(token);

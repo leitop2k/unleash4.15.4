@@ -42,11 +42,13 @@ export const createServices = (
 ): IUnleashServices => {
     const groupService = new GroupService(stores, config);
     const accessService = new AccessService(stores, config, groupService);
-    const apiTokenService = new ApiTokenService(stores, config);
+    const emailService = new EmailService(config.email, config.getLogger);
+    const apiTokenService = new ApiTokenService(stores, config, {
+        emailService,
+    });
     const clientInstanceService = new ClientInstanceService(stores, config);
     const clientMetricsServiceV2 = new ClientMetricsServiceV2(stores, config);
     const contextService = new ContextService(stores, config);
-    const emailService = new EmailService(config.email, config.getLogger);
     const eventService = new EventService(stores, config);
     const featureTypeService = new FeatureTypeService(stores, config);
     const resetTokenService = new ResetTokenService(stores, config);
