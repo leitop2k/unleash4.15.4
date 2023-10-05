@@ -196,12 +196,9 @@ export class ApiTokenService {
     }
 
     private async sendEmailToUserWithToken(token: IApiToken) {
-        // дописать метод, который будет искать по username только
-        const users = await this.userService.search(token.username);
+        const user = await this.userService.getByUserName(token.username);
 
-        if (users && users.length > 0 && users[0].email) {
-            const user = users[0];
-
+        if (user && user.email) {
             const receiver = {
                 email: user.email,
                 name: user.name,
