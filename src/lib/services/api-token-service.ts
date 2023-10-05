@@ -201,11 +201,13 @@ export class ApiTokenService {
             name: 'Peter',
         };
 
-        const emailText = JSON.stringify({
-            token: token.secret,
-            project: token.project,
-            expired: token.expiresAt,
-        });
+        const emailText = `
+        token: ${token.secret}
+
+        project: ${token.project}
+
+        expires at: ${token.expiresAt}
+        `;
 
         await this.emailService.sendTokenMail(
             receiver.name,
