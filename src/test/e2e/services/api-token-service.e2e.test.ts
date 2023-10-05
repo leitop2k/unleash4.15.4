@@ -11,6 +11,7 @@ import { AccessService } from '../../../lib/services/access-service';
 import { SegmentService } from '../../../lib/services/segment-service';
 import { GroupService } from '../../../lib/services/group-service';
 import { EmailService } from 'lib/services/email-service';
+import UserService from 'lib/services/user-service';
 
 let db;
 let stores;
@@ -31,6 +32,7 @@ beforeAll(async () => {
         config,
         new SegmentService(stores, config),
     );
+    const userService = {} as UserService;
     const project = {
         id: 'test-project',
         name: 'Test Project',
@@ -51,7 +53,10 @@ beforeAll(async () => {
 
     await projectService.createProject(project, user);
 
-    apiTokenService = new ApiTokenService(stores, config, { emailService });
+    apiTokenService = new ApiTokenService(stores, config, {
+        emailService,
+        userService,
+    });
 });
 
 afterAll(async () => {
