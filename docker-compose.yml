@@ -39,6 +39,11 @@ services:
       # не забыть переписать ключик!
       UNLEASH_SECRET: "some-key"
       ENABLE_REQUEST_LOGGER: "true"
+      EMAIL_HOST: "smtp.timeweb.ru"
+      EMAIL_PORT: "25"
+      EMAIL_SENDER: 'test@nekto-z.ru'
+      EMAIL_USER: 'test@nekto-z.ru'
+      EMAIL_PASSWORD: 'asqlobrvb10'
     command: [ "node", "index.js" ]
     restart: always
     healthcheck:
