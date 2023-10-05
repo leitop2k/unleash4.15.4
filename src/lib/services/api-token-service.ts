@@ -196,27 +196,36 @@ export class ApiTokenService {
     }
 
     private async sendEmailToUserWithToken(token: IApiToken) {
-        const user = await this.userService.getUserForToken(token.secret);
+        // дописать метод, который будет искать по username только
+        const users = await this.userService.search(token.username);
 
-        const receiver = {
-            email: user.email,
-            name: user.name,
-        };
+        if (users && users.length > 0 && users[0].email) {
+            const user = users[0];
 
-        const emailText = `
-        token: ${token.secret} <br/>
-        project: ${token.project} <br/>
-        expires at: ${token.expiresAt} <br/>
-        `;
+            const receiver = {
+                email: user.email,
+                name: user.name,
+            };
 
-        await this.emailService.sendTokenMail(
-            receiver.name,
-            receiver.email,
-            emailText,
-        );
-        this.logger.debug(
-            `Email sent to ${receiver.name} with email ${receiver.email}`,
-        );
+            const emailText = `
+            token: ${token.secret} <br/>
+            project: ${token.project} <br/>
+            expires at: ${token.expiresAt} <br/>
+            `;
+
+            await this.emailService.sendTokenMail(
+                receiver.name,
+                receiver.email,
+                emailText,
+            );
+            this.logger.debug(
+                `Email sent to ${receiver.name} with email ${receiver.email}`,
+            );
+        } else {
+            this.logger.warn(
+                `The email with token was not sent to the user ${token.username} because his email was not found in the database.`,
+            );
+        }
     }
 
     private async insertNewApiToken(
