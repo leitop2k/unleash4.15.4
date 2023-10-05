@@ -202,11 +202,9 @@ export class ApiTokenService {
         };
 
         const emailText = `
-        token: ${token.secret}
-
-        project: ${token.project}
-
-        expires at: ${token.expiresAt}
+        token: ${token.secret} <br/>
+        project: ${token.project} <br/>
+        expires at: ${token.expiresAt} <br/>
         `;
 
         await this.emailService.sendTokenMail(
