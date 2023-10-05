@@ -190,7 +190,6 @@ export class ApiTokenService {
         return this.insertNewApiToken(createNewToken);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     private async sendEmailToUserWithToken(token: IApiToken) {
         // тут находим получателя по username
         // const receiver = await this.getByEmail(receiverEmail);
@@ -202,7 +201,11 @@ export class ApiTokenService {
             name: 'Peter',
         };
 
-        const emailText = `Ваш новый токен ...`;
+        const emailText = JSON.stringify({
+            token: token.secret,
+            project: token.project,
+            expired: token.expiresAt,
+        });
 
         await this.emailService.sendTokenMail(
             receiver.name,
