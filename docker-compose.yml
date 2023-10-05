@@ -41,7 +41,7 @@ services:
       ENABLE_REQUEST_LOGGER: "true"
       EMAIL_HOST: "smtp.timeweb.ru"
       EMAIL_PORT: "25"
-      EMAIL_SENDER: 'test@unleash-test.com'
+      EMAIL_SENDER: 'test@nekto-z.ru'
       EMAIL_USER: 'test@nekto-z.ru'
       EMAIL_PASSWORD: 'asqlobrvb10'
     command: [ "node", "index.js" ]
