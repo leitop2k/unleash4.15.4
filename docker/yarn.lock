@@ -139,10 +139,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
   integrity sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==
 
-"@unleash/express-openapi@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@unleash/express-openapi/-/express-openapi-0.2.0.tgz#b43119f587fae5b1e5fc21ee6ee7cf10e028a7d7"
-  integrity sha512-wpZw5/SDc8nWFp5WtlSDbhI0fYNEPKSfcsn8nZKKw3wdylW0jcafYvN3LuJQXIYuHRtn6IYs8Lh+Ne68su7+lA==
+"@unleash/express-openapi@^0.2.1-beta.0":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@unleash/express-openapi/-/express-openapi-0.2.2.tgz#b6e6a3d0fb93f8f52fc7d8f375e9bb52a3d3a46e"
+  integrity sha512-Evn1gVB5v7QMAs/mGjTc3NihX9wZnMdyBPvpd/JqMI8NDH9z/q46cYnh2t7bFPQj7FBghWwZlcJNm7PU0bxe7A==
   dependencies:
     ajv "^6.10.2"
     http-errors "^1.7.3"
@@ -2443,10 +2443,12 @@ unleash-client@3.15.0:
     murmurhash3js "^3.0.1"
     semver "^7.3.5"
 
-"unleash-server@file:../build":
-  version "4.15.0-beta.2"
+unleash-server@4.15.0:
+  version "4.15.0"
+  resolved "https://registry.yarnpkg.com/unleash-server/-/unleash-server-4.15.0.tgz#d1316c3ffebd175f44d97e559220791d74d3ae6f"
+  integrity sha512-SSnFwIrh3rZDpnXD+4iyRv4Iwd3xEDEvGy682UkXWIaIp8AtoFWV+SMHKvS6c07KFzYiKobGvMYkFcLaF5Ijcg==
   dependencies:
-    "@unleash/express-openapi" "^0.2.0"
+    "@unleash/express-openapi" "^0.2.1-beta.0"
     ajv "^8.11.0"
     ajv-formats "^2.1.1"
     async "^3.2.4"
